@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+
+	
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="ar.com.almaDeJazmin.website.domain"/>
+		
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.MySQLDialect
+		        hibernate.show_sql=false
+		        hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+		        hibernate.hbm2ddl.auto=validate
+		        hibernate.c3p0.minPoolSize=5
+				hibernate.c3p0.maxPoolSize=20
+   				hibernate.c3p0.timeout=600
+				hibernate.c3p0.max_statement=50
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	    <property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="smtpAuthenticator" class="ar.com.almaDeJazmin.website.util.SmtpAuthenticator">
+		<constructor-arg value="${smtp.username}" />
+		<constructor-arg value="${smtp.password}" />
+	</bean>
+	
+	<bean id="mailSession" class="javax.mail.Session" factory-method="getInstance">
+		<constructor-arg>
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.socketFactory.port">${smtp.port}</prop>
+				<prop key="mail.smtp.socketFactory.class">${smtp.socket.factory}</prop>
+				<prop key="mail.smtp.socketFactory.fallback">false</prop>
+				<prop key="mail.debug">${mail.debug}</prop>
+				<prop key="mail.smtp.ssl.trust">*</prop>
+				<prop key="content.type">text/plain; charset=UTF-8</prop>
+			</props>
+		</constructor-arg>
+		<constructor-arg ref="smtpAuthenticator" />
+	</bean>
+	
+	
+	
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${smtp.hostname}" />
+		<property name="port" value="${smtp.port}" />
+		
+		<property name="session" ref="mailSession" />
+	</bean>
+	
+	
+	<bean id="simpleMailMessage" class="org.springframework.mail.SimpleMailMessage">
+	    <property name="from">
+	        <value><![CDATA[${mail.from}]]></value>
+	    </property>
+	    <property name="to">
+	        <value><![CDATA[${mail.to}]]></value>
+	    </property>
+	    <property name="subject" value="${mail.subject}"/>
+	</bean>
+	
+	<bean id="toAddress" class="javax.mail.internet.InternetAddress">
+		<constructor-arg value="${mail.to}" />
+	</bean>
+	
+	<bean id="fromAddress" class="javax.mail.internet.InternetAddress">
+		<constructor-arg value="${mail.from}" />
+	</bean>
+	
+	<bean id="mimeMessage" class="javax.mail.internet.MimeMessage">
+		<constructor-arg ref="mailSession" />
+	</bean>
+	
+	
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<map>
+				<entry key="java.lang.Exception" value="errorPage" />
+				<entry key="PageNotFound" value="notFound.jsp" />
+			</map>
+		</property>
+		<property name="defaultErrorView" value="errorPage"/>
+	</bean>
+
+
+</beans>
