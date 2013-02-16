@@ -55,6 +55,14 @@ public abstract class Contact implements Serializable {
 		this.comment = comment;
 	}
 	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	@Override
 	public String toString() {
 		return "Contact " + this.name;
