@@ -39,6 +39,7 @@
 		<div id="menu" style="width:100px; position: absolute; top: 300px; left: 0px; height:100px; font-size:11px;">
 			<a href="productList.html">Productos</a>
 			<a href="categoryList.html">Categorias</a>
+			<br/>
 			<a href='<c:url value="/index.html"/>'>Ir al sitio de Alma de Jazmin</a>
 		</div>
 	</c:if>
