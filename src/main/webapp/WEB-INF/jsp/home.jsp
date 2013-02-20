@@ -11,7 +11,7 @@
 
 
 <div>
-	ESTA ES LA HOME CON VIDEO
+	ESTA ES LA HOME PRINCIPAL
 </div>
 
 

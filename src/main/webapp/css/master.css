@@ -1,0 +1,401 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	position:relative;
+	font-family: helvetica, verdana, arial, sans-serif;
+ 
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+}
+
+.relative {
+	position: relative;
+}
+
+.pad-right {
+	padding-right: 5px;
+}
+
+.double-pad-right {
+	padding-right: 10px;
+}
+
+.spacer-horiz {
+	width: 20px;
+}
+
+.h-5 {
+	height: 5px;
+	line-height: 5px;
+}
+
+.h-20 {
+	height: 20px;
+	line-height: 20px;
+}
+
+
+form {
+	font-family: helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	font-style: normal;
+	text-align: justify;
+	color: #12110f;
+	padding-left: 5px;
+	padding-top: 4px;
+}
+
+textarea, input {
+	font-family: helvetica, verdana, arial, sans-serif;
+	font-size: 9px;
+	font-style: normal;
+	text-align: justify;
+	color: #12110f;
+	border: 0px solid #8e7d78;
+	background-color: #ffffff;
+	border: 1px solid #c8beb1;
+	padding: 2px;
+	padding-left: 4px;
+	padding-bottom: 1px;
+	margin: 2px;
+}
+
+.disabled-input {
+	font-size: 9px;
+	font-style: normal;
+	text-align: justify;
+	color: #12110f;
+	border: 0px solid #8e7d78;
+	background-color: #ffffff;
+	border: 1px solid #c8beb1;
+	padding: 2px;
+	padding-left: 4px;
+	padding-bottom: 1px;
+	margin: 2px;
+	color: #999999;
+	width: 250px;
+	float: left;
+	margin-right: 5px;
+}
+
+.input-link {
+	background-color: #ffffff;
+	border: 1px solid #c8beb1;
+	padding: 2px;
+	padding-left: 4px;
+	padding-bottom: 1px;
+	color: #C8BEB1;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+input[disabled],
+textarea[disabled] {
+	color: #999999;
+}
+
+.input-link a,
+.input-link a:visited,
+.input-link a:link,
+.input-link a:active,
+.input-link a:hover {
+	text-decoration: none;
+	color: #C8BEB1;
+}
+
+.titleRow td,
+.category-title {
+	background-color: #444444;
+    color: white;
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    padding: 4px;
+    text-transform: lowercase;
+    text-align: left;
+}
+
+.category-title {
+	margin-left: 100px;
+	width: 488px;
+}
+
+.inner-title {
+    color: #D79F40;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+
+.categories {
+	margin-bottom: 7px;
+}
+
+#selectCategory label {
+	margin-top: 2px;
+	vertical-align: 1pt;
+	padding-left: 2px;
+}
+
+.errors {
+	letter-spacing: 0px;
+	padding: 0px;
+	color: #c5923b;
+}
+
+#categoryCreateForm .errors {
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+.warning {
+	background-color: #f0f1c2;
+	color: #444444;
+	font-size: 12px;
+	padding: 5px;
+    text-align: left;
+    width: 478px;
+}
+
+.no-small-picture {
+	width: 81px;
+	height: 81px;
+	background-color: #333333;
+	float:left;
+}
+
+.details {
+	float: left;
+	padding-left: 5px;
+}
+
+.table-cell td {
+    border-top: 1px solid #777777;
+}
+
+.table-cell .actions {
+	width: 140px;
+}
+
+#productList-container .contenidoTexto td.actions {
+	padding-right: 0px;
+}
+
+.table-cell .code {
+	width: 30px;
+}
+
+.table-cell .name {
+	width: 120px;
+}
+
+.actions button {
+	border: 1px solid #666666;
+	background: none;
+	background-color: #444444;
+	color: #ffffff;
+	padding-top: 3px;
+	padding-bottom: 2px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+.actions button:hover {
+	color: #ffe4b6;
+	cursor: pointer;
+	background-color: #333333;
+}
+
+#productList-container .actions {
+	padding-left: 100px;
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+#productForm-container .actions,
+#productDetails-container .actions {
+	position: absolute;
+	bottom: 0px;
+	right: 10px;
+	width: 90px;
+}
+
+#productForm-container .actions button,
+#productDetails-container .actions button {
+	width: 90px;
+	margin-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+
+#productDetails-container .titular,
+#productForm-container .titular {
+	font-size: 12px;
+	color: #C8BEB1;
+}
+
+.titular-nested {
+	padding-left: 130px;
+	padding-top: 30px;
+}
+
+#sendMail_form input,
+#sendMail_form textarea {
+	width: 78%;
+	font-size: 11px;
+	margin-bottom: 5px;
+	margin-top: 0px;
+}
+
+#sendMail_form .enviarLink {
+	padding-left: 0px;
+}
+
+
+.scroll-pane {
+	height: 400px;
+	overflow: auto;
+}
+
+.scroll-pane-admin {
+	width: 625px;
+	height: 480px;
+	overflow: auto;
+}
+
+#category-list-container .scroll-pane-admin {
+	height: 380px;
+}
+
+.horizontal-only {
+	height: auto;
+	max-height: 400px;
+}
+
+#submenu-products,
+#submenu-categories {
+	width: 210px;
+}
+
+#submenu-products {
+	padding-top: 110px;
+}
+
+#categoryCreateForm {
+	padding-left: 100px;
+}
+
+#categoryCreateForm .contenidoTexto {
+	width: 428px;
+}
+
+#categoryCreateForm  .actions {
+	position: absolute;
+	width: 90px;
+	top: 0px;
+	left: 438px;
+}
+
+#categoryCreateForm  .actions button {
+	width: 90px;
+	margin-top: 3px;
+	padding: 2px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.error-page .contenidoTextoInterno {
+	padding-left: 130px;
+	text-align: left;
+	font-size: 13px;
+	line-height: 17px;
+}
+
+.error-page a:hover {
+	color: #c5923b;
+}
+
+.error-page a,
+.error-page a:visited,
+.error-page a:link,
+.error-page a:active {
+	text-decoration: none;
+	color: #C8BEB1;
+}
+
+.edit {
+	background-image: url(images/btnEditar.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 17px;
+}
+
+.delete,
+.cancel {
+	background-image: url(images/btnDelete.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 17px;
+	margin-left: 12px;
+}
+
+a.delete {
+	margin-left: 0px;
+}
+
+.ok {
+	background-image: url(images/btnOk.png);
+	background-repeat: no-repeat;
+	background-position: left;
+	padding-left: 17px;
+}
+
+.required {
+	background-image: url(images/required.png);
+	background-repeat: no-repeat;
+	background-position: left 1px;
+	margin-left: 2px;
+	height: 20px;
+	width: 16px;
+}
+
+#productCreateForm .errors {
+	width: 15px;
+	line-height: 10px;
+}
+
+#sendMail_form .errors {
+	line-height: 11px;
+    padding-top: 5px;
+    width: 60px;
+    font-size: 10px;
+}
+#sendMail_form .required {
+	background-position: left 5px;
+}
+
+#success-msg .msg,
+#warning .msg,
+#selectCategory .msg,
+#newCategory .msg {
+	padding-top: 50px;
+	padding-left: 25px;
+	padding-right: 25px;
+	padding-bottom: 15px;
+}
