@@ -11,11 +11,13 @@
 </jsp:include>
 
 
-<div>
+<div style="margin-left:120px;">
 
-	<button onclick="window.location='categoryFormInit.html'">
-		<spring:message code="create.new.category" />
-	</button>
+	<div class="actions">
+		<button onclick="window.location='categoryFormInit.html'">
+			<spring:message code="create.new.category" />
+		</button>
+	</div>
 	
 	<table cellpadding="0" cellspacing="0" border="0">
 					
