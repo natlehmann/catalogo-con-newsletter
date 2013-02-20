@@ -28,7 +28,7 @@ public interface ProductDao {
 	
 	/**
 	 * Returns all products that belong to a certain category identified by id.
-	 * It only initializes the products' small image.
+	 * It initializes all products' images.
 	 * @param categoryId
 	 * @return
 	 */
@@ -62,6 +62,8 @@ public interface ProductDao {
 	 * @param orderNumber
 	 */
 	void deleteImageByOrderNumber(Product product, int orderNumber);
+	
+	void deleteAllProductImages(Product product);
 
 
 }

@@ -15,7 +15,7 @@
 </jsp:include>
 
 
-<div>
+<div class="main-content">
 
 
 <script type="text/javascript">
@@ -270,15 +270,17 @@
 				<td colspan="3">
 					<c:choose>
 						<c:when test="${product.smallImage == null}">
-							<input type="file" name="smallImageFile" class="left" size="40"/>
+							<input type="file" name="smallImageFile" class="left" size="30"/>
+							<form:errors path="smallImage" cssClass="errors left" element="div" />
 						</c:when>
 						<c:otherwise>
-							<input type="file" name="smallImageFile" class="left" size="40" 
+							<input type="file" name="smallImageFile" class="left" size="30" 
 								id="smallImageFile_input" style="display: none;" />
 								
 							<div id="smallImageFile_div" class="disabled-input">
 								${product.smallImage.fileName}
 							</div>
+							<form:errors path="smallImage" cssClass="errors left" element="div" />
 							
 							<a href="#" onclick="toggleInput('smallImageFile')" class="agregarLink edit"
 								id="smallImageFile_link" title='<spring:message code="change" />'>

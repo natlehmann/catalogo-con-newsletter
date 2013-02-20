@@ -26,8 +26,6 @@ public class Product implements Serializable {
 	
 	private static final long serialVersionUID = -6629557767460796478L;
 
-	private static final int MAX_DESCRIPTION_LENGTH = 100;
-
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -218,6 +216,26 @@ public class Product implements Serializable {
 		
 		return result;
 	}
+	
+	
+	public ImageFile removeImageByImageId(int imageId) {
+		
+		ImageFile result = null;
+		
+		if (this.images != null) {
+			
+			Iterator<ImageFile> it = this.images.iterator();
+			while (it.hasNext() && result == null) {
+				ImageFile img = it.next();
+				if (img.getId().intValue() == imageId) {
+					result = img;
+					it.remove();
+				}
+			}
+		}
+		
+		return result;
+	}
 
 
 	public void removeCategory(Category category) {
@@ -238,5 +256,20 @@ public class Product implements Serializable {
 		return "name";
 	}
 	
+	/**
+	 * Returns the first image that is not a small image
+	 * @return
+	 */
+	public ImageFile getFirstBigImage() {
+		if (this.images != null) {
+			for (ImageFile image : this.images) {
+				if (!image.isSmallImage()) {
+					return image;
+				}
+			}
+		}
+		
+		return null;
+	}
 
 }

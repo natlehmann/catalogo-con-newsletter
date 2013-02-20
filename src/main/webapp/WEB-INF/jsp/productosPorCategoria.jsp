@@ -6,7 +6,7 @@
 
 
 
-<div>
+<div class="main-content">
 	<c:forEach var="product" items="${products}">
 		<div>
 			${product.name}
@@ -14,7 +14,12 @@
 				<c:url value="imageView.html" var="url">
 					<c:param name="id" value="${product.smallImage.id}" />
 				</c:url>
-				<img src="${url}" width="200" height="200" />
+				<img src="${url}" width="100" height="100" />
+				
+				<c:url value="imageView.html" var="url_big">
+					<c:param name="id" value="${product.firstBigImage.id}" />
+				</c:url>
+				<img src="${url_big}" />
 			</c:if>
 			
 		</div>

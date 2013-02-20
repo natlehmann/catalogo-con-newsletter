@@ -9,6 +9,7 @@
 
 
 	<context:component-scan base-package="ar.com.almaDeJazmin.website.dao" />
+	<context:component-scan base-package="ar.com.almaDeJazmin.website.service" />
 	<context:component-scan base-package="ar.com.almaDeJazmin.website.controller" />
 	<context:component-scan base-package="ar.com.almaDeJazmin.website.controller.validation" />
 	

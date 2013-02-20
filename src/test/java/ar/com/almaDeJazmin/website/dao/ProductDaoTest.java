@@ -223,6 +223,23 @@ public class ProductDaoTest extends AbstractTest {
 	}
 	
 	@Test
+	public void testGetByCategoryWithImages() {
+		
+		productWithImages.addCategory(categoryNone);
+		productDao.update(productWithImages);
+		
+		buildSmallImage(3, productWithImages);
+		
+		List<Product> products = productDao.getByCategoryId(categoryNone.getId());
+		Assert.assertEquals(1, products.size());
+		Assert.assertEquals(productWithImages, products.get(0));
+		
+		for (ImageFile image : products.get(0).getImages()) {
+			Assert.assertNotNull(image.getId());
+		}
+	}
+	
+	@Test
 	public void testGetByIdWithImages() {
 		
 		ImageFile image3 = new ImageFile();
@@ -309,5 +326,15 @@ public class ProductDaoTest extends AbstractTest {
 		
 		List<Product> products = productDao.getByCategoryId(category3.getId(), new Locale("es"));
 		Assert.assertFalse(products.isEmpty());
+	}
+	
+	@Test
+	public void testDeleteAllImages() {
+		Assert.assertFalse(productWithImages.getImages().isEmpty());
+		
+		productDao.deleteAllProductImages(productWithImages);
+		Product product = productDao.getById(productWithImages.getId());
+		
+		Assert.assertTrue(product.getImages().isEmpty());
 	}
 }

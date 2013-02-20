@@ -11,7 +11,7 @@
 </jsp:include>
 
 
-<div>
+<div class="main-content">
 
 
 <script type="text/javascript">

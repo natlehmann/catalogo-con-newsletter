@@ -111,7 +111,7 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 	public List<Product> getByCategoryId(Integer categoryId) {
 		
 		List<Product> products = getHibernateTemplate().findByNamedParam(
-				"Select p from Product p left join fetch p.smallImage, " +
+				"Select distinct(p) from Product p left join fetch p.smallImage left join fetch p.images, " +
 				"IN(p.categories) c where c.id = :categoryId", 
 				"categoryId", categoryId);
 		
@@ -152,6 +152,21 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 			getHibernateTemplate().delete(img);
 			getHibernateTemplate().update(product);
 		}
+	}
+	
+	public void deleteAllProductImages(Product product) {
+		
+		List<ImageFile> images = product.getImages();
+		if (images != null) {
+			
+			for (ImageFile image : images) {
+				getHibernateTemplate().delete(image);
+			}
+			
+			product.getImages().clear();
+			getHibernateTemplate().update(product);
+		}
+		
 	}
 
 

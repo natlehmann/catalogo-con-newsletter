@@ -27,7 +27,7 @@ function cleanSelectedCategory() {
 </script>
 
 
-<div>
+<div class="main-content">
 	<c:forEach var="category" items="${categories}">
 		<div>
 			<a href="#" onclick="showProducts(${category.id}, this)">
