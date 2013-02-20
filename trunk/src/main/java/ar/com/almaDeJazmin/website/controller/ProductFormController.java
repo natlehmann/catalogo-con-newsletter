@@ -3,7 +3,6 @@ package ar.com.almaDeJazmin.website.controller;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.ServletRequest;
@@ -23,23 +22,22 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import ar.com.almaDeJazmin.website.controller.validation.ProductValidator;
 import ar.com.almaDeJazmin.website.dao.CategoryDao;
 import ar.com.almaDeJazmin.website.dao.ImageFileDao;
 import ar.com.almaDeJazmin.website.dao.ProductDao;
 import ar.com.almaDeJazmin.website.domain.Category;
-import ar.com.almaDeJazmin.website.domain.ConfigConstants;
 import ar.com.almaDeJazmin.website.domain.ImageFile;
+import ar.com.almaDeJazmin.website.domain.ImageFileFormat;
+import ar.com.almaDeJazmin.website.domain.InvalidImageFileFormatException;
 import ar.com.almaDeJazmin.website.domain.Product;
 import ar.com.almaDeJazmin.website.domain.ValidationException;
+import ar.com.almaDeJazmin.website.service.ImageService;
 
 
 @Controller
@@ -55,6 +53,9 @@ public class ProductFormController extends MultiActionController {
 	
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Autowired
+	private ImageService imageService;
 	
 
 	@Autowired
@@ -242,16 +243,22 @@ public class ProductFormController extends MultiActionController {
 		
 		if (!binder.getBindingResult().hasErrors()) {
 			
-			this.addImages(product, request);
-			productDao.update(product);
-			
-			
 			try {
+				
+				this.addImages(product, request);
+				productDao.update(product);
+				
 				this.addCategories(product, request);
 				productDao.update(product);
 				
 				return new ModelAndView("redirect:productList.html");
 				
+				
+			} catch (InvalidImageFileFormatException e) {
+				binder.getBindingResult().rejectValue("smallImage", "invalid.file.format", "invalid file");
+				return new ModelAndView("/admin/productForm").addAllObjects(
+						binder.getBindingResult().getModel()).addObject("categories", getCategoryList())
+						.addObject("product", binder.getBindingResult().getTarget());
 				
 			} catch (ValidationException e) {
 				return new ModelAndView("redirect:productFormInit.html?id=" + product.getId());
@@ -282,32 +289,28 @@ public class ProductFormController extends MultiActionController {
 	}
 	
 	private void addImages(Product product, HttpServletRequest request) 
-	throws ServletRequestBindingException, IOException {
+	throws ServletRequestBindingException, IOException, InvalidImageFileFormatException {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
-		for (int index = 0; index < ConfigConstants.MAX_IMAGE_UPLOAD; index++) {
-			
-			ImageFile imageFile = buildImageFile(multipartRequest, "imageFile", index);
-			if (imageFile != null) {
-
-				ImageFile deletedImg = product.removeImageByOrderNumber(index);
-				if (deletedImg != null) {
-					imageFileDao.delete(deletedImg);
-				}
-				
-				product.addImage(imageFile);
-			}
-		}
+		// we allow only a single image upload, received as "smallImage"
+		// the same image will be saved twice in different sizes
 		
-		ImageFile smallImage = buildImageFile(multipartRequest, "smallImageFile", null);
-		if (smallImage != null) {
+		ImageFile newImage = buildImageFile(multipartRequest, "smallImageFile", null);
+		if (newImage != null) {
 			
 			if (product.getSmallImage() != null) {
 				productDao.deleteSmallImage(product);
 			}
 			
-			product.setSmallImage(smallImage);
+			if (product.getImages() != null && product.getImages().size() > 0) {
+				productDao.deleteAllProductImages(product);
+			}
+			
+			ImageFile smallImageFile = imageService.resize(newImage, 100); // TODO: DEFINIR TAMAÑO
+			
+			product.addImage(newImage);
+			product.setSmallImage(smallImageFile);
 		}
 	}
 	
@@ -362,7 +365,7 @@ public class ProductFormController extends MultiActionController {
 
 
 	private ImageFile buildImageFile(MultipartHttpServletRequest multipartRequest, 
-			String paramName, Integer index) throws IOException {
+			String paramName, Integer index) throws IOException, InvalidImageFileFormatException {
 		
 		ImageFile imageFile = null;
 		
@@ -374,6 +377,10 @@ public class ProductFormController extends MultiActionController {
 		
 		if (multipartFile != null && multipartFile.getOriginalFilename() != null 
 				&& !multipartFile.getOriginalFilename().trim().equals("")) {
+			
+			if (ImageFileFormat.getFromString(multipartFile.getContentType()) == null) {
+				throw new InvalidImageFileFormatException();
+			}
 			
 			imageFile = new ImageFile();
 			imageFile.setFileName(multipartFile.getOriginalFilename());
@@ -403,12 +410,18 @@ public class ProductFormController extends MultiActionController {
 			
 			productDao.create(product);
 			
-			this.addImages(product, request);
-			productDao.update(product);
-			
 			try {
+				
+				this.addImages(product, request);
+				productDao.update(product);
+				
 				addCategories(product, request);
 				productDao.update(product);
+				
+			} catch (InvalidImageFileFormatException e) {
+				binder.getBindingResult().rejectValue("smallImage", "invalid.file.format", "invalid file");
+				return new ModelAndView("/admin/productForm").addAllObjects(
+						binder.getBindingResult().getModel()).addObject("categories", getCategoryList());
 				
 			} catch (ValidationException e) {
 				return new ModelAndView("redirect:productFormInit.html?id=" + product.getId());

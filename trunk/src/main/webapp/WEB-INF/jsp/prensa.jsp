@@ -10,7 +10,7 @@
 </jsp:include>
 
 
-<div>
+<div class="main-content">
 	PRENSA
 </div>
 

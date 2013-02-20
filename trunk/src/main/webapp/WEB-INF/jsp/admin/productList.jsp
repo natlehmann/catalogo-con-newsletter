@@ -15,7 +15,7 @@
 </jsp:include>
 
 
-<div style="margin-left:120px;">
+<div class="main-content">
 
 
 <%

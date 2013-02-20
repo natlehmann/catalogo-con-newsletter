@@ -10,7 +10,7 @@
 </jsp:include>
 
 
-<div>
+<div class="main-content">
 	ESTA ES LA HOME PRINCIPAL
 </div>
 
