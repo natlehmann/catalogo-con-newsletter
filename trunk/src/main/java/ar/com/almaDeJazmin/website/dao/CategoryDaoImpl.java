@@ -71,7 +71,8 @@ public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao 
 
 	@SuppressWarnings("unchecked")
 	public List<Category> getAll() {
-		return getHibernateTemplate().loadAll(Category.class);
+		List<Category> result = getHibernateTemplate().find("Select c from Category c order by name");
+		return result;
 	}
 
 
