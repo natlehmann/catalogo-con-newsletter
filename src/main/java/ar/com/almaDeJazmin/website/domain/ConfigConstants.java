@@ -4,5 +4,11 @@ public class ConfigConstants {
 	
 	public static final int MAX_IMAGE_UPLOAD = 1;
 	public static final Integer MAX_ORDER = Integer.valueOf(99);
+	
+	public static final int PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH = 600;
+	public static final int PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT = 400;
+	
+	public static final int PRODUCT_GALLERY_THUMB_IMG_WIDTH = 400;
+	public static final int PRODUCT_GALLERY_THUMB_IMG_HEIGHT = 300;
 
 }

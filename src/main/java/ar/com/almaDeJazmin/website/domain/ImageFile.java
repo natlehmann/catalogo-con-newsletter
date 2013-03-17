@@ -3,15 +3,21 @@ package ar.com.almaDeJazmin.website.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ImageFile implements Serializable {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "size", discriminatorType = DiscriminatorType.STRING)
+public abstract class ImageFile implements Serializable {
 	
 	private static final long serialVersionUID = 6162652429823669897L;
 
@@ -29,13 +35,7 @@ public class ImageFile implements Serializable {
 	@Column(length=255)
 	private String fileName;
 	
-	@ManyToOne
-	@JoinColumn(name="productId", nullable=false)
-	private Product product;
-	
 	private Integer orderNumber;
-	
-	private boolean smallImage;
 	
 	public ImageFile() {}
 	
@@ -75,28 +75,12 @@ public class ImageFile implements Serializable {
 		this.fileName = fileName;
 	}
 	
-	public Product getProduct() {
-		return product;
-	}
-	
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-	
 	public Integer getOrderNumber() {
 		return orderNumber;
 	}
 	
 	public void setOrderNumber(Integer order) {
 		this.orderNumber = order;
-	}
-	
-	public boolean isSmallImage() {
-		return smallImage;
-	}
-	
-	public void setSmallImage(boolean smallImage) {
-		this.smallImage = smallImage;
 	}
 
 	@Override
@@ -126,6 +110,6 @@ public class ImageFile implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Image " + this.fileName + " (id: " + this.id + ")";
+		return this.getClass().getSimpleName() + " " + this.fileName + " (id: " + this.id + ")";
 	}
 }

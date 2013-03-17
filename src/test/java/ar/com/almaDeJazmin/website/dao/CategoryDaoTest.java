@@ -47,7 +47,6 @@ public class CategoryDaoTest extends AbstractTest {
 		secondCategory = categoryDao.create(secondCategory);
 		
 		product = new Product();
-		product.setCode("tt1");
 		product.setName("x12344");
 		product = productDao.create(product);
 		

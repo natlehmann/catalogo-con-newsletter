@@ -9,9 +9,25 @@
 	<jsp:param value="Alma de Jazmin" name="title"/>
 </jsp:include>
 
+<script type="text/javascript">
+function showForm() {
+	$('#nosotros-texto').hide();
+	$('#nosotros-cv-form').show();
+}
+</script>
 
 <div class="main-content">
-	NOSOTROS
+	
+	<div id="nosotros-texto">
+		BLAH BLAH BLAH
+	</div>
+	
+	<a onclick="showForm()">Envianos tu CV</a>
+	
+	<div id="nosotros-cv-form">
+		Nombre y apellido
+		
+	</div>
 </div>
 
 

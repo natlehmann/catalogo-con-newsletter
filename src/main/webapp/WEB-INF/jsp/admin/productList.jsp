@@ -45,16 +45,10 @@
 
 				
 			<tr class="table-cell">
-				<td class="code">
-					<%= product.getCode() %>
-				</td>
-				<td class="name">
-					<%= product.getName() %>
-				</td>
 				<td class="image">
-					<c:if test="<%= product.getSmallImage() != null %>">
+					<c:if test="<%= product.getThumbnail() != null %>">
 						<c:url value="/imageView.html" var="url">
-							<c:param name="id" value="<%= String.valueOf(product.getSmallImage().getId()) %>" />
+							<c:param name="id" value="<%= String.valueOf(product.getThumbnail().getId()) %>" />
 						</c:url>
 						<img src="${url}" width="80" height="80" />
 					</c:if>
@@ -105,16 +99,10 @@
 	%>
 			
 		<tr class="table-cell">
-			<td class="code">
-				<%= product.getCode() %>
-			</td>
-			<td class="name">
-				<%= product.getName() %>
-			</td>
 			<td class="image">
-				<c:if test="<%= product.getSmallImage() != null %>">
+				<c:if test="<%= product.getThumbnail() != null %>">
 					<c:url value="/imageView.html" var="url">
-						<c:param name="id" value="<%= String.valueOf(product.getSmallImage().getId()) %>" />
+						<c:param name="id" value="<%= String.valueOf(product.getThumbnail().getId()) %>" />
 					</c:url>
 					<img src="${url}" width="80" height="80" />
 				</c:if>

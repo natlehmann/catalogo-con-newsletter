@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.com.almaDeJazmin.website.domain.FullSizeImage;
 import ar.com.almaDeJazmin.website.domain.ImageFile;
 import ar.com.almaDeJazmin.website.domain.Product;
 
@@ -57,28 +58,15 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 		Product product = null;
 			
 		List<Product> products = getHibernateTemplate().findByNamedParam(
-				"Select p from Product p left join fetch p.smallImage " +
-//				"left join fetch p.categories " +
+				"Select p from Product p left join fetch p.thumbnail " +
 				"left join fetch p.images i where p.id = :id " +
 				"order by i.orderNumber", 
 				new String[]{"id"}, 
-				new Object[] {id});
+				new Object[] {id});		
 		
-		if (products != null && !products.isEmpty()) {
+		if (!products.isEmpty()) {
 			product = products.get(0);
-			
-			if (product.getImages() != null) {
-				
-				Iterator<ImageFile> it = product.getImages().iterator();
-				while (it.hasNext()) {
-					
-					if (it.next().isSmallImage()) {
-						it.remove();
-					}
-				}
-			}
 		}
-		
 		
 		return product;
 	}
@@ -91,53 +79,23 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 	}
 
 
-
-	public Product getByCode(String code) {
-		
-		@SuppressWarnings("unchecked")
-		List<Product> products = getHibernateTemplate().findByNamedParam(
-				"Select p from Product p where p.code = :code", "code", code);
-		
-		if (products != null && !products.isEmpty()) {
-			return products.get(0);
-		}
-		
-		return null;
-	}
-
-
-
 	@SuppressWarnings("unchecked")
 	public List<Product> getByCategoryId(Integer categoryId) {
 		
 		List<Product> products = getHibernateTemplate().findByNamedParam(
-				"Select distinct(p) from Product p left join fetch p.smallImage left join fetch p.images, " +
+				"Select distinct(p) from Product p left join fetch p.thumbnail left join fetch p.images, " +
 				"IN(p.categories) c where c.id = :categoryId", 
 				"categoryId", categoryId);
 		
 		return products;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public List<Product> getByCategoryId(Integer categoryId, Locale locale) {
-		
-		String orderBy = Product.getSortByField(locale);
-		
-		List<Product> products = getHibernateTemplate().findByNamedParam(
-				"Select p from Product p left join fetch p.smallImage, " +
-				"IN(p.categories) c where c.id = :categoryId order by p." + orderBy, 
-				"categoryId", categoryId);
-		
-		return products;
-	}
-
 
 
 	public void deleteSmallImage(Product product) {
 		
-		ImageFile smallImage = product.getSmallImage();
+		ImageFile smallImage = product.getThumbnail();
 		if (smallImage != null) {
-			product.setSmallImage(null);
+			product.setThumbnail(null);
 			getHibernateTemplate().update(product);
 			getHibernateTemplate().delete(smallImage);
 		}
@@ -156,7 +114,7 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 	
 	public void deleteAllProductImages(Product product) {
 		
-		List<ImageFile> images = product.getImages();
+		List<FullSizeImage> images = product.getImages();
 		if (images != null) {
 			
 			for (ImageFile image : images) {
@@ -167,6 +125,12 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 			getHibernateTemplate().update(product);
 		}
 		
+		if (product.getThumbnail() != null) {
+			product.setThumbnail(null);
+			getHibernateTemplate().update(product);
+//			getHibernateTemplate().delete(product.getThumbnail());
+		}
+		
 	}
 
 
@@ -174,7 +138,7 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 	@SuppressWarnings("unchecked")
 	public List<Product> getUnassignedProducts() {
 		List<Product> products = getHibernateTemplate().find(
-				"Select p from Product p left join fetch p.smallImage where not exists " +
+				"Select distinct(p) from Product p left join fetch p.thumbnail where not exists " +
 				"(select c from Category c, IN(c.products) p2 where p2 = p)");
 		
 		return products;
