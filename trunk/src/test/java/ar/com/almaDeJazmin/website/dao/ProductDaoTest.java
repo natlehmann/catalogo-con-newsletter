@@ -2,7 +2,6 @@ package ar.com.almaDeJazmin.website.dao;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -12,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import ar.com.almaDeJazmin.website.AbstractTest;
 import ar.com.almaDeJazmin.website.domain.Category;
+import ar.com.almaDeJazmin.website.domain.FullSizeImage;
 import ar.com.almaDeJazmin.website.domain.ImageFile;
 import ar.com.almaDeJazmin.website.domain.Product;
+import ar.com.almaDeJazmin.website.domain.Thumbnail;
 
 
 public class ProductDaoTest extends AbstractTest {
@@ -65,18 +66,18 @@ public class ProductDaoTest extends AbstractTest {
 		image1 = buildImage(0, productWithImages);
 	}
 
-	private ImageFile buildSmallImage(Integer orderNumber, Product product) {
-		ImageFile small = new ImageFile();
+	private Thumbnail buildSmallImage(Integer orderNumber, Product product) {
+		Thumbnail small = new Thumbnail();
 		small.setOrderNumber(orderNumber);
-		product.setSmallImage(small);
+		product.setThumbnail(small);
 		
 		product = productDao.update(product);
 		
-		return product.getSmallImage();
+		return product.getThumbnail();
 	}
 	
-	private ImageFile buildImage(Integer orderNumber, Product product) {
-		ImageFile img = new ImageFile();
+	private FullSizeImage buildImage(Integer orderNumber, Product product) {
+		FullSizeImage img = new FullSizeImage();
 		img.setOrderNumber(orderNumber);
 		product.addImage(img);
 		
@@ -96,7 +97,6 @@ public class ProductDaoTest extends AbstractTest {
 	private Product buildProduct(String name, String code, Category... categories) {
 		Product product = new Product();
 		product.setName(name);
-		product.setCode(code);
 		
 		product = productDao.create(product);
 		
@@ -131,9 +131,8 @@ public class ProductDaoTest extends AbstractTest {
 		
 		Product product = new Product();
 		product.setName("test");
-		product.setCode("123");
 		
-		ImageFile image = new ImageFile();
+		FullSizeImage image = new FullSizeImage();
 		image.setFileName("test");
 		image.setType("jpg");
 		product.addImage(image);
@@ -147,6 +146,36 @@ public class ProductDaoTest extends AbstractTest {
 		Assert.assertEquals(1, p.getImages().size());
 		Assert.assertNotNull(p.getImages().get(0).getId());
 		Assert.assertNotNull(p.getImages().get(0).getType());
+		// the image is not a thumbnail
+		Assert.assertNull(p.getThumbnail());
+		
+		productDao.delete(product);
+		p = productDao.getById(product.getId());
+		Assert.assertNull(p);
+	}
+	
+	@Test
+	public void testCreateProductWithThumbnail() {
+		
+		Product product = new Product();
+		product.setName("test");
+		
+		Thumbnail thumbnail = new Thumbnail();
+		thumbnail.setFileName("test");
+		thumbnail.setType("jpg");
+		product.setThumbnail(thumbnail);
+		
+		product = productDao.create(product);
+		Assert.assertNotNull(product.getId());
+		
+		Product p = productDao.getById(product.getId());
+		Assert.assertEquals(product, p);
+		Assert.assertNotNull(p.getThumbnail());
+		Assert.assertNotNull(p.getThumbnail().getId());
+		Assert.assertNotNull(p.getThumbnail().getType());
+		// the image is not a full size image
+		Assert.assertNotNull(p.getImages());
+		Assert.assertEquals(0, p.getImages().size());
 		
 		productDao.delete(product);
 		p = productDao.getById(product.getId());
@@ -164,7 +193,6 @@ public class ProductDaoTest extends AbstractTest {
 		categories.add(category);
 		product.setCategories(categories);
 		product.setName("test");
-		product.setCode("test1");
 		
 		product = productDao.create(product);
 		
@@ -219,7 +247,7 @@ public class ProductDaoTest extends AbstractTest {
 		Assert.assertEquals(1, products.size());
 		Assert.assertEquals(product1, products.get(0));
 		
-		Assert.assertNotNull(products.get(0).getSmallImage().getId());
+		Assert.assertNotNull(products.get(0).getThumbnail().getId());
 	}
 	
 	@Test
@@ -237,20 +265,22 @@ public class ProductDaoTest extends AbstractTest {
 		for (ImageFile image : products.get(0).getImages()) {
 			Assert.assertNotNull(image.getId());
 		}
+		
+		Assert.assertNotNull(products.get(0).getThumbnail().getId());
 	}
 	
 	@Test
 	public void testGetByIdWithImages() {
 		
-		ImageFile image3 = new ImageFile();
+		FullSizeImage image3 = new FullSizeImage();
 		image3.setOrderNumber(3);
 		product1.addImage(image3);
 		
-		ImageFile image1 = new ImageFile();
+		FullSizeImage image1 = new FullSizeImage();
 		image1.setOrderNumber(1);
 		product1.addImage(image1);
 		
-		ImageFile image2 = new ImageFile();
+		FullSizeImage image2 = new FullSizeImage();
 		image2.setOrderNumber(2);
 		product1.addImage(image2);		
 		
@@ -269,11 +299,11 @@ public class ProductDaoTest extends AbstractTest {
 	@Test
 	public void testGetByIdWithImagesNotSmall() {
 		
-		ImageFile image2 = new ImageFile();
+		FullSizeImage image2 = new FullSizeImage();
 		image2.setOrderNumber(2);
 		product1.addImage(image2);		
 		
-		ImageFile image1 = new ImageFile();
+		FullSizeImage image1 = new FullSizeImage();
 		image1.setOrderNumber(1);
 		product1.addImage(image1);
 		
@@ -284,7 +314,7 @@ public class ProductDaoTest extends AbstractTest {
 		Assert.assertEquals(2, result.getImages().size());
 		Assert.assertEquals(new Integer(1), result.getImages().get(0).getOrderNumber());
 		Assert.assertEquals(new Integer(2), result.getImages().get(1).getOrderNumber());
-		Assert.assertEquals(Integer.valueOf(3), result.getSmallImage().getOrderNumber());
+		Assert.assertEquals(Integer.valueOf(3), result.getThumbnail().getOrderNumber());
 		Assert.assertFalse(result.getImages().contains(smallImage));
 		
 	}
@@ -306,6 +336,13 @@ public class ProductDaoTest extends AbstractTest {
 	}
 	
 	@Test
+	public void testGetByIdNull() {
+		
+		Product p = productDao.getById(987);
+		Assert.assertNull(p);
+	}
+	
+	@Test
 	public void testDeleteImage() {
 		
 		productDao.deleteImageByOrderNumber(productWithImages, 0);
@@ -315,26 +352,26 @@ public class ProductDaoTest extends AbstractTest {
 	}
 	
 	@Test
-	public void testGetByCategoryIdEnglish() {
-		
-		List<Product> products = productDao.getByCategoryId(category3.getId(), new Locale("en"));
-		Assert.assertFalse(products.isEmpty());
-	}
-	
-	@Test
-	public void testGetByCategoryIdSpanish() {
-		
-		List<Product> products = productDao.getByCategoryId(category3.getId(), new Locale("es"));
-		Assert.assertFalse(products.isEmpty());
-	}
-	
-	@Test
 	public void testDeleteAllImages() {
+		
+		buildSmallImage(3, productWithImages);
 		Assert.assertFalse(productWithImages.getImages().isEmpty());
+		Assert.assertNotNull(productWithImages.getThumbnail());
 		
 		productDao.deleteAllProductImages(productWithImages);
 		Product product = productDao.getById(productWithImages.getId());
 		
 		Assert.assertTrue(product.getImages().isEmpty());
+		Assert.assertNull(product.getThumbnail());
+	}
+	
+	@Test
+	public void testDeleteSmallImage() {
+		
+		Assert.assertNotNull(product1.getThumbnail());
+		productDao.deleteSmallImage(product1);
+		
+		Product product = productDao.getById(product1.getId());
+		Assert.assertNull(product.getThumbnail());
 	}
 }

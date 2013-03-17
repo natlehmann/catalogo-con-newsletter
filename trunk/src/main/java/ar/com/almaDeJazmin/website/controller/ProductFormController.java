@@ -32,10 +32,13 @@ import ar.com.almaDeJazmin.website.dao.CategoryDao;
 import ar.com.almaDeJazmin.website.dao.ImageFileDao;
 import ar.com.almaDeJazmin.website.dao.ProductDao;
 import ar.com.almaDeJazmin.website.domain.Category;
+import ar.com.almaDeJazmin.website.domain.ConfigConstants;
+import ar.com.almaDeJazmin.website.domain.FullSizeImage;
 import ar.com.almaDeJazmin.website.domain.ImageFile;
 import ar.com.almaDeJazmin.website.domain.ImageFileFormat;
 import ar.com.almaDeJazmin.website.domain.InvalidImageFileFormatException;
 import ar.com.almaDeJazmin.website.domain.Product;
+import ar.com.almaDeJazmin.website.domain.Thumbnail;
 import ar.com.almaDeJazmin.website.domain.ValidationException;
 import ar.com.almaDeJazmin.website.service.ImageService;
 
@@ -277,13 +280,8 @@ public class ProductFormController extends MultiActionController {
 	private Product buildProduct(Product product, HttpServletRequest request) 
 	throws ServletRequestBindingException, IOException {
 		
-		String code = ServletRequestUtils.getRequiredStringParameter(request, "code");
-		String name = ServletRequestUtils.getRequiredStringParameter(request, "name");
-		String description = request.getParameter("description");
-		
-		product.setCode(code);
+		String name = request.getParameter("name");
 		product.setName(name);
-		product.setDescription(description);
 		
 		return product;
 	}
@@ -294,12 +292,13 @@ public class ProductFormController extends MultiActionController {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
 		// we allow only a single image upload, received as "smallImage"
-		// the same image will be saved twice in different sizes
+		// the same image will be saved twice in different sizes if necessary
+		// For the time being, we only save it once as "thumbnail"
 		
-		ImageFile newImage = buildImageFile(multipartRequest, "smallImageFile", null);
+		FullSizeImage newImage = buildImageFile(multipartRequest, "smallImageFile", null);
 		if (newImage != null) {
 			
-			if (product.getSmallImage() != null) {
+			if (product.getThumbnail() != null) {
 				productDao.deleteSmallImage(product);
 			}
 			
@@ -307,10 +306,17 @@ public class ProductFormController extends MultiActionController {
 				productDao.deleteAllProductImages(product);
 			}
 			
-			ImageFile smallImageFile = imageService.resize(newImage, 100); // TODO: DEFINIR TAMAÑO
+//			FullSizeImage fullSizeImage = (FullSizeImage) imageService.resize(
+//					newImage, ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH, 
+//					ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT, false); // TODO: DEFINIR TAMAÑO
+//			fullSizeImage.setOrderNumber(0);
+//			
+//			product.addImage(fullSizeImage);
 			
-			product.addImage(newImage);
-			product.setSmallImage(smallImageFile);
+			Thumbnail thumbnail = (Thumbnail) imageService.resize(
+					newImage, ConfigConstants.PRODUCT_GALLERY_THUMB_IMG_WIDTH, 
+					ConfigConstants.PRODUCT_GALLERY_THUMB_IMG_HEIGHT, true); // TODO: DEFINIR TAMAÑO
+			product.setThumbnail(thumbnail);
 		}
 	}
 	
@@ -364,10 +370,10 @@ public class ProductFormController extends MultiActionController {
 	}
 
 
-	private ImageFile buildImageFile(MultipartHttpServletRequest multipartRequest, 
+	private FullSizeImage buildImageFile(MultipartHttpServletRequest multipartRequest, 
 			String paramName, Integer index) throws IOException, InvalidImageFileFormatException {
 		
-		ImageFile imageFile = null;
+		FullSizeImage imageFile = null;
 		
 		if (index != null) {
 			paramName = paramName + "_" + index;
@@ -382,7 +388,7 @@ public class ProductFormController extends MultiActionController {
 				throw new InvalidImageFileFormatException();
 			}
 			
-			imageFile = new ImageFile();
+			imageFile = new FullSizeImage();
 			imageFile.setFileName(multipartFile.getOriginalFilename());
 			imageFile.setType(multipartFile.getContentType());
 			imageFile.setContent(multipartFile.getBytes());

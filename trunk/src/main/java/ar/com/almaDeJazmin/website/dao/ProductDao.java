@@ -1,7 +1,6 @@
 package ar.com.almaDeJazmin.website.dao;
 
 import java.util.List;
-import java.util.Locale;
 
 import ar.com.almaDeJazmin.website.domain.Product;
 
@@ -24,8 +23,6 @@ public interface ProductDao {
 
 	List<Product> getAll();
 
-	Product getByCode(String code);
-	
 	/**
 	 * Returns all products that belong to a certain category identified by id.
 	 * It initializes all products' images.
@@ -33,14 +30,6 @@ public interface ProductDao {
 	 * @return
 	 */
 	List<Product> getByCategoryId(Integer categoryId);
-	
-	/**
-	 * Returns all products that belong to a certain category identified by id, sorted by name according to the given locale.
-	 * It only initializes the products' small image.
-	 * @param categoryId
-	 * @return
-	 */
-	List<Product> getByCategoryId(Integer categoryId, Locale locale);
 
 	/**
 	 * Removes a product's small image.
@@ -63,6 +52,10 @@ public interface ProductDao {
 	 */
 	void deleteImageByOrderNumber(Product product, int orderNumber);
 	
+	/**
+	 * Deletes ALL product images, including thumbnails if any
+	 * @param product
+	 */
 	void deleteAllProductImages(Product product);
 
 

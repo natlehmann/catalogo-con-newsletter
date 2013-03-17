@@ -16,21 +16,10 @@ public class ProductValidator implements Validator {
 	}
 
 	private void validate(Product product, Errors errors) {
-
-		if (!errors.hasFieldErrors("code") && product.getCode() != null) {
-			
-			Product existingProd = productDao.getByCode(product.getCode());
-			if (existingProd != null
-					&& (product.getId() == null 
-							|| product.getId().intValue() != existingProd.getId().intValue())) {
-				
-				errors.rejectValue("code", "validation.exists", "already exists.");
-			}
-		}
 		
-		if (product.getDescription() != null) {
-			if (product.getDescription().length() > 512) {
-				errors.rejectValue("description", "exceeds.max.characters", new Object[]{512}, "too long.");
+		if (product.getName() != null) {
+			if (product.getName().length() > 30) {
+				errors.rejectValue("name", "exceeds.max.characters", new Object[]{30}, "too long.");
 			}
 		}
 	}
@@ -41,10 +30,6 @@ public class ProductValidator implements Validator {
 	}
 
 	public void validate(Object object, Errors errors) {
-		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "code", "field.required");
-		
 		this.validate((Product)object, errors);
 		
 	}

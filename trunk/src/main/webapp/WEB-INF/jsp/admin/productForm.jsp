@@ -224,63 +224,22 @@
 			
 			<tr>
 				<td>
-					<spring:message code="product.name" />
-				</td>
-				<td>
-					<form:input path="name" maxlength="250" size="22" cssClass="left" /> 
-					<div class="required left"><br/></div>
-					<form:errors path="name" cssClass="errors left" element="div" />
-				</td>
-				
-				<td>
-					<div class="right pad-right">
-						<spring:message code="product.code" />
-					</div>
-				</td>
-				<td>
-					<form:input path="code" maxlength="20" size="10" cssClass="left" /> 
-					<div class="required left"><br/></div>
-					<form:errors path="code" cssClass="errors left" element="div"  />
-				</td>
-			</tr>
-			
-			
-			<tr class="divider">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr class="spacer">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr class="titleRow">
-				<td colspan="4">
-					<spring:message code="picture" />
-				</td>
-			</tr>
-			
-			<tr class="spacer">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr>
-				<td>
 					<spring:message code="product.smallImage" />
 				</td>
 				<td colspan="3">
 					<c:choose>
-						<c:when test="${product.smallImage == null}">
+						<c:when test="${product.thumbnail == null}">
 							<input type="file" name="smallImageFile" class="left" size="30"/>
-							<form:errors path="smallImage" cssClass="errors left" element="div" />
+							<form:errors path="thumbnail" cssClass="errors left" element="div" />
 						</c:when>
 						<c:otherwise>
 							<input type="file" name="smallImageFile" class="left" size="30" 
 								id="smallImageFile_input" style="display: none;" />
 								
 							<div id="smallImageFile_div" class="disabled-input">
-								${product.smallImage.fileName}
+								${product.thumbnail.fileName}
 							</div>
-							<form:errors path="smallImage" cssClass="errors left" element="div" />
+							<form:errors path="thumbnail" cssClass="errors left" element="div" />
 							
 							<a href="#" onclick="toggleInput('smallImageFile')" class="agregarLink edit"
 								id="smallImageFile_link" title='<spring:message code="change" />'>

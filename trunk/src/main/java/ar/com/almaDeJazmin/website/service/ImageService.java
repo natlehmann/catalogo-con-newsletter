@@ -6,6 +6,7 @@ import ar.com.almaDeJazmin.website.domain.ImageFile;
 
 public interface ImageService {
 	
-	ImageFile resize(ImageFile source, int size) throws IOException;
+	ImageFile resize(ImageFile source, int width, int height, boolean isThumbnail) 
+	throws IOException;
 
 }

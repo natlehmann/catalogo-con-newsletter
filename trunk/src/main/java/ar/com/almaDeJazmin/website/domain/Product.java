@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
@@ -30,30 +29,23 @@ public class Product implements Serializable {
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(length=255, nullable=false)
+	@Column(length=30, nullable=true)
 	private String name;
 	
-	@Column(length=20, nullable=false, unique=true)
-	private String code;
-	
-	@Column(length=512)
-	private String description;
-	
 	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="product")
-	private List<ImageFile> images;
+	private List<FullSizeImage> images;
 	
-	@JoinColumn(name="smallImageId")
+	@JoinColumn(name="thumbnailId")
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
-	private ImageFile smallImage;
+	private Thumbnail thumbnail;
 	
 	@JoinTable(name="Category_Product", joinColumns={@JoinColumn(name="product_id")}, 
 			inverseJoinColumns={@JoinColumn(name="category_id")})
 	@ManyToMany(cascade={CascadeType.PERSIST,CascadeType.MERGE}, fetch=FetchType.EAGER)
 	private List<Category> categories;
 	
-	
 	@Transient
-	private Map<Integer, ImageFile> imagesByOrderNumber;
+	private Map<Integer, FullSizeImage> imagesByOrderNumber;
 	
 	
 	public Product() {}
@@ -66,7 +58,7 @@ public class Product implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -75,51 +67,29 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public List<ImageFile> getImages() {
+	public List<FullSizeImage> getImages() {
 		return images;
 	}
 
-	public void setImages(List<ImageFile> images) {
+	public void setImages(List<FullSizeImage> images) {
 		this.images = images;
 		this.imagesByOrderNumber = null;
 	}
 	
-	public void addImage(ImageFile image) {
+	public void addImage(FullSizeImage image) {
 		if (this.images == null) {
-			this.images = new LinkedList<ImageFile>();
+			this.setImages(new LinkedList<FullSizeImage>());
 		}
 		this.images.add(image);
 		image.setProduct(this);
-		
-		this.imagesByOrderNumber = null;
 	}
 
-	public ImageFile getSmallImage() {
-		return smallImage;
+	public Thumbnail getThumbnail() {
+		return thumbnail;
 	}
 
-	public void setSmallImage(ImageFile smallImage) {
-		this.smallImage = smallImage;
-		if (this.smallImage != null) {
-			this.smallImage.setProduct(this);
-			this.smallImage.setSmallImage(Boolean.TRUE);
-		}
+	public void setThumbnail(Thumbnail thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	public List<Category> getCategories() {
@@ -157,7 +127,7 @@ public class Product implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Product " + this.name + " (id: " + this.id + ")";
+		return "Product id: " + this.id;
 	}
 
 
@@ -168,75 +138,6 @@ public class Product implements Serializable {
 		
 		this.categories.add(category);
 	}
-
-
-
-	public Map<Integer, ImageFile> getImagesByOrderNumber() {
-		
-		if (this.imagesByOrderNumber == null) {
-			
-			this.imagesByOrderNumber = new HashMap<Integer, ImageFile>();
-			if (this.images != null) {
-				for (ImageFile img : this.images) {
-					
-					if (img.getOrderNumber() != null) {
-						this.imagesByOrderNumber.put(img.getOrderNumber(), img);
-					}
-				}
-			}
-		}
-		
-		return this.imagesByOrderNumber;
-	}
-	
-
-
-	/**
-	 * Removes an image if there is one with the given orderNumber.
-	 * Returns the image that was removed, if any.
-	 * @param index
-	 * @return
-	 */
-	public ImageFile removeImageByOrderNumber(int index) {
-		
-		ImageFile result = null;
-		
-		if (this.images != null) {
-			
-			Iterator<ImageFile> it = this.images.iterator();
-			while (it.hasNext() && result == null) {
-				ImageFile img = it.next();
-				if (img.getOrderNumber() != null && img.getOrderNumber().intValue() == index) {
-					
-					result = img;
-					it.remove();
-				}
-			}
-		}
-		
-		return result;
-	}
-	
-	
-	public ImageFile removeImageByImageId(int imageId) {
-		
-		ImageFile result = null;
-		
-		if (this.images != null) {
-			
-			Iterator<ImageFile> it = this.images.iterator();
-			while (it.hasNext() && result == null) {
-				ImageFile img = it.next();
-				if (img.getId().intValue() == imageId) {
-					result = img;
-					it.remove();
-				}
-			}
-		}
-		
-		return result;
-	}
-
 
 	public void removeCategory(Category category) {
 		if (this.categories != null) {
@@ -250,26 +151,61 @@ public class Product implements Serializable {
 		}
 		
 	}
-
-
-	public static String getSortByField(Locale locale) {
-		return "name";
-	}
 	
 	/**
 	 * Returns the first image that is not a small image
 	 * @return
 	 */
 	public ImageFile getFirstBigImage() {
+		if (this.images != null && !this.images.isEmpty()) {
+			return this.images.get(0);
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Removes an image if there is one with the given orderNumber.
+	 * Returns the image that was removed, if any.
+	 * @param index
+	 * @return
+	 */
+	public FullSizeImage removeImageByOrderNumber(int index) {
+		
+		FullSizeImage result = null;
+		
 		if (this.images != null) {
-			for (ImageFile image : this.images) {
-				if (!image.isSmallImage()) {
-					return image;
+			
+			Iterator<FullSizeImage> it = this.images.iterator();
+			while (it.hasNext() && result == null) {
+				FullSizeImage img = it.next();
+				if (img.getOrderNumber() != null && img.getOrderNumber().intValue() == index) {
+					
+					result = img;
+					it.remove();
 				}
 			}
 		}
 		
-		return null;
+		return result;
+	}
+	
+	public Map<Integer, FullSizeImage> getImagesByOrderNumber() {
+		
+		if (this.imagesByOrderNumber == null) {
+			
+			this.imagesByOrderNumber = new HashMap<Integer, FullSizeImage>();
+			if (this.images != null) {
+				for (FullSizeImage img : this.images) {
+					
+					if (img.getOrderNumber() != null) {
+						this.imagesByOrderNumber.put(img.getOrderNumber(), img);
+					}
+				}
+			}
+		}
+		
+		return this.imagesByOrderNumber;
 	}
 
 }

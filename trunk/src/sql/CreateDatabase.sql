@@ -13,6 +13,7 @@ flush privileges;
 --drop table if EXISTS Category;
 --drop table if EXISTS UserRole;
 --drop table if EXISTS User;
+--drop table if EXISTS Contact;
 
 create table User (
 	userName varchar(15) not null primary key,
@@ -41,11 +42,9 @@ CREATE UNIQUE INDEX name ON Category(name);
 
 CREATE TABLE Product
 (
-   Id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-   Name varchar(255) NOT NULL,
-   Code varchar(20),
-   Description varchar(1024),
-   smallImageId int null
+   id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   name varchar(30) NULL,
+   thumbnailId int null
 ) ENGINE=MyISAM;
 
 
@@ -56,15 +55,16 @@ CREATE TABLE ImageFile
    fileName varchar(255),
    type varchar(20),
    orderNumber int,
-   smallImage bit default 0,
-   productId int not null references Product(Id)
+   size varchar(10) NOT NULL,
+   fullSizeImageId int null references ImageFile(id),
+   productId int null references Product(Id)
 ) ENGINE=MyISAM;
-CREATE INDEX FK43140D57542F4228 ON ImageFile(productId);
+CREATE INDEX FK43140D57542F4228 ON ImageFile(id);
 
 
 ALTER TABLE Product
-ADD CONSTRAINT fk_Product_SmallImage
-FOREIGN KEY (smallImageId)
+ADD CONSTRAINT fk_Product_Thumbnail
+FOREIGN KEY (thumbnailId)
 REFERENCES ImageFile(id);
 
 

@@ -9,10 +9,9 @@
 <div class="main-content">
 	<c:forEach var="product" items="${products}">
 		<div>
-			${product.name}
-			<c:if test="${product.smallImage != null}">
+			<c:if test="${product.thumbnail != null}">
 				<c:url value="imageView.html" var="url">
-					<c:param name="id" value="${product.smallImage.id}" />
+					<c:param name="id" value="${product.thumbnail.id}" />
 				</c:url>
 				<img src="${url}" width="100" height="100" />
 				
