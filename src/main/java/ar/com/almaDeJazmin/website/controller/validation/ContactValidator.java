@@ -1,25 +1,31 @@
 package ar.com.almaDeJazmin.website.controller.validation;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 import ar.com.almaDeJazmin.website.dao.ContactDao;
-import ar.com.almaDeJazmin.website.domain.Category;
 import ar.com.almaDeJazmin.website.domain.Contact;
+import ar.com.almaDeJazmin.website.domain.JobCandidate;
 
 public class ContactValidator implements Validator {
 	
-	@Autowired
 	private ContactDao contactDao;
-	
-	
+
+	public ContactValidator(ContactDao contactDao) {
+		super();
+		this.contactDao = contactDao;
+	}
+
 	@SuppressWarnings("rawtypes")
 	public boolean supports(Class clazz) {
 		return Contact.class.isAssignableFrom(clazz);
 	}
 
 	public void validate(Object target, Errors errors) {
+		
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required");
 		
 		Contact contact = (Contact)target;
 		if (!errors.hasFieldErrors("email") && contact.getEmail() != null) {
@@ -31,13 +37,17 @@ public class ContactValidator implements Validator {
 		
 		if (!errors.hasFieldErrors("email")) {
 			
-			Contact existent = contactDao.getByEmail(contact.getEmail());
-			
-			if (existent != null
-					&& (contact.getId() == null  // es nuevo (no la estoy modificando)
-							|| contact.getId().intValue() != existent.getId().intValue())) { // es distinta
+			// TODO: Validar
+			if (contact instanceof JobCandidate) {
 				
-				errors.rejectValue("email", "validation.exists", "already exists.");
+				Contact existent = contactDao.getJobCandidateByEmail(contact.getEmail());
+				
+				if (existent != null
+						&& (contact.getId() == null  // es nuevo (no la estoy modificando)
+								|| contact.getId().intValue() != existent.getId().intValue())) { // es distinta
+					
+					errors.rejectValue("email", "validation.exists", "already exists.");
+				}
 			}
 		}
 		

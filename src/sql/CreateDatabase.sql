@@ -84,6 +84,7 @@ CREATE TABLE Contact
    Name varchar(255) NOT NULL,
    contactType varchar(20),
    email varchar(100) NOT NULL,
-   comment varchar(512)
+   comment varchar(512),
+   contactDate timestamp not null default now()
 ) ENGINE=MyISAM;
 

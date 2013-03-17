@@ -3,6 +3,10 @@ package ar.com.almaDeJazmin.website.dao;
 import java.util.List;
 
 import ar.com.almaDeJazmin.website.domain.Contact;
+import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
+import ar.com.almaDeJazmin.website.domain.FinalCustomer;
+import ar.com.almaDeJazmin.website.domain.JobCandidate;
+import ar.com.almaDeJazmin.website.domain.Retailer;
 
 public interface ContactDao {
 
@@ -14,10 +18,12 @@ public interface ContactDao {
 
 	Contact getById(Integer id);
 
-	List<Contact> getAllBusinessContacts();
+	List<FinalCustomer> getAllFinalCustomers();
 	
-	List<Contact> getAllPrivateContacts();
+	List<Retailer> getAllRetailers();
+	
+	List<CorporateSalesContact> getAllCorporateSalesContacts();
 
-	Contact getByEmail(String email);
+	JobCandidate getJobCandidateByEmail(String email);
 
 }

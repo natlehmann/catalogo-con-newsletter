@@ -10,6 +10,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.com.almaDeJazmin.website.domain.Contact;
+import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
+import ar.com.almaDeJazmin.website.domain.FinalCustomer;
+import ar.com.almaDeJazmin.website.domain.JobCandidate;
+import ar.com.almaDeJazmin.website.domain.Retailer;
 
 @Repository
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
@@ -45,31 +49,30 @@ public class ContactDaoImpl extends HibernateDaoSupport implements ContactDao {
 		return (Contact) getHibernateTemplate().get(Contact.class, id);
 	}
 
-
-
-	public List<Contact> getAllBusinessContacts() {
-		
+	public List<FinalCustomer> getAllFinalCustomers() {
 		@SuppressWarnings("unchecked")
-		List<Contact> contacts = getHibernateTemplate().find("Select c from BusinessContact c");
+		List<FinalCustomer> contacts = getHibernateTemplate().find("Select c from FinalCustomer c");
+		return contacts;
+	}
+
+	public List<Retailer> getAllRetailers() {
+		@SuppressWarnings("unchecked")
+		List<Retailer> contacts = getHibernateTemplate().find("Select c from Retailer c");
+		return contacts;
+	}
+
+	public List<CorporateSalesContact> getAllCorporateSalesContacts() {
+		@SuppressWarnings("unchecked")
+		List<CorporateSalesContact> contacts = getHibernateTemplate().find("Select c from CorporateSalesContact c");
 		return contacts;
 	}
 
 
 
-	public List<Contact> getAllPrivateContacts() {
-		
+	public JobCandidate getJobCandidateByEmail(String email) {
 		@SuppressWarnings("unchecked")
-		List<Contact> contacts = getHibernateTemplate().find("Select c from PrivateContact c");
-		return contacts;
-	}
-
-
-
-	public Contact getByEmail(String email) {
-		
-		@SuppressWarnings("unchecked")
-		List<Contact> contacts = getHibernateTemplate().findByNamedParam(
-				"Select c from Contact c where c.email = :email", "email", email);
+		List<JobCandidate> contacts = getHibernateTemplate().findByNamedParam(
+				"Select c from JobCandidate c where c.email = :email", "email", email);
 		
 		if (!contacts.isEmpty()) {
 			return contacts.get(0);

@@ -4,8 +4,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(value="business")
-public class BusinessContact extends Contact {
+@DiscriminatorValue(value="mayorista")
+public class Retailer extends Contact {
 
 	private static final long serialVersionUID = -4074705343827687445L;
 
