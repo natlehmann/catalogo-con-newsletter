@@ -1,6 +1,7 @@
 package ar.com.almaDeJazmin.website.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -10,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -30,6 +33,9 @@ public abstract class Contact implements Serializable {
 	
 	@Column(length=512)
 	private String comment;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date contactDate;
 	
 	public String getName() {
 		return name;
@@ -61,6 +67,14 @@ public abstract class Contact implements Serializable {
 	
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	
+	public Date getContactDate() {
+		return contactDate;
+	}
+	
+	public void setContactDate(Date contactDate) {
+		this.contactDate = contactDate;
 	}
 	
 	@Override

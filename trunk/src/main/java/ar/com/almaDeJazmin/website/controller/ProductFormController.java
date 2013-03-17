@@ -16,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestDataBinder;
@@ -25,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import ar.com.almaDeJazmin.website.controller.validation.ProductValidator;
 import ar.com.almaDeJazmin.website.dao.CategoryDao;
@@ -425,7 +423,7 @@ public class ProductFormController extends MultiActionController {
 				productDao.update(product);
 				
 			} catch (InvalidImageFileFormatException e) {
-				binder.getBindingResult().rejectValue("smallImage", "invalid.file.format", "invalid file");
+				binder.getBindingResult().rejectValue("thumbnail", "invalid.file.format", "invalid file");
 				return new ModelAndView("/admin/productForm").addAllObjects(
 						binder.getBindingResult().getModel()).addObject("categories", getCategoryList());
 				
@@ -440,27 +438,6 @@ public class ProductFormController extends MultiActionController {
 			return new ModelAndView("/admin/productForm").addAllObjects(
 					binder.getBindingResult().getModel()).addObject("categories", getCategoryList());
 		}
-		
-	}
-
-
-
-	@SuppressWarnings("rawtypes")
-	private ServletRequestDataBinder validate(HttpServletRequest request, Class clazz, Object object) 
-	throws Exception {
-		
-		ServletRequestDataBinder binder = createBinder(request, object);
-		binder.bind(request);
-		
-		if (this.getValidators() != null) {
-		    for (Validator val : this.getValidators()) {
-		        if (val != null && val.supports(clazz)) {
-		        	ValidationUtils.invokeValidator(val, object, binder.getBindingResult());
-		        }
-		    }
-		}
-		
-		return binder;
 		
 	}
 
