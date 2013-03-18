@@ -88,8 +88,20 @@
 	    <property name="subject" value="${mail.subject}"/>
 	</bean>
 	
-	<bean id="toAddress" class="javax.mail.internet.InternetAddress">
-		<constructor-arg value="${mail.to}" />
+	<bean id="jobCandidateToAddress" class="javax.mail.internet.InternetAddress">
+		<constructor-arg value="${job.candidate.mail.to}" />
+	</bean>
+	
+	<bean id="finalCustomerToAddress" class="javax.mail.internet.InternetAddress">
+		<constructor-arg value="${final.customer.mail.to}" />
+	</bean>
+	
+	<bean id="retailerToAddress" class="javax.mail.internet.InternetAddress">
+		<constructor-arg value="${retailer.mail.to}" />
+	</bean>
+	
+	<bean id="corporateSalesToAddress" class="javax.mail.internet.InternetAddress">
+		<constructor-arg value="${corporate.sales.mail.to}" />
 	</bean>
 	
 	<bean id="fromAddress" class="javax.mail.internet.InternetAddress">

@@ -10,7 +10,7 @@ import ar.com.almaDeJazmin.website.domain.JobCandidate;
 
 public class ContactValidator implements Validator {
 	
-	private ContactDao contactDao;
+	protected ContactDao contactDao;
 
 	public ContactValidator(ContactDao contactDao) {
 		super();
@@ -32,22 +32,6 @@ public class ContactValidator implements Validator {
 			
 			if (!contact.getEmail().contains("@")) {
 				errors.rejectValue("email", "invalid.email.address");
-			}
-		}
-		
-		if (!errors.hasFieldErrors("email")) {
-			
-			// TODO: Validar
-			if (contact instanceof JobCandidate) {
-				
-				Contact existent = contactDao.getJobCandidateByEmail(contact.getEmail());
-				
-				if (existent != null
-						&& (contact.getId() == null  // es nuevo (no la estoy modificando)
-								|| contact.getId().intValue() != existent.getId().intValue())) { // es distinta
-					
-					errors.rejectValue("email", "validation.exists", "already exists.");
-				}
 			}
 		}
 		

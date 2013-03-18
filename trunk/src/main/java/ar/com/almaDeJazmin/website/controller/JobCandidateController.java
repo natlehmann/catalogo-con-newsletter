@@ -16,12 +16,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.com.almaDeJazmin.website.controller.validation.ContactValidator;
+import ar.com.almaDeJazmin.website.controller.validation.JobCandidateValidator;
 import ar.com.almaDeJazmin.website.dao.ContactDao;
+import ar.com.almaDeJazmin.website.domain.ConfigConstants;
+import ar.com.almaDeJazmin.website.domain.EmailException;
 import ar.com.almaDeJazmin.website.domain.InvalidTextFileFormatException;
 import ar.com.almaDeJazmin.website.domain.JobCandidate;
 import ar.com.almaDeJazmin.website.domain.TextFile;
 import ar.com.almaDeJazmin.website.domain.TextFileFormat;
+import ar.com.almaDeJazmin.website.domain.ValidationException;
+import ar.com.almaDeJazmin.website.service.MailService;
 
 @Controller
 public class JobCandidateController extends MultiActionController {
@@ -29,9 +33,12 @@ public class JobCandidateController extends MultiActionController {
 	private ContactDao contactDao;
 	
 	@Autowired
+	private MailService mailService;
+	
+	@Autowired
 	public JobCandidateController(ContactDao contactDao){
 		this.contactDao = contactDao;
-		this.setValidators(new Validator[]{new ContactValidator(contactDao)});
+		this.setValidators(new Validator[]{new JobCandidateValidator(contactDao)});
 	}
 
 
@@ -49,9 +56,10 @@ public class JobCandidateController extends MultiActionController {
 			try {
 				this.addCv(jobCandidate, request);
 				
-				//TODO: Mandarlo por mail
+				mailService.sendJobCandidateMail(jobCandidate);
 				
 				contactDao.create(jobCandidate);
+				
 				return new ModelAndView("/nosotros").addObject("success", true);
 				
 				
@@ -59,7 +67,16 @@ public class JobCandidateController extends MultiActionController {
 				binder.getBindingResult().rejectValue("cv", "invalid.text.file.format", "invalid file");
 				return new ModelAndView("/nosotros").addAllObjects(
 						binder.getBindingResult().getModel()).addObject("openForm", true);
-			} 
+				
+			} catch (ValidationException e) {
+				binder.getBindingResult().rejectValue("cv", e.getMessage(), "invalid file size");
+				return new ModelAndView("/nosotros").addAllObjects(
+						binder.getBindingResult().getModel()).addObject("openForm", true);
+				
+			} catch (EmailException e) {
+				return new ModelAndView("/nosotros").addAllObjects(
+						binder.getBindingResult().getModel()).addObject("emailError", "email.error");
+			}
 			
 			
 		} else {
@@ -84,7 +101,7 @@ public class JobCandidateController extends MultiActionController {
 	
 	
 	private void addCv(JobCandidate jobCandidate, HttpServletRequest request) 
-	throws ServletRequestBindingException, IOException, InvalidTextFileFormatException {
+	throws ServletRequestBindingException, IOException, InvalidTextFileFormatException, ValidationException {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
@@ -97,7 +114,7 @@ public class JobCandidateController extends MultiActionController {
 	
 	
 	private TextFile buildCv(MultipartHttpServletRequest multipartRequest, 
-			String paramName) throws IOException, InvalidTextFileFormatException {
+			String paramName) throws IOException, InvalidTextFileFormatException, ValidationException {
 		
 		TextFile result = null;
 		
@@ -110,10 +127,17 @@ public class JobCandidateController extends MultiActionController {
 				throw new InvalidTextFileFormatException();
 			}
 			
+			if (multipartFile.getSize() > ConfigConstants.TEXT_FILE_MAX_SIZE) {
+				throw new ValidationException("invalid.text.file.size");
+			}
+			
 			result = new TextFile();
 			result.setFileName(multipartFile.getOriginalFilename());
 			result.setFileType(multipartFile.getContentType());
 			result.setContent(multipartFile.getBytes());
+			
+		} else {
+			throw new ValidationException("required");
 		}
 		
 		return result;
