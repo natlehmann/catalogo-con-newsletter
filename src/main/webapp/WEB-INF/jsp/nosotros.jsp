@@ -14,9 +14,14 @@ function showForm() {
 	$('#nosotros-texto').hide();
 	$('#nosotros-cv-form').show();
 }
+
+function showSpinner() {
+	$('#spinner').show();
+}
 </script>
 
 <c:set var="showSuccessMsg" value="${success}"/>
+<c:set var="openForm" value="${openForm}"/>
 
 <div class="main-content">
 
@@ -32,10 +37,10 @@ function showForm() {
 		
 		<a onclick="showForm()">Envianos tu CV</a>
 		
-		<div id="nosotros-cv-form">
+		<div id="nosotros-cv-form" style='${openForm ? "" : "display:none"}'>
 			
 			<form:form method="POST" action="receiveJobCandidate.html" id="receiveJobCandidateForm"
-			enctype="multipart/form-data">
+			enctype="multipart/form-data" onsubmit="showSpinner()">
 		
 			
 				<div>
@@ -71,9 +76,20 @@ function showForm() {
 				<button type="submit" name="actionBt" value="send" class="create-action">
 					<spring:message code="send" />
 				</button>
+				
+				<div id="spinner" style="display:none">
+					Enviando el mail. Espere un momento por favor ...
+				</div>
 	
 		</form:form>
 		</div>
+		
+		<c:if test="${emailError != null}">
+			<div class="error">
+				<spring:message code="${emailError}" />
+			</div>
+		</c:if>
+		
 	</c:otherwise>
 </c:choose>
 	

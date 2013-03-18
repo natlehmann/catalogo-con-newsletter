@@ -260,7 +260,7 @@
   			<jdbc.url>jdbc:mysql://localhost:3306/almajazmin</jdbc.url>
   			<jdbc.username>almajazmindb</jdbc.username>
   			<jdbc.password></jdbc.password>
-  			<tomcat.home>/usr/local/tomcat5</tomcat.home>
+  			<tomcat.home>/usr/local/tomcat</tomcat.home>
   			<tomcat.logs.home>${tomcat.home}/logs</tomcat.logs.home>
   			<smtp.hostname>smtp.gmail.com</smtp.hostname>
   			<smtp.socket.factory>javax.net.ssl.SSLSocketFactory</smtp.socket.factory>
@@ -269,7 +269,10 @@
   			<smtp.password></smtp.password>
   			<mail.debug>true</mail.debug>
   			<mail.from>noreply@CAMBIARESTO.com</mail.from>
-  			<mail.to>natlehmann@yahoo.com</mail.to>
+  			<job.candidate.mail.to>natlehmann@yahoo.com</job.candidate.mail.to>
+  			<final.customer.mail.to>natlehmann@yahoo.com</final.customer.mail.to>
+  			<retailer.mail.to>natlehmann@yahoo.com</retailer.mail.to>
+  			<corporate.sales.mail.to>natlehmann@yahoo.com</corporate.sales.mail.to>
   		</properties>
   	</profile>
   	
@@ -293,9 +296,12 @@
   			<smtp.port>25</smtp.port>
   			<smtp.username></smtp.username>
   			<smtp.password></smtp.password>
-  			<mail.debug>true</mail.debug>
+  			<mail.debug>false</mail.debug>
   			<mail.from></mail.from>
-  			<mail.to></mail.to>
+  			<job.candidate.mail.to></job.candidate.mail.to>
+  			<final.customer.mail.to></final.customer.mail.to>
+  			<retailer.mail.to></retailer.mail.to>
+  			<corporate.sales.mail.to></corporate.sales.mail.to>
   		</properties>
   	</profile>
   	
