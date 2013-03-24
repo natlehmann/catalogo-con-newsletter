@@ -44,5 +44,26 @@
         class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
         <property name="paramName" value="lang" />
 	</bean>
+	
+	
+	<bean id="mailSender" class="ar.com.almaDeJazmin.website.service.MailSenderJob">
+	</bean>
+	
+	<bean id="scheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+	    <!-- wait 1 seconds before starting repeated execution -->
+	    <property name="delay" value="1000" />
+	    <!-- run every 24 hours = 24 * 60 * 60 = 86400 seconds -->
+	    <property name="period" value="86400000" />
+	    <property name="timerTask" ref="mailSender" />
+	</bean>
+	
+	<bean id="timerFactory" class="org.springframework.scheduling.timer.TimerFactoryBean">
+	    <property name="scheduledTimerTasks">
+	        <list>
+	            <ref bean="scheduledTask" />
+	        </list>
+	    </property>
+	    <property name="daemon" value="true"/>
+	</bean>
 
 </beans>

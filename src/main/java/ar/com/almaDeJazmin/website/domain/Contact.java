@@ -37,6 +37,8 @@ public abstract class Contact implements Serializable {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date contactDate;
 	
+	private boolean notified;
+	
 	public String getName() {
 		return name;
 	}
@@ -77,6 +79,14 @@ public abstract class Contact implements Serializable {
 		this.contactDate = contactDate;
 	}
 	
+	public boolean isNotified() {
+		return notified;
+	}
+
+	public void setNotified(boolean notified) {
+		this.notified = notified;
+	}
+
 	@Override
 	public String toString() {
 		return "Contact " + this.name;

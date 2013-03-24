@@ -11,7 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.com.almaDeJazmin.website.dao.CategoryDao;
 import ar.com.almaDeJazmin.website.domain.Category;
+import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
+import ar.com.almaDeJazmin.website.domain.FinalCustomer;
 import ar.com.almaDeJazmin.website.domain.JobCandidate;
+import ar.com.almaDeJazmin.website.domain.Retailer;
 
 
 @Controller

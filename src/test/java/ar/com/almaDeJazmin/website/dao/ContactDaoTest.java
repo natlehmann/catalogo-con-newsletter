@@ -24,12 +24,12 @@ public class ContactDaoTest extends AbstractTest {
 		Retailer contact = buildBusinessContact();
 		contact = (Retailer) contactDao.create(contact);
 		
-		List<Retailer> result = contactDao.getAllRetailers();
+		List<Retailer> result = contactDao.getAllRetailersUnnotified();
 		Assert.assertEquals(1, result.size());
 		Assert.assertEquals(contact, result.get(0));
 		
 		contactDao.delete(contact);
-		result = contactDao.getAllRetailers();
+		result = contactDao.getAllRetailersUnnotified();
 		Assert.assertTrue(result.isEmpty());
 	}
 	
@@ -39,12 +39,12 @@ public class ContactDaoTest extends AbstractTest {
 		CorporateSalesContact contact = buildCorporateSalesContact();
 		contact = (CorporateSalesContact) contactDao.create(contact);
 		
-		List<CorporateSalesContact> result = contactDao.getAllCorporateSalesContacts();
+		List<CorporateSalesContact> result = contactDao.getAllCorporateSalesContactsUnnotified();
 		Assert.assertEquals(1, result.size());
 		Assert.assertEquals(contact, result.get(0));
 		
 		contactDao.delete(contact);
-		result = contactDao.getAllCorporateSalesContacts();
+		result = contactDao.getAllCorporateSalesContactsUnnotified();
 		Assert.assertTrue(result.isEmpty());
 	}
 	
@@ -54,13 +54,52 @@ public class ContactDaoTest extends AbstractTest {
 		FinalCustomer contact = buildPrivateContact();
 		contact = (FinalCustomer) contactDao.create(contact);
 		
-		List<FinalCustomer> result = contactDao.getAllFinalCustomers();
+		List<FinalCustomer> result = contactDao.getAllFinalCustomersUnnotified();
 		Assert.assertEquals(1, result.size());
 		Assert.assertEquals(contact, result.get(0));
 		
 		contactDao.delete(contact);
-		result = contactDao.getAllFinalCustomers();
+		result = contactDao.getAllFinalCustomersUnnotified();
 		Assert.assertTrue(result.isEmpty());
+	}
+	
+	@Test
+	public void testDontGetPrivateContact() {
+		
+		FinalCustomer contact = buildPrivateContact();
+		contact.setNotified(true);
+		contact = (FinalCustomer) contactDao.create(contact);
+		
+		List<FinalCustomer> result = contactDao.getAllFinalCustomersUnnotified();
+		Assert.assertEquals(0, result.size());
+		
+		contactDao.delete(contact);
+	}
+	
+	@Test
+	public void testDontGetRetailer() {
+		
+		Retailer contact = buildBusinessContact();
+		contact.setNotified(true);
+		contact = (Retailer) contactDao.create(contact);
+		
+		List<Retailer> result = contactDao.getAllRetailersUnnotified();
+		Assert.assertEquals(0, result.size());
+		
+		contactDao.delete(contact);
+	}
+	
+	@Test
+	public void testDontGetCorporateContact() {
+		
+		CorporateSalesContact contact = buildCorporateSalesContact();
+		contact.setNotified(true);
+		contact = (CorporateSalesContact) contactDao.create(contact);
+		
+		List<CorporateSalesContact> result = contactDao.getAllCorporateSalesContactsUnnotified();
+		Assert.assertEquals(0, result.size());
+		
+		contactDao.delete(contact);
 	}
 	
 	@Test
@@ -73,15 +112,15 @@ public class ContactDaoTest extends AbstractTest {
 		contactDao.create(privateContact);
 		contactDao.create(corporate);
 		
-		List<Retailer> result = contactDao.getAllRetailers();
+		List<Retailer> result = contactDao.getAllRetailersUnnotified();
 		Assert.assertEquals(1, result.size());
 		Assert.assertEquals(retailer, result.get(0));
 		
-		List<FinalCustomer> result2 = contactDao.getAllFinalCustomers();
+		List<FinalCustomer> result2 = contactDao.getAllFinalCustomersUnnotified();
 		Assert.assertEquals(1, result2.size());
 		Assert.assertEquals(privateContact, result2.get(0));
 		
-		List<CorporateSalesContact> result3 = contactDao.getAllCorporateSalesContacts();
+		List<CorporateSalesContact> result3 = contactDao.getAllCorporateSalesContactsUnnotified();
 		Assert.assertEquals(1, result3.size());
 		Assert.assertEquals(corporate, result3.get(0));
 		
@@ -89,11 +128,11 @@ public class ContactDaoTest extends AbstractTest {
 		contactDao.delete(retailer);
 		contactDao.delete(corporate);
 		
-		result = contactDao.getAllRetailers();
+		result = contactDao.getAllRetailersUnnotified();
 		Assert.assertTrue(result.isEmpty());
-		result2 = contactDao.getAllFinalCustomers();
+		result2 = contactDao.getAllFinalCustomersUnnotified();
 		Assert.assertTrue(result2.isEmpty());
-		result3 = contactDao.getAllCorporateSalesContacts();
+		result3 = contactDao.getAllCorporateSalesContactsUnnotified();
 		Assert.assertTrue(result3.isEmpty());
 	}
 	

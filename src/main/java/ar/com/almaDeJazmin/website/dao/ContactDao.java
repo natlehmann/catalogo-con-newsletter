@@ -18,11 +18,11 @@ public interface ContactDao {
 
 	Contact getById(Integer id);
 
-	List<FinalCustomer> getAllFinalCustomers();
+	List<FinalCustomer> getAllFinalCustomersUnnotified();
 	
-	List<Retailer> getAllRetailers();
+	List<Retailer> getAllRetailersUnnotified();
 	
-	List<CorporateSalesContact> getAllCorporateSalesContacts();
+	List<CorporateSalesContact> getAllCorporateSalesContactsUnnotified();
 
 	JobCandidate getJobCandidateByEmail(String email);
 
