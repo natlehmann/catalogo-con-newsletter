@@ -11,7 +11,11 @@
 
 
 <div class="main-content">
-	CONTACTO
+	<a href="tusComentarios.html">Tus Comentarios</a>
+	<br/>
+	<a href="franquiciasYmayoristas.html">Franquicias y mayoristas</a>
+	<br/>
+	<a href="ventasCorporativas.html">Ventas Corporativas</a>
 </div>
 
 

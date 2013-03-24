@@ -49,21 +49,24 @@ public class ContactDaoImpl extends HibernateDaoSupport implements ContactDao {
 		return (Contact) getHibernateTemplate().get(Contact.class, id);
 	}
 
-	public List<FinalCustomer> getAllFinalCustomers() {
+	public List<FinalCustomer> getAllFinalCustomersUnnotified() {
 		@SuppressWarnings("unchecked")
-		List<FinalCustomer> contacts = getHibernateTemplate().find("Select c from FinalCustomer c");
+		List<FinalCustomer> contacts = getHibernateTemplate().find(
+				"Select c from FinalCustomer c where c.notified = false");
 		return contacts;
 	}
 
-	public List<Retailer> getAllRetailers() {
+	public List<Retailer> getAllRetailersUnnotified() {
 		@SuppressWarnings("unchecked")
-		List<Retailer> contacts = getHibernateTemplate().find("Select c from Retailer c");
+		List<Retailer> contacts = getHibernateTemplate().find(
+				"Select c from Retailer c where c.notified = false");
 		return contacts;
 	}
 
-	public List<CorporateSalesContact> getAllCorporateSalesContacts() {
+	public List<CorporateSalesContact> getAllCorporateSalesContactsUnnotified() {
 		@SuppressWarnings("unchecked")
-		List<CorporateSalesContact> contacts = getHibernateTemplate().find("Select c from CorporateSalesContact c");
+		List<CorporateSalesContact> contacts = getHibernateTemplate().find(
+				"Select c from CorporateSalesContact c where c.notified = false");
 		return contacts;
 	}
 
