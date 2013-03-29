@@ -89,3 +89,22 @@ CREATE TABLE Contact
    notified bit default 0
 ) ENGINE=MyISAM;
 
+CREATE TABLE Newsletter
+(
+   id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   name varchar(255) NOT NULL,
+   subject varchar(255) NOT NULL,
+   content varchar(2048) NOT NULL
+) ENGINE=MyISAM;
+CREATE UNIQUE INDEX name ON Newsletter(name);
+
+CREATE TABLE NewsletterDistribution
+(
+   Id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+   newsletterId int NOT NULL references Newsletter(Id),
+   contactType varchar(20),
+   success int,
+   failures int,
+   sentDate timestamp not null default now()
+) ENGINE=MyISAM;
+

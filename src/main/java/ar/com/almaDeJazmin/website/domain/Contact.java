@@ -35,7 +35,7 @@ public abstract class Contact implements Serializable {
 	private String comment;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date contactDate;
+	private Date contactDate = new Date();
 	
 	private boolean notified;
 	

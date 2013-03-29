@@ -1,5 +1,7 @@
 package ar.com.almaDeJazmin.website.dao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.com.almaDeJazmin.website.domain.ConfigConstants;
 import ar.com.almaDeJazmin.website.domain.Contact;
 import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
 import ar.com.almaDeJazmin.website.domain.FinalCustomer;
@@ -50,23 +53,34 @@ public class ContactDaoImpl extends HibernateDaoSupport implements ContactDao {
 	}
 
 	public List<FinalCustomer> getAllFinalCustomersUnnotified() {
+		
 		@SuppressWarnings("unchecked")
 		List<FinalCustomer> contacts = getHibernateTemplate().find(
-				"Select c from FinalCustomer c where c.notified = false");
+				"Select c from FinalCustomer c where c.notified = false and c.contactDate >= ?", 
+				getMaxContactAge());
 		return contacts;
 	}
+
+	private Date getMaxContactAge() {
+		Calendar date = Calendar.getInstance();
+		date.add(Calendar.DAY_OF_MONTH, -1 * ConfigConstants.CONTACT_MAX_AGE);
+		return date.getTime();
+	}
+
+
 
 	public List<Retailer> getAllRetailersUnnotified() {
 		@SuppressWarnings("unchecked")
 		List<Retailer> contacts = getHibernateTemplate().find(
-				"Select c from Retailer c where c.notified = false");
+				"Select c from Retailer c where c.notified = false and c.contactDate >= ?", getMaxContactAge());
 		return contacts;
 	}
 
 	public List<CorporateSalesContact> getAllCorporateSalesContactsUnnotified() {
 		@SuppressWarnings("unchecked")
 		List<CorporateSalesContact> contacts = getHibernateTemplate().find(
-				"Select c from CorporateSalesContact c where c.notified = false");
+				"Select c from CorporateSalesContact c where c.notified = false and c.contactDate >= ?",
+				getMaxContactAge());
 		return contacts;
 	}
 
