@@ -13,5 +13,7 @@ public class ConfigConstants {
 	
 	public static final long TEXT_FILE_MAX_SIZE = 1048576L; // 1 Mb
 	public static final long IMAGE_FILE_MAX_SIZE = 1048576L; // 1 Mb
+	
+	public static final int CONTACT_MAX_AGE = 90;  //days
 
 }

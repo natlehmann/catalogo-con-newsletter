@@ -40,6 +40,7 @@ public class MailSenderJob extends TimerTask {
 				mailService.sendFinalCustomerMail(buffer);
 				updateNotified(customers);
 			}
+			log.info("Se procesaron " + customers.size() + " contactos de tipo usuario comun");
 			
 		} catch (Exception e) {
 			log.error("No se ha podido enviar el mail resumen de contactos Usuario Comun", e);
@@ -53,6 +54,7 @@ public class MailSenderJob extends TimerTask {
 				mailService.sendRetailerMail(buffer);
 				updateNotified(contacts);
 			}
+			log.info("Se procesaron " + contacts.size() + " contactos de tipo Mayoristas y Franquicias");
 			
 		} catch (Exception e) {
 			log.error("No se ha podido enviar el mail resumen de contactos Mayoristas y Franquicias", e);
@@ -66,6 +68,7 @@ public class MailSenderJob extends TimerTask {
 				mailService.sendCorporateSalesContactMail(buffer);
 				updateNotified(contacts);
 			}
+			log.info("Se procesaron " + contacts.size() + " contactos de tipo Ventas Corporativas");
 			
 		} catch (Exception e) {
 			log.error("No se ha podido enviar el mail resumen de contactos Ventas Corporativas", e);

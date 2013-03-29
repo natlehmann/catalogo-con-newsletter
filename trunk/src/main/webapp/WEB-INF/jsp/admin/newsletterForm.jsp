@@ -22,10 +22,10 @@ function sendAction(formId, action) {
 </script>
 
 	
-	<form:form method="POST" action="" id="categoryCreateForm"
-		modelAttribute="category" commandName="category">
+	<form:form method="POST" action="" id="newsletterCreateForm"
+		modelAttribute="newsletter" commandName="newsletter">
 		
-		<c:if test="${category.id != null}">
+		<c:if test="${newsletter.id != null}">
 			<form:hidden path="id"/>
 		</c:if>
 		
@@ -34,7 +34,7 @@ function sendAction(formId, action) {
 		
 		<tr>
 			<td colspan="2">
-				<spring:message code="category" />
+				<spring:message code="newsletter" />
 			</td>
 		</tr>
 		
@@ -43,11 +43,29 @@ function sendAction(formId, action) {
 		</tr>
 	
 		<tr>
-			<td><spring:message code="category.name" /></td>
+			<td><spring:message code="newsletter.name" /></td>
 			<td>
 				<form:input path="name" maxlength="250" size="22" cssClass="left" /> 
 				<div class="required left"><br/></div>
 				<form:errors path="name" cssClass="errors left" element="div" />
+			</td>
+		</tr>
+		
+		<tr>
+			<td><spring:message code="newsletter.subject" /></td>
+			<td>
+				<form:input path="subject" maxlength="250" size="22" cssClass="left" /> 
+				<div class="required left"><br/></div>
+				<form:errors path="subject" cssClass="errors left" element="div" />
+			</td>
+		</tr>
+		
+		<tr>
+			<td><spring:message code="newsletter.content" /></td>
+			<td>
+				<form:textarea path="content" cssClass="left" /> 
+				<div class="required left"><br/></div>
+				<form:errors path="content" cssClass="errors left" element="div" />
 			</td>
 		</tr>
 		
@@ -63,26 +81,26 @@ function sendAction(formId, action) {
 	<div class="actions">
 		
 		<c:choose>
-			<c:when test="${category.id == null}">
+			<c:when test="${newsletter.id == null}">
 				<button type="button" value="create" 
-					onclick="sendAction('categoryCreateForm', 'createCategory.html')">
+					onclick="sendAction('newsletterCreateForm', 'createNewsletter.html')">
 					<spring:message code="create" />
 				</button>
 			</c:when>
 			<c:otherwise>
 				<button type="button" value="delete"
-					onclick="if (confirm('<spring:message code="are.you.sure.you.want.to.delete.this.category" />')) sendAction('categoryCreateForm', 'deleteCategory.html')">
+					onclick="if (confirm('<spring:message code="are.you.sure.you.want.to.delete.this.newsletter" />')) sendAction('newsletterCreateForm', 'deleteNewsletter.html')">
 					<spring:message code="delete" />
 				</button>
 				<button type="button" value="update"
-					onclick="sendAction('categoryCreateForm', 'updateCategory.html')">
+					onclick="sendAction('newsletterCreateForm', 'updateNewsletter.html')">
 					<spring:message code="update" />
 				</button>
 			</c:otherwise>
 		</c:choose>
 		
 		<button type="submit" value="back"
-			onclick="sendAction('categoryCreateForm', 'categoryList.html')">
+			onclick="sendAction('newsletterCreateForm', 'newsletterList.html')">
 			<spring:message code="cancel" />
 		</button>
 	</div>

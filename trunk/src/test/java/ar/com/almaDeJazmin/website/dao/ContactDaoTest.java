@@ -1,5 +1,7 @@
 package ar.com.almaDeJazmin.website.dao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Assert;
@@ -7,6 +9,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ar.com.almaDeJazmin.website.AbstractTest;
+import ar.com.almaDeJazmin.website.domain.ConfigConstants;
 import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
 import ar.com.almaDeJazmin.website.domain.JobCandidate;
 import ar.com.almaDeJazmin.website.domain.Retailer;
@@ -100,6 +103,40 @@ public class ContactDaoTest extends AbstractTest {
 		Assert.assertEquals(0, result.size());
 		
 		contactDao.delete(contact);
+	}
+	
+	@Test
+	public void testDontGetOldContact() {
+		
+		Calendar contactDate = Calendar.getInstance();
+		contactDate.add(Calendar.DAY_OF_MONTH, -1 * (ConfigConstants.CONTACT_MAX_AGE + 1) );
+		
+		CorporateSalesContact corporateSalesContact = buildCorporateSalesContact();
+		corporateSalesContact.setContactDate(contactDate.getTime());
+		corporateSalesContact = (CorporateSalesContact) contactDao.create(corporateSalesContact);
+		
+		List<CorporateSalesContact> result = contactDao.getAllCorporateSalesContactsUnnotified();
+		Assert.assertEquals(0, result.size());
+		
+		contactDao.delete(corporateSalesContact);
+		
+		Retailer retailer = buildBusinessContact();
+		retailer.setContactDate(contactDate.getTime());
+		retailer = (Retailer) contactDao.create(retailer);
+		
+		List<Retailer> result2 = contactDao.getAllRetailersUnnotified();
+		Assert.assertEquals(0, result2.size());
+		
+		contactDao.delete(retailer);
+		
+		FinalCustomer finalCustomer = buildPrivateContact();
+		finalCustomer.setContactDate(contactDate.getTime());
+		finalCustomer = (FinalCustomer) contactDao.create(finalCustomer);
+		
+		List<FinalCustomer> result3 = contactDao.getAllFinalCustomersUnnotified();
+		Assert.assertEquals(0, result3.size());
+		
+		contactDao.delete(finalCustomer);
 	}
 	
 	@Test
