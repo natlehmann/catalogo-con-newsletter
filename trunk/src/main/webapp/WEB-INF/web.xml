@@ -60,6 +60,23 @@
 		<web-resource-collection>
 			<web-resource-name>almaDeJazmin</web-resource-name>
 			<url-pattern>/admin/*</url-pattern>
+			
+			<url-pattern>/home.html</url-pattern>
+			<url-pattern>/nosotros.html</url-pattern>
+			<url-pattern>/productos.html</url-pattern>
+			<url-pattern>/locales.html</url-pattern>
+			<url-pattern>/contacto.html</url-pattern>
+			<url-pattern>/prensa.html</url-pattern>
+			<url-pattern>/tusComentarios.html</url-pattern>
+			<url-pattern>/franquiciasYmayoristas.html</url-pattern>
+			<url-pattern>/ventasCorporativas.html</url-pattern>
+			<url-pattern>/enviarComentarios.html</url-pattern>
+			<url-pattern>/enviarVentasCorporativas.html</url-pattern>
+			<url-pattern>/enviarFranquiciasYMayoristas.html</url-pattern>
+			<url-pattern>/receiveJobCandidate.html</url-pattern>
+			<url-pattern>/showProductsByCategory.html</url-pattern>
+			<url-pattern>/showDetailedProduct.html</url-pattern>
+			<url-pattern>/imageView.html</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
 			<role-name>admin</role-name>

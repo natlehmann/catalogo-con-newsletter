@@ -27,7 +27,7 @@ create table UserRole (
 ) ENGINE=MyISAM;
 
 insert into User(userName, password) values ('admin', '71714fb720dc331d267e582c447baf4b');
-insert into User(userName, password) values ('administrador', 'x');
+insert into User(userName, password) values ('administrador', '5395888d441ba59f1bf4f8fb73b950bd');
 insert into UserRole(userName, roleName) values ('admin', 'admin');
 insert into UserRole(userName, roleName) values ('administrador', 'admin');
 

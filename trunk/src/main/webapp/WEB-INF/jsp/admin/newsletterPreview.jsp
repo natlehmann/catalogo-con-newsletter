@@ -10,6 +10,12 @@
 	<jsp:param value="true" name="showAdminMenu"/>
 </jsp:include>
 
+<script type="text/javascript">
+function showTestEmailField() {
+	$('#testEmailForm').show();
+}
+</script>
+
 
 <div class="main-content">
 
@@ -22,6 +28,10 @@
 		<form:hidden path="id"/>
 	
 		<div class="actions">
+		
+			<button type="button" onclick="showTestEmailField()" >
+				<spring:message code="send.test.email" />
+			</button>
 		
 			<button type="submit" value="sendFinalCustomers" name="sendFinalCustomers">
 				<spring:message code="send.to.final.customers" />
@@ -39,6 +49,15 @@
 				<spring:message code="back" />
 			</button>
 
+		</div>
+		
+		<div id="testEmailForm" style="display:none">
+		
+			<input type="text" name="testEmail" />
+			
+			<button type="submit" value="sendTest" name="sendTest">
+				<spring:message code="accept" />
+			</button>
 		</div>
 
 	</form:form>

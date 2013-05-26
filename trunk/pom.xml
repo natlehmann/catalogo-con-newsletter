@@ -286,8 +286,8 @@
 		</activation>
 		<properties>
 			<profile.name>prod</profile.name>
-  			<jdbc.url></jdbc.url>
-  			<jdbc.username></jdbc.username>
+  			<jdbc.url>jdbc:mysql://localhost/x051vm14_almajazmin</jdbc.url>
+  			<jdbc.username>x051vm14_alma</jdbc.username>
   			<jdbc.password></jdbc.password>
   			<tomcat.home></tomcat.home>
   			<tomcat.logs.home>.</tomcat.logs.home>

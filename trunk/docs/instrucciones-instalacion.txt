@@ -1,0 +1,11 @@
+PARA INSTALACION EN PRODUCCION:
+
+1) Copiar a $TOMCAT_HOME/lib el driver de JDBC.
+
+2) Para generar una nueva password, desde la carpeta $TOMCAT_HOME ejecutar
+
+java -cp server/lib/catalina.jar:server/lib/catalina-ant-jmx.jar:/home/natalia/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar org.apache.catalina.realm.RealmBase -a md5 [usuario]:[realm-name tal como esta en web.xml]:[password]
+
+Luego insertar la password generada en la tabla User.
+
+
