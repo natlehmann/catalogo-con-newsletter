@@ -123,9 +123,22 @@ public class NewsletterController {
 		
 		if (request.getParameter("back") != null) {
 			return new ModelAndView("redirect:newsletterList.html");
-			
-		} else {
-			log.error("NO IMPLEMENTADO !!!!!!!!");
+		} 
+		
+		if (request.getParameter("sendFinalCustomers") != null) {
+			log.error("sendFinalCustomers");
+		}
+		
+		if (request.getParameter("sendRetailers") != null) {
+			log.error("sendRetailers");
+		}
+		
+		if (request.getParameter("sendCorporateSales") != null) {
+			log.error("sendCorporateSales");
+		}
+		
+		if (request.getParameter("sendTest") != null) {
+			log.error("sendTest");
 		}
 		
 		return new ModelAndView("/admin/newsletterPreview", "newsletter", newsletter);

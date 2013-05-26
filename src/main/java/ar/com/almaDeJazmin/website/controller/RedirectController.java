@@ -25,7 +25,7 @@ public class RedirectController {
 	
 	@RequestMapping("/index.html")
 	public ModelAndView index() {
-		return new ModelAndView("/index");
+		return new ModelAndView("/enConstruccion");
 	}
 	
 	@RequestMapping("/home.html")

@@ -1,13 +1,16 @@
-<Context docBase="${catalina.home}/server/webapps/almaDeJazmin">
+<?xml version="1.0" encoding="UTF-8"?>
+<Context 
+	className="org.apache.catalina.core.StandardContext"
+	antiJARLocking="true">
 
-	<Realm className="org.apache.catalina.realm.JDBCRealm"
-		digest="md5"
-		driverName="org.gjt.mm.mysql.Driver" 
-		connectionURL="${jdbc.url}?user=${jdbc.username}&amp;password=${jdbc.password}"
-		userTable="User"
-		userNameCol="userName" 
-		userCredCol="password" 
-		userRoleTable="UserRole"
-		roleNameCol="roleName" />
+	<Realm 	className="org.apache.catalina.realm.JDBCRealm"
+			digest="md5"
+      		driverName="com.mysql.jdbc.Driver"
+   			connectionURL="${jdbc.url}?user=${jdbc.username}&amp;password=${jdbc.password}"
+      		userTable="User" 
+      		userNameCol="userName" 
+      		userCredCol="password"
+   			userRoleTable="UserRole" 
+   			roleNameCol="roleName"/>
 
 </Context>
