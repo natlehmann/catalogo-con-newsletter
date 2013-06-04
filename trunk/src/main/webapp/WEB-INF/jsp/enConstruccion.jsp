@@ -4,15 +4,23 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE html> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Alma de Jazmin</title>
+<style type="text/css">
+body {
+	background-color: #EAD8B4;
+}
+</style>
+</head>
 
-<jsp:include page="/WEB-INF/includes/header.jsp">
-	<jsp:param value="Alma de Jazmin" name="title"/>
-</jsp:include>
+<body><center>
+  <a href="mailto:info@almadezamin.com.ar">
+  	<img src='<c:url value="/images/enConstruccion.jpg" />' height='501' width='800'/>
+  </a>
+</center>
 
 
-<div class="main-content">
-	EN CONSTRUCCION
-</div>
-
-
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+</body>
+</html>
