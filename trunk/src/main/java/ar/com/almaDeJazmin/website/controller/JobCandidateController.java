@@ -92,9 +92,13 @@ public class JobCandidateController extends MultiActionController {
 		
 		String name = ServletRequestUtils.getRequiredStringParameter(request, "name");
 		String email = ServletRequestUtils.getRequiredStringParameter(request, "email");
+		String companyName = ServletRequestUtils.getStringParameter(request, "companyName");
+		String phoneNumber = ServletRequestUtils.getRequiredStringParameter(request, "phoneNumber");
 
 		jobCandidate.setName(name);
 		jobCandidate.setEmail(email);
+		jobCandidate.setCompanyName(companyName);
+		jobCandidate.setPhoneNumber(phoneNumber);
 		
 		return jobCandidate;
 	}

@@ -51,8 +51,7 @@ public class MailServiceImpl implements MailService {
 		
 		log.info("Configurando mensaje para envio.");
 		StringBuffer message = new StringBuffer("Se ha recibido un CV del siguiente contacto:\n");
-		message.append("Nombre: ").append(jobCandidate.getName()).append("\n");
-		message.append("Email: ").append(jobCandidate.getEmail()).append("\n");
+		message.append(jobCandidate.toString());
 
 		
 		try {
@@ -70,9 +69,9 @@ public class MailServiceImpl implements MailService {
 			helper.addAttachment(jobCandidate.getCv().getFileName(), attach, jobCandidate.getCv().getFileType());
 
 
-			log.info("Previo a enviar mail.");
+			log.debug("Previo a enviar mail.");
 			javaMailSender.send(mimeMessage);
-			log.info("Envio exitoso.");
+			log.debug("Envio exitoso.");
 			
 		} catch (Exception e) {
 			log.error("error al enviar mail para " + jobCandidate, e);
