@@ -10,9 +10,6 @@
 </jsp:include>
 
 
-<div class="main-content">
-	ESTA ES LA HOME CON VIDEO
-</div>
-
-
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+<jsp:include page="/WEB-INF/includes/footer.jsp">
+	<jsp:param value="fondoHome.png" name="backgroundImg"/>
+</jsp:include>

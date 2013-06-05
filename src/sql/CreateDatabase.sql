@@ -86,7 +86,9 @@ CREATE TABLE Contact
    email varchar(100) NOT NULL,
    comment varchar(512),
    contactDate timestamp not null default now(),
-   notified bit default 0
+   notified bit default 0,
+   companyName varchar(255) null,
+   phoneNumber varchar(20) null
 ) ENGINE=MyISAM;
 
 CREATE TABLE Newsletter
