@@ -65,6 +65,21 @@ public class RedirectController {
 		return new ModelAndView("/prensa");
 	}
 	
+	@RequestMapping("/locales_cabildo.html")
+	public ModelAndView localesCabildo() {
+		return new ModelAndView("/localesCabildo");
+	}
+	
+	@RequestMapping("/locales_santaFe.html")
+	public ModelAndView localesSantaFe() {
+		return new ModelAndView("/localesSantaFe");
+	}
+	
+	@RequestMapping("/locales_rivadavia.html")
+	public ModelAndView localesRivadavia() {
+		return new ModelAndView("/localesRivadavia");
+	}
+	
 	@RequestMapping(value="/errors/404.html")
     public ModelAndView handle404() {
         return new ModelAndView("/errorPage", "error-msg-code", "this.page.does.not.exist");

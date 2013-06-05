@@ -65,6 +65,9 @@
 			<url-pattern>/nosotros.html</url-pattern>
 			<url-pattern>/productos.html</url-pattern>
 			<url-pattern>/locales.html</url-pattern>
+			<url-pattern>/locales_cabildo.html</url-pattern>
+			<url-pattern>/locales_santaFe.html</url-pattern>
+			<url-pattern>/locales_rivadavia.html</url-pattern>
 			<url-pattern>/contacto.html</url-pattern>
 			<url-pattern>/prensa.html</url-pattern>
 			<url-pattern>/tusComentarios.html</url-pattern>
