@@ -14,9 +14,6 @@ public class JobCandidate extends Contact {
 	@Column(length=255, nullable=true)
 	private String companyName;
 	
-	@Column(length=20, nullable=true)
-	private String phoneNumber;
-	
 	@Transient
 	private TextFile cv;
 	
@@ -34,14 +31,6 @@ public class JobCandidate extends Contact {
 
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 
 	

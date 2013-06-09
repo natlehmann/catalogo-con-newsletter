@@ -34,6 +34,9 @@ public abstract class Contact implements Serializable {
 	@Column(length=512)
 	private String comment;
 	
+	@Column(length=20, nullable=true)
+	private String phoneNumber;
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date contactDate = new Date();
 	
@@ -85,6 +88,14 @@ public abstract class Contact implements Serializable {
 
 	public void setNotified(boolean notified) {
 		this.notified = notified;
+	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	@Override

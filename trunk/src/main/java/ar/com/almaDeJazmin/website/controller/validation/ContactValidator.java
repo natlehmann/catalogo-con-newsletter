@@ -6,7 +6,6 @@ import org.springframework.validation.Validator;
 
 import ar.com.almaDeJazmin.website.dao.ContactDao;
 import ar.com.almaDeJazmin.website.domain.Contact;
-import ar.com.almaDeJazmin.website.domain.JobCandidate;
 
 public class ContactValidator implements Validator {
 	
@@ -38,6 +37,12 @@ public class ContactValidator implements Validator {
 		if (contact.getComment() != null) {
 			if (contact.getComment().length() > 512) {
 				errors.rejectValue("comment", "exceeds.max.characters", new Object[]{512}, "too long.");
+			}
+		}
+		
+		if (contact.getPhoneNumber() != null) {
+			if (contact.getPhoneNumber().length() > 20) {
+				errors.rejectValue("phoneNumber", "exceeds.max.characters", new Object[]{20}, "too long.");
 			}
 		}
 		
