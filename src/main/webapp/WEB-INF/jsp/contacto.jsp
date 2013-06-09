@@ -10,13 +10,11 @@
 </jsp:include>
 
 
-<div class="main-content">
-	<a href="tusComentarios.html">Tus Comentarios</a>
-	<br/>
-	<a href="franquiciasYmayoristas.html">Franquicias y mayoristas</a>
-	<br/>
-	<a href="ventasCorporativas.html">Ventas Corporativas</a>
-</div>
+<jsp:include page="/WEB-INF/includes/contacto_submenu.jsp"/>
 
 
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+<jsp:include page="/WEB-INF/includes/footer.jsp">
+	<jsp:param value="fondoContacto.jpg" name="backgroundImg" />
+</jsp:include>
+
+
