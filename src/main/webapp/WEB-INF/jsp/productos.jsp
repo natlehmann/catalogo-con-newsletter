@@ -24,6 +24,49 @@ function displayProducts(data) {
 function cleanSelectedCategory() {
 	$('#submenu a').removeClass('selected');
 }
+
+function avanzarGaleriaImagenes() {
+	var img = $('#allImages img[showing="true"]');
+	var newImg = img.next('img');
+	
+	if (newImg.length) {
+		$('.galeriaPrensa .img01 img').attr('src', newImg.attr('src') );
+
+		newImg.attr('showing', 'true');
+		img.removeAttr("showing");
+
+		var secondImg = newImg.next('img');
+
+		if (secondImg.length) {	
+			$('.galeriaPrensa .img02 img').attr('src', secondImg.attr('src') );
+		
+		} else {
+			$('.galeriaPrensa .img02 img').attr('src', '');
+			
+			$('#avanzar').hide();
+		}
+	}
+
+	$('#retroceder').show();
+}
+
+function retrocederGaleriaImagenes() {
+
+	var img = $('#allImages img[showing="true"]');
+	var prevImg = img.prev('img');
+
+	$('.galeriaPrensa .img01 img').attr('src', prevImg.attr('src') );
+	$('.galeriaPrensa .img02 img').attr('src', img.attr('src') );
+
+	prevImg.attr('showing', 'true');
+	img.removeAttr("showing");
+
+	if ( !prevImg.prev('img').length ) {
+		$('#retroceder').hide();
+	}
+	
+	$('#avanzar').show();
+}
 </script>                                     
                                            
                                            

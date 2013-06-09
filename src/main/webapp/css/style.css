@@ -360,12 +360,14 @@ body {
 #contenido{
     width: 69.8%;
 	background:rgba(255,255,255,0.5);
-	float:left;
-	z-index:10;
 	height:405px;
-	margin-left:2px;
-	margin-top:239px;
 	filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0,startColorstr='#50FFFFFF', endColorstr='#50FFFFFF');
+    left: 30%;
+    margin-left: 3px;
+    margin-top: 295px;
+    position: absolute;
+    width: 69.8%;
+    z-index: 999;
 }
 
 .galeria {
@@ -415,22 +417,26 @@ body {
 }  
 
 .img01{
-	position:relative;
-	z-index:10;
-	width:51%;
+	height: 390px;
+    overflow: hidden;
+    position: relative;
+    width: 70%;
+    z-index: 10;
 } 
 
 .img02{
-	position:relative;
-	z-index:10;
-	width:49%;
+	height: 390px;
+    overflow: hidden;
+    position: relative;
+    width: 29%;
+    z-index: 10;
 }
 
 .flechas {
-	left: 535px;
+	left: 0;
     position: absolute;
-    top: 660px;
-    z-index: 6;
+    top: 420px;
+    z-index: 99999;
 } 
 
 .flechas div {
@@ -467,8 +473,15 @@ body {
 }  
 
 .galeriaPrensa img{
-	margin-top:15px;
-	border:none;
+    border: 0px;
+    margin-left: 15px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.galeriaPrensa .img02 img {
+	height: 96%;
+    width: auto;
 }
 
 .galeriaPrensa a:link {

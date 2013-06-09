@@ -20,7 +20,7 @@
 	</div>
 	
 	<div class="flechasPrensa">
-		<div><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('retorceder','','images/retrocesoOn.png',1)"><img src="images/retrocesoOff.png" width="14" height="11" border="0" id="retorceder" /></a></div>
+		<div><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('retroceder','','images/retrocesoOn.png',1)"><img src="images/retrocesoOff.png" width="14" height="11" border="0" id="retroceder" /></a></div>
 		<div><img src="images/separacionFlechas.png" alt="" width="1" height="11" /></div>
 		<div><a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('avanzar','','images/avanzarOn.png',1)"><img src="images/avanzarOff.png" width="14" height="11" border="0" id="avanzar" /></a></div>
 	</div> 

@@ -7,30 +7,52 @@
 
 <div class="galeriaPrensa">
 	<c:forEach var="product" items="${products}" varStatus="status">
-		<div class="${status.count eq 1 ? 'img01' : (status.count eq 2 ? 'img02' : '') }">
-			<c:url value="imageView.html" var="url_big">
-				<c:param name="id" value="${product.thumbnail.id}" />
-			</c:url>
-			<img src="${url_big}" />
-		</div>
+	
+		<c:if test="${status.count <= 2}">
+			<div class="${status.count eq 1 ? 'img01' : (status.count eq 2 ? 'img02' : '') }">
+				
+				<c:url value="imageView.html" var="url_big">
+					<c:param name="id" value="${product.thumbnail.id}" />
+				</c:url>
+				<img src="${url_big}" />
+			</div>
+		</c:if>
+		
+	</c:forEach>
+</div>
+
+<div id="allImages" style="display:none;">
+	<c:forEach var="product" items="${products}" varStatus="status">
+	
+		<c:url value="imageView.html" var="url_big">
+			<c:param name="id" value="${product.thumbnail.id}" />
+		</c:url>
+		<img src="${url_big}" ${status.count eq 1 ? "showing='true'" : "" } />
+		
 	</c:forEach>
 </div>
 
 <div class="flechas">
-	<div>
-		<a href="#" onmouseout="MM_swapImgRestore()" 
-			onmouseover="MM_swapImage('retorceder','','images/retrocesoOn.png',1)">
-			<img src="images/retrocesoOff.png" width="14" height="11" border="0" id="retorceder" />
+	<div style="width:22px;height: 15px;">
+		<a	onmouseout="MM_swapImgRestore()" 
+			onmouseover="MM_swapImage('retroceder','','images/retrocesoOn.png',1)"
+			onclick="retrocederGaleriaImagenes()">
+			<img src="images/retrocesoOff.png" width="14" height="11" border="0" id="retroceder" 
+				style="display:none;"/>
 		</a>
 	</div>
-    <div>
-    	<img src="images/separacionFlechas.png" alt="" width="1" height="11" />
-    </div>
-    <div>
-    	<a href="#" onmouseout="MM_swapImgRestore()" 
-	    	onmouseover="MM_swapImage('avanzar','','images/avanzarOn.png',1)">
-	    	<img src="images/avanzarOff.png" width="14" height="11" border="0" id="avanzar" />
-	    </a>
-	</div>
+	
+	<c:if test="${products.size() > 1 }">
+	    <div>
+	    	<img src="images/separacionFlechas.png" alt="" width="1" height="11" id="separacionFlechas"/>
+	    </div>
+	    <div>
+	    	<a 	onmouseout="MM_swapImgRestore()" 
+		    	onmouseover="MM_swapImage('avanzar','','images/avanzarOn.png',1)"
+		    	onclick="avanzarGaleriaImagenes()">
+		    	<img src="images/avanzarOff.png" width="14" height="11" border="0" id="avanzar" />
+		    </a>
+		</div>
+	</c:if>
 </div>
 
