@@ -13,31 +13,33 @@
 function showProducts(categoryId, elem) {
 	$.post("showProductsByCategory.html", { 'categoryId': categoryId }, displayProducts, 'html' );
 	cleanSelectedCategory();
-	$(elem).addClass('sectorLink-selected');	
+	$(elem).addClass('selected');	
 }
 
 function displayProducts(data) {
-	$('#linea').html(data);
-	$('#linea').show();
+	$('#contenido').html(data);
+	$('#contenido').show();
 }
 
 function cleanSelectedCategory() {
-	$('a').removeClass('sectorLink-selected');
+	$('#submenu a').removeClass('selected');
 }
-</script>
-
-
-<div class="main-content">
-	<c:forEach var="category" items="${categories}">
-		<div>
+</script>                                     
+                                           
+                                           
+<div id="submenu">
+	<c:forEach var="category" items="${categories}" varStatus="status">
+		<div class="${status.count eq categories.size() ? 'botonesultimo' : 'botones' }">
 			<a href="#" onclick="showProducts(${category.id}, this)">
 				${category.name}
 			</a>
 		</div>
 	</c:forEach>
-	
-	<div id="linea" style="display:none;"></div>
 </div>
 
+<div id="contenido" style="display:none;"></div>
 
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+
+<jsp:include page="/WEB-INF/includes/footer.jsp">
+	<jsp:param value="fondoProductos.jpg" name="backgroundImg" />
+</jsp:include>
