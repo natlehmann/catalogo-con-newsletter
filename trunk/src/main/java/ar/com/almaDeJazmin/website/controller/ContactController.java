@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.com.almaDeJazmin.website.controller.validation.ContactValidator;
 import ar.com.almaDeJazmin.website.dao.ContactDao;
-import ar.com.almaDeJazmin.website.domain.Category;
 import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
 import ar.com.almaDeJazmin.website.domain.FinalCustomer;
 import ar.com.almaDeJazmin.website.domain.Retailer;
