@@ -16,8 +16,8 @@
 <div id="contenido">
 
 	<div class="galeriaLocales">
-              <div><img src="images/rivadavia01.png"></div>
-               <div><img src="images/rivadavia02.png"></div>
+              <div><img src="images/rivadavia01.jpg"></div>
+               <div><img src="images/rivadavia02.jpg"></div>
     </div>
 	
 </div>

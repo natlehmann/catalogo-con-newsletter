@@ -11,5 +11,5 @@
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">
-	<jsp:param value="fondoHome.png" name="backgroundImg"/>
+	<jsp:param value="fondoHome.jpg" name="backgroundImg"/>
 </jsp:include>

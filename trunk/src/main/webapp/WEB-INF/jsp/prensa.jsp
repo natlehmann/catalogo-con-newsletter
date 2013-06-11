@@ -12,11 +12,11 @@
 
 <div id="contenidoPrensa">
 	<div class="galeriaPrensa">
-		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa01.png" ></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Ohlalá / Noviembre 2012</a></div>
-		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa02.png" /></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Para Ti / Diciembre 2012</a></div>
-		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa03.png" /></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a></div>
-		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa04.png" /></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a></div>
-		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa01.png" ></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Ohlalá / Noviembre 2012</a></div>
+		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa01.jpg" ></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Ohlalá / Noviembre 2012</a></div>
+		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa02.jpg" /></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Para Ti / Diciembre 2012</a></div>
+		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa03.jpg" /></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a></div>
+		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa04.jpg" /></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a></div>
+		<div><a href="prensa/prensa.pdf" target="_blank"><img src="images/prensa01.jpg" ></a><br /><a href="prensa/prensa.pdf" target="_blank">Revista Ohlalá / Noviembre 2012</a></div>
 	</div>
 	
 	<div class="flechasPrensa">
@@ -28,5 +28,5 @@
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">
-	<jsp:param value="fondoPrensa.png" name="backgroundImg" />
+	<jsp:param value="fondoPrensa.jpg" name="backgroundImg" />
 </jsp:include>
