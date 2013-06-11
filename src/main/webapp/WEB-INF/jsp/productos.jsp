@@ -19,6 +19,20 @@ function showProducts(categoryId, elem) {
 function displayProducts(data) {
 	$('#contenido').html(data);
 	$('#contenido').show();
+
+	var nombreCategoria = $.trim( $('#submenu a.selected').text() );
+	nombreCategoria = nombreCategoria.replace(/ /g, '-');
+	nombreCategoria = nombreCategoria.replace(/ñ/g, 'n');
+	nombreCategoria = nombreCategoria.replace(',', '');
+
+	nombreCategoria = 'fondo-' + nombreCategoria;
+
+	if ( $('img#' + nombreCategoria).length ) {
+		$('.bx-container img').attr('src', $('img#' + nombreCategoria).attr('src') );
+		
+	} else {
+		$('.bx-container img').attr('src', 'images/fondoProductos.jpg' );
+	}
 }
 
 function cleanSelectedCategory() {
@@ -81,6 +95,20 @@ function retrocederGaleriaImagenes() {
 </div>
 
 <div id="contenido" style="display:none;"></div>
+
+<div id="imagenes-fondo" style="display:none;">
+	<img src="images/fondoAccesorios.jpg" id="fondo-accesorios-pelo" />
+	<img src="images/fondoAnillos.jpg" id="fondo-anillos-y-aros" />
+	<img src="images/fondoBilleteras.jpg" id="fondo-billeteras-y-monederos" />
+	<img src="images/fondoCarteras.jpg" id="fondo-carteras-y-bolsos" />
+	<img src="images/fondoCollares.jpg" id="fondo-collares" />
+	<img src="images/fondoCombinados.jpg" id="fondo-combinados" />
+	<img src="images/fondoHome1.jpg" id="fondo-home" />	
+	<img src="images/fondoPanuelos.jpg" id="fondo-panuelos-bufandas-y-gorros" />	
+	<img src="images/fondoRopa.jpg" id="fondo-prendas-de-vestir" />	
+	<img src="images/fondoPulseras.jpg" id="fondo-pulseras" />	
+	<img src="images/fondoVarios.jpg" id="fondo-varios" />	
+</div>
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">

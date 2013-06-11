@@ -112,3 +112,13 @@ CREATE TABLE NewsletterDistribution
    sentDate timestamp not null default now()
 ) ENGINE=MyISAM;
 
+INSERT INTO Category (id,name) VALUES (1,'billeteras y monederos');
+INSERT INTO Category (id,name) VALUES (2,'carteras y bolsos');
+INSERT INTO Category (id,name) VALUES (3,'accesorios pelo');
+INSERT INTO Category (id,name) VALUES (4,'anillos y aros');
+INSERT INTO Category (id,name) VALUES (5,'collares');
+INSERT INTO Category (id,name) VALUES (6,'combinados');
+INSERT INTO Category (id,name) VALUES (7,'home');
+INSERT INTO Category (id,name) VALUES (8,'pañuelos, bufandas y gorros');
+INSERT INTO Category (id,name) VALUES (9,'prendas de vestir');
+INSERT INTO Category (id,name) VALUES (10,'varios');
