@@ -129,5 +129,5 @@ function showSpinner() {
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">
-	<jsp:param value="fondoNosotros.png" name="backgroundImg"/>
+	<jsp:param value="fondoNosotros.jpg" name="backgroundImg"/>
 </jsp:include>
