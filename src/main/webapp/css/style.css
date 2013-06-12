@@ -416,20 +416,58 @@ body {
 	margin-left:15px;
 }  
 
-.img01{
+.img01 {
 	height: 390px;
     overflow: hidden;
     position: relative;
     width: 70%;
     z-index: 10;
-} 
+}
 
-.img02{
+.galeriaPrensa .img01,
+.galeriaPrensa .img02,
+.galeriaPrensa .img03 {
+	width: 29%;
+	height: 370px;
+	overflow: hidden;
+}
+
+.galeriaPrensa .link01,
+.galeriaPrensa .link02,
+.galeriaPrensa .link03 {
+	position: absolute;
+	top: 380px;
+}
+
+.galeriaPrensa .link01 {
+	left: 20px;
+}
+
+.galeriaPrensa .link02 {
+	left: 31%;
+}
+
+.galeriaPrensa .link03 {
+	left: 61%;
+}
+
+.img02 {
 	height: 390px;
     overflow: hidden;
     position: relative;
     width: 29%;
     z-index: 10;
+}
+
+.galeriaPrensa .img04 {
+	width: 12%;
+	height: 370px;
+	overflow: hidden;
+}
+
+.galeriaPrensa .img04 img {
+	height: 370px;
+	width: auto;
 }
 
 .flechas {
@@ -461,63 +499,46 @@ body {
 	height:405px;
 	margin-left:2px;
 	margin-top:239px;
+	position: relative;
 }
 
-.galeriaPrensa {
+.galeriaPrensa,
+.galeriaProductos {
 	position:relative;
 	z-index:5;
 }  
 
-.galeriaPrensa div {
+.galeriaPrensa div,
+.galeriaProductos div {
 	float:left;
 }  
 
-.galeriaPrensa img{
+.galeriaPrensa img,
+.galeriaProductos img {
     border: 0px;
     margin-left: 15px;
     margin-top: 15px;
     width: 100%;
 }
 
-.galeriaPrensa .img02 img {
+.galeriaProductos .img02 img {
 	height: 96%;
     width: auto;
 }
 
-.galeriaPrensa a:link {
-	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
-	font-size: 11px;
-	color: #3B2113;
-	TEXT-DECORATION: none;
-	margin-left:15px;
-	border:0px #FFF solid;
-}  
-
-.galeriaPrensa a:visited {
-	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
-	font-size: 11px;
-	color: #3B2113;
-	TEXT-DECORATION: none;
-	margin-left:15px;
-		border:0px #FFF solid;
-}  
-
+.galeriaPrensa a:link,
+.galeriaPrensa a:visited,
 .galeriaPrensa a:active {
 	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 	color: #3B2113;
 	TEXT-DECORATION: none;
-	margin-left:15px;
-		border:0px #FFF solid;
-}  
+	border:0px #FFF solid;
+}    
 
 .galeriaPrensa a:hover {
-	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
-	font-size: 11px;
 	color: #EB008B;
 	TEXT-DECORATION: none;
-	margin-left:15px;
-		border:0px #FFF solid;
 }  
 
 .flechasPrensa {
