@@ -546,12 +546,15 @@ body {
 }  
 
 .galeriaLocales {
-	position:relative;
-	z-index:5;
+	display: table;
+    position: relative;
+    width: 100%;
+    z-index: 5;
 }  
 
 .galeriaLocales div {
-	float:left;
+	display:table-cell;
+	overflow:hidden;
 }  
 
 .galeriaLocales img{
