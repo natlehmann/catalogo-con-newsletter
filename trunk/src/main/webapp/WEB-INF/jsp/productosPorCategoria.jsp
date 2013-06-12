@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<div class="galeriaPrensa">
+<div class="galeriaProductos">
 	<c:forEach var="product" items="${products}" varStatus="status">
 	
 		<c:if test="${status.count <= 2}">

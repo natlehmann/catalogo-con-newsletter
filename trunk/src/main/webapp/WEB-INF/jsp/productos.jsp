@@ -44,7 +44,7 @@ function avanzarGaleriaImagenes() {
 	var newImg = img.next('img');
 	
 	if (newImg.length) {
-		$('.galeriaPrensa .img01 img').attr('src', newImg.attr('src') )
+		$('.galeriaProductos .img01 img').attr('src', newImg.attr('src') )
 			.effect( "slide", {direction: 'right'}, "fast" );
 
 		newImg.attr('showing', 'true');
@@ -53,11 +53,11 @@ function avanzarGaleriaImagenes() {
 		var secondImg = newImg.next('img');
 
 		if (secondImg.length) {	
-			$('.galeriaPrensa .img02 img').attr('src', secondImg.attr('src') )
+			$('.galeriaProductos .img02 img').attr('src', secondImg.attr('src') )
 				.effect( "slide", {direction: 'right'}, "fast" );
 		
 		} else {
-			$('.galeriaPrensa .img02 img').attr('src', '');
+			$('.galeriaProductos .img02 img').attr('src', '');
 			
 			$('#avanzar').hide();
 		}
@@ -71,9 +71,9 @@ function retrocederGaleriaImagenes() {
 	var img = $('#allImages img[showing="true"]');
 	var prevImg = img.prev('img');
 
-	$('.galeriaPrensa .img01 img').attr('src', prevImg.attr('src') )
+	$('.galeriaProductos .img01 img').attr('src', prevImg.attr('src') )
 		.effect( "slide", {direction: 'left'}, "fast" );
-	$('.galeriaPrensa .img02 img').attr('src', img.attr('src') )
+	$('.galeriaProductos .img02 img').attr('src', img.attr('src') )
 		.effect( "slide", {direction: 'left'}, "fast" );
 
 	prevImg.attr('showing', 'true');
