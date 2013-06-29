@@ -1,0 +1,67 @@
+.fadebox {
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(59,33,19,0.8);
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.overbox {
+    display: none;
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    width: 25%;
+    height: 50%;
+    z-index:1002;
+    overflow: auto;
+}
+.content {
+	background: rgba(255,255,255,0.9);
+	padding: 40px;
+}  
+.content a:link {
+	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+    padding: 10px 20px;
+	background-color:#3B2113;
+	border:#3B2113 1px solid;
+}  
+.content a:visited {
+	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+    padding: 10px 20px;
+	background-color:#3B2113;
+	border:#3B2113 1px solid;
+}  
+
+.content a:active {
+	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+    padding: 10px 20px;
+	background-color:#3B2113;
+	border:#3B2113 1px solid;
+}  
+
+.content a:hover {
+	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+    padding: 10px 20px;
+	background-color:#EB008B;
+	border:#3B2113 1px solid;
+}  
+
+

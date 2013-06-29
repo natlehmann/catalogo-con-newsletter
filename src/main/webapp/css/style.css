@@ -737,6 +737,9 @@ body {
 	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 }
+.contacto textarea{
+	width: 230px;
+}
 
 .contacto input[type='text']:focus,
 .contacto input[type='file']:focus, 
