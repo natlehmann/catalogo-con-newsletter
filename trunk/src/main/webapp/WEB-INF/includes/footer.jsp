@@ -4,11 +4,12 @@
 
 <%
 	String backgroundImg = request.getParameter("backgroundImg") != null ? request.getParameter("backgroundImg") : "fondoHome.jpg";
+	String logo = request.getParameter("logo") != null ? request.getParameter("logo") : "logo.png";
 %>
 	
 	
 				<div id="logo2">
-					<img src='images/logo.png' width='235' height='79'/>
+					<img src='images/<%= logo %>' width='235' height='79'/>
 				</div> 
 			</div>  
                                  
