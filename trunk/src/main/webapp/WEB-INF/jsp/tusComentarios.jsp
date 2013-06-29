@@ -13,6 +13,13 @@
 	<jsp:param value="selected" name="consultas"/>
 </jsp:include>
 
+<script type="text/javascript">
+$(function() {
+	if ($("#over").length) {
+		showLightbox();
+	}
+});
+</script>
 
 	
 <c:if test="${successMsg == null}">
@@ -27,26 +34,22 @@
 			modelAttribute="finalCustomer" commandName="finalCustomer" cssClass="contacto">		
 			
 			<div>
-				<label>Nombre y apellido:</label>
+				<label>Nombre y Apellido</label>
 				<form:input path="name" maxlength="250" /> 
-				<form:errors path="name" cssClass="errors" element="span" />
 			</div>
 			
 			<div>
-				<label>Mail:</label>
-				<form:input path="email" maxlength="250" /> 
-				<form:errors path="email" cssClass="errors" element="span" />
+				<label>Mail</label>
+				<form:input path="email" maxlength="100" /> 
 			</div>
 			
 			<div>
 				<label>Tel.</label>
-				<form:input path="phoneNumber" maxlength="250" /> 
-				<form:errors path="phoneNumber" cssClass="errors" element="span" />
+				<form:input path="phoneNumber" maxlength="20" /> 
 			</div>
 			
 			<div>
 				<form:textarea path="comment" rows="2" /> 
-				<form:errors path="comment" cssClass="errors" element="span" />
 			</div>
 	
 		
@@ -70,6 +73,14 @@
        </div>
 </c:if>
 	
+<c:if test="${errorMsg != null}">
+	<div id="over" class="overbox">
+		<div class="content">
+			${errorMsg}<br /><br /><br /><br />
+			<a href="javascript:hideLightbox();" >cerrar</a>
+		</div>
+	</div>
+</c:if>
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">

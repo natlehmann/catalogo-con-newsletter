@@ -25,6 +25,8 @@ public class ContactValidator implements Validator {
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comment", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneNumber", "field.required");
 		
 		Contact contact = (Contact)target;
 		if (!errors.hasFieldErrors("email") && contact.getEmail() != null) {

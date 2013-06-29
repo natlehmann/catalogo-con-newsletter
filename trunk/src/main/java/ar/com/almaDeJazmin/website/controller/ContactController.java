@@ -11,6 +11,7 @@ import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.com.almaDeJazmin.website.controller.validation.BusinessContactValidator;
 import ar.com.almaDeJazmin.website.controller.validation.ContactValidator;
 import ar.com.almaDeJazmin.website.dao.ContactDao;
 import ar.com.almaDeJazmin.website.domain.CorporateSalesContact;
@@ -23,11 +24,13 @@ public class ContactController {
 	private ContactDao contactDao;
 	
 	private ContactValidator contactValidator;
+	private BusinessContactValidator businessContactValidator;
 	
 	@Autowired
 	public ContactController(ContactDao contactDao) {
 		this.contactDao = contactDao;
 		this.contactValidator = new ContactValidator(contactDao);
+		this.businessContactValidator = new BusinessContactValidator(contactDao);
 	}
 	
 	@RequestMapping("/tusComentarios.html")
@@ -72,11 +75,11 @@ public class ContactController {
 		if (!result.hasErrors()) {
 			contactDao.create(finalCustomer);
 			return new ModelAndView("/tusComentarios", 
-					"successMsg", "Su email se ha enviado con exito");
+					"successMsg", "Su email se ha enviado con &eacute;xito");
 		}
 		
 		return new ModelAndView("/tusComentarios").addAllObjects(
-				result.getModel());
+				result.getModel()).addObject("errorMsg", "Complete los campos requeridos");
 		
 	}
 	
@@ -84,7 +87,7 @@ public class ContactController {
 	public ModelAndView sendCorporateSalesContactComments(CorporateSalesContact corporateSalesContact,
 			BindingResult result) throws IOException, ServletRequestBindingException {
 		
-		contactValidator.validate(corporateSalesContact, result);
+		businessContactValidator.validate(corporateSalesContact, result);
 		
 		if (!result.hasErrors()) {
 			contactDao.create(corporateSalesContact);
@@ -93,7 +96,7 @@ public class ContactController {
 		}
 		
 		return new ModelAndView("/ventasCorporativas").addAllObjects(
-				result.getModel());
+				result.getModel()).addObject("errorMsg", "Complete los campos requeridos");
 		
 	}
 	
@@ -101,7 +104,7 @@ public class ContactController {
 	public ModelAndView sendRetailerComments(Retailer retailer,
 			BindingResult result) throws IOException, ServletRequestBindingException {
 		
-		contactValidator.validate(retailer, result);
+		businessContactValidator.validate(retailer, result);
 		
 		if (!result.hasErrors()) {
 			contactDao.create(retailer);
@@ -110,7 +113,7 @@ public class ContactController {
 		}
 		
 		return new ModelAndView("/franquiciasYmayoristas").addAllObjects(
-				result.getModel());
+				result.getModel()).addObject("errorMsg", "Complete los campos requeridos");
 		
 	}
 

@@ -22,6 +22,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/master.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/style.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/miltonian-bitter.css"/>' />
+	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/lightbox.css"/>' />
 	 
 	<script type="text/javascript" src='<c:url value="/js/jquery-1.9.1.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/js/jquery-ui-1.10.1.custom.min.js"/>'></script>

@@ -401,3 +401,12 @@ function MM_swapImage() { // v3.0
 		}
 	}
 }
+
+function showLightbox() {
+    $('#over').show();
+    $('#fade').show();
+}
+function hideLightbox() {
+	$('#over').hide();
+    $('#fade').hide();
+}

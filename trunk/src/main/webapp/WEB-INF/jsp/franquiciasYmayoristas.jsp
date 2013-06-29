@@ -13,6 +13,14 @@
 	<jsp:param value="selected" name="franquicias"/>
 </jsp:include>
 
+<script type="text/javascript">
+$(function() {
+	if ($("#over").length) {
+		showLightbox();
+	}
+});
+</script>
+
 
 <c:if test="${successMsg == null}">
 
@@ -24,44 +32,37 @@
 			modelAttribute="retailer" commandName="retailer" cssClass="contacto">		
 			
 			<div>
-				<label>Empresa:</label>
+				<label>Empresa</label>
 				<form:input path="name" maxlength="250" /> 
-				<form:errors path="name" cssClass="errors" element="span" />
 			</div>
 			
 			<div>
-				<label>Razón Social:</label>
+				<label>Razón Social</label>
 				<form:input path="companyName" maxlength="250" cssStyle="width:120px" /> 
-				<form:errors path="companyName" cssClass="errors" element="span" />
 			</div>
 			
 			<div>
-				<label>Mail:</label>
-				<form:input path="email" maxlength="250" /> 
-				<form:errors path="email" cssClass="errors" element="span" />
+				<label>Mail</label>
+				<form:input path="email" maxlength="100" /> 
 			</div>
 			
 			<div>
 				<label>Tel.</label>
-				<form:input path="phoneNumber" maxlength="30" /> 
-				<form:errors path="phoneNumber" cssClass="errors" element="span" />
+				<form:input path="phoneNumber" maxlength="20" /> 
 			</div>
 			
 			<div>
 				<label>Rubros</label>
 				<form:input path="productCategories" maxlength="250" /> 
-				<form:errors path="productCategories" cssClass="errors" element="span" />
 			</div>
 			
 			<div>
 				<label>Cant. de productos</label>
 				<form:input path="productAmount" maxlength="10" cssStyle="width:80px" /> 
-				<form:errors path="productAmount" cssClass="errors" element="span" />
 			</div>
 			
 			<div>
 				<form:textarea path="comment" rows="2" /> 
-				<form:errors path="comment" cssClass="errors" element="span" />
 			</div>
 	
 		
@@ -83,6 +84,15 @@
 	<div id="contenidoFormularioFeedback">
     	¡MUCHAS GRACIAS! ENVIAREMOS UNA RESPUESTA A LA BREVEDAD.
     </div>
+</c:if>
+
+<c:if test="${errorMsg != null}">
+	<div id="over" class="overbox">
+		<div class="content">
+			${errorMsg}<br /><br /><br /><br />
+			<a href="javascript:hideLightbox();" >cerrar</a>
+		</div>
+	</div>
 </c:if>
 
 
