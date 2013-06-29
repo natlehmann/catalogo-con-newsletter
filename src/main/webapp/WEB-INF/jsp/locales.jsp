@@ -47,4 +47,5 @@
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">
 	<jsp:param value="fondoLocales.jpg" name="backgroundImg" />
+	<jsp:param value="logoBlanco.png" name="logo" />
 </jsp:include>
