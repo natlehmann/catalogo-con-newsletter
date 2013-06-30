@@ -427,8 +427,12 @@ body {
 .galeriaPrensa .img01,
 .galeriaPrensa .img02,
 .galeriaPrensa .img03 {
+	/*
 	width: 29%;
 	height: 370px;
+	*/
+	width: 19%;
+	height: 340px;
 	overflow: hidden;
 }
 
@@ -436,19 +440,20 @@ body {
 .galeriaPrensa .link02,
 .galeriaPrensa .link03 {
 	position: absolute;
-	top: 380px;
+	top: 340px;
+	width: 18%;
 }
 
 .galeriaPrensa .link01 {
-	left: 20px;
+	left: 15px;
 }
 
 .galeriaPrensa .link02 {
-	left: 31%;
+	left: 21%;
 }
 
 .galeriaPrensa .link03 {
-	left: 61%;
+	left: 40%;
 }
 
 .img02 {
@@ -460,20 +465,24 @@ body {
 }
 
 .galeriaPrensa .img04 {
+	/*
 	width: 12%;
 	height: 370px;
+	*/
+	width: 19%;
+	height: 340px;
 	overflow: hidden;
 }
 
 .galeriaPrensa .img04 img {
-	height: 370px;
+	height: 340px;
 	width: auto;
 }
 
 .flechas {
-	left: 0;
+	left: 3px;
     position: absolute;
-    top: 420px;
+    top: 380px;
     z-index: 99999;
 } 
 
@@ -684,12 +693,15 @@ body {
 	TEXT-DECORATION: none;
 }
 
-#contenidoFormulario a:hover {
+#contenidoFormulario a {
 	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 	font-weight:bold;
-		color: #EB008B;
 	TEXT-DECORATION: none;
+}
+
+#contenidoFormulario a:hover {
+	color: #EB008B;
 }
 
 #contenidoFormularioFeedback{
