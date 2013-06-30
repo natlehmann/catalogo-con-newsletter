@@ -10,6 +10,13 @@
 </jsp:include>
 
 <script type="text/javascript">
+
+$(function() {
+	if ($("#over").length) {
+		showLightbox();
+	}
+});
+
 function showForm() {
 	$('#nosotros-texto').hide();
 	$('#nosotros-cv-form').show();
@@ -61,9 +68,7 @@ function showSpinner() {
 						<label>
 							<spring:message code="name.and.lastname" />
 						</label>
-						
 						<form:input path="name" maxlength="255" /> 
-						<form:errors path="name" cssClass="errors" element="span" />
 					</div>
 					
 					<div>
@@ -75,20 +80,16 @@ function showSpinner() {
 					
 					<div>
 						<label>
-							<spring:message code="email" />
+							Mail
 						</label>
-						
 						<form:input path="email" maxlength="100" /> 
-						<form:errors path="email" cssClass="errors" element="span" />
 					</div>
 					
 					<div>
 						<label>
 							<spring:message code="phone.number.short" />
 						</label>
-						
 						<form:input path="phoneNumber" maxlength="20" /> 
-						<form:errors path="phoneNumber" cssClass="errors" element="span" />
 					</div>
 					
 					<div>
@@ -96,7 +97,6 @@ function showSpinner() {
 							<spring:message code="cv" />
 						</label>
 						<input type="file" name="cvFile" size="6" />
-						<form:errors path="cv" cssClass="errors" element="div" />
 					</div>
 		
 					<br/>
@@ -114,18 +114,22 @@ function showSpinner() {
 			</form:form>
 			</div>
 		
-			<c:if test="${emailError != null}">
-				<div class="error">
-					<spring:message code="${emailError}" />
-				</div>
-			</c:if>
-			
 		</div>
 		
 	</c:otherwise>
 </c:choose>
 	
 </div>
+
+<c:if test="${errorMsg != null}">
+	<div id="over" class="overbox">
+		<div class="content">
+			<spring:message code="${errorMsg}" />
+			<br /><br /><br /><br />
+			<a href="javascript:hideLightbox();" >cerrar</a>
+		</div>
+	</div>
+</c:if>
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp">

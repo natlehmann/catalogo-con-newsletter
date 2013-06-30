@@ -66,23 +66,32 @@ public class JobCandidateController extends MultiActionController {
 			} catch (InvalidTextFileFormatException e) {
 				binder.getBindingResult().rejectValue("cv", "invalid.text.file.format", "invalid file");
 				return new ModelAndView("/nosotros").addAllObjects(
-						binder.getBindingResult().getModel()).addObject("openForm", true);
+						binder.getBindingResult().getModel()).addObject("openForm", true)
+						.addObject("errorMsg", "invalid.text.file.format");
 				
 			} catch (ValidationException e) {
 				binder.getBindingResult().rejectValue("cv", e.getMessage(), "invalid file size");
 				return new ModelAndView("/nosotros").addAllObjects(
-						binder.getBindingResult().getModel()).addObject("openForm", true);
+						binder.getBindingResult().getModel()).addObject("openForm", true)
+						.addObject("errorMsg", "invalid.text.file.size");
 				
 			} catch (EmailException e) {
 				return new ModelAndView("/nosotros").addAllObjects(
-						binder.getBindingResult().getModel()).addObject("emailError", "email.error");
+						binder.getBindingResult().getModel()).addObject("errorMsg", "email.error");
 			}
 			
 			
 		} else {
 			
+			String errorMsg = "fill.in.all.fields";
+			if (binder.getBindingResult().hasFieldErrors("email")
+					&& !binder.getBindingResult().getFieldError("email").getCode().equals("field.required")) {
+				errorMsg = binder.getBindingResult().getFieldError("email").getCode();
+			}
+			
 			return new ModelAndView("/nosotros").addAllObjects(
-					binder.getBindingResult().getModel()).addObject("openForm", true);
+					binder.getBindingResult().getModel()).addObject("openForm", true)
+					.addObject("errorMsg", errorMsg);
 		}
 	}
 
