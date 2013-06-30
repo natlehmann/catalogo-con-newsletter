@@ -23,10 +23,16 @@ public class ContactValidator implements Validator {
 
 	public void validate(Object target, Errors errors) {
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "field.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "comment", "field.required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "phoneNumber", "field.required");
+		validateRequiredFields(target, errors, 
+				new String[]{"name", "email", "comment", "phoneNumber"});
+		
+	}
+	
+	public void validateRequiredFields(Object target, Errors errors, String[] fields) {
+		
+		for (String field : fields) {
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, field, "field.required");
+		}
 		
 		Contact contact = (Contact)target;
 		if (!errors.hasFieldErrors("email") && contact.getEmail() != null) {
@@ -47,7 +53,6 @@ public class ContactValidator implements Validator {
 				errors.rejectValue("phoneNumber", "exceeds.max.characters", new Object[]{20}, "too long.");
 			}
 		}
-		
 	}
 
 }

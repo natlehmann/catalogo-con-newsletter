@@ -20,7 +20,7 @@ public class JobCandidateValidator extends ContactValidator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		
-		super.validate(target, errors);		
+		super.validateRequiredFields(target, errors, new String[]{"name", "email", "phoneNumber"});
 		Contact contact = (Contact)target;
 		
 		if (!errors.hasFieldErrors("email")) {
@@ -31,7 +31,7 @@ public class JobCandidateValidator extends ContactValidator {
 					&& (contact.getId() == null  // es nuevo (no la estoy modificando)
 							|| contact.getId().intValue() != existent.getId().intValue())) { // es distinta
 				
-				errors.rejectValue("email", "validation.exists", "already exists.");
+				errors.rejectValue("email", "email.validation.exists", "already exists.");
 			}
 		}
 	}
