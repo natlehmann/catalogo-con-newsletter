@@ -1,0 +1,145 @@
+/*--------------------------------------ADMINISTRADOR--------------------------------------*/
+#menuAdmin {
+	background-color: #3B2113;
+	float: left;
+	height: 1200px;
+	margin-top: 180px;
+	min-width: 180px;
+	padding-top: 117px;
+	width: 10%;
+	z-index: 10;
+}
+
+#menuAdmin div {
+	height: 31px;
+	padding-left: 20px;
+	border-bottom: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFFFFF;
+}
+
+#menuAdmin a:link {
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+	vertical-align: -5px;
+}
+
+#menuAdmin a:visited {
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+	vertical-align: -5px;
+}
+
+#menuAdmin a:active {
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+	vertical-align: -5px;
+}
+
+#menuAdmin a:hover {
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #EB008B;
+	TEXT-DECORATION: none;
+	vertical-align: -5px;
+}
+
+#submenuAdmin {
+	background-color: #EB008B;
+	float: left;
+	height: 1200px;
+	margin-left: 2px;
+	margin-top: 180px;
+	min-width: 180px;
+	padding-top: 21px;
+	width: 10%;
+	z-index: 10;
+}
+
+#submenuAdmin a,
+#submenuAdmin a:link,
+#submenuAdmin a:visited,
+#submenuAdmin a:active {
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #ffffff;
+	TEXT-DECORATION: none;
+	vertical-align: -5px;
+}
+
+#submenuAdmin a:hover {
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	color: #3D2112;
+	TEXT-DECORATION: none;
+	vertical-align: -5px;
+}
+
+#contenidoAdmin {
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+	height: 1200px;
+    left: 29%;
+    margin-left: 2px;
+    margin-top: 180px;
+    position: absolute;
+    width: 69%;
+    z-index: 10;
+}
+
+#contenidoAdmin a {
+	text-decoration: none;
+}
+
+.catAdmin {
+	padding: 10px;
+}
+
+.catAdmin h1 {
+	background-color: #3B2113;
+	color: #FFFFFF;
+	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
+	font-size: 11px;
+	padding: 10px;
+}
+
+.catAdmin ul {
+	
+}
+
+.catAdmin ul li {
+	background: none repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+	margin-bottom: 5px;
+	padding: 5px;
+	list-style-type: none;
+	margin-left: -40px;
+}
+
+.catAdmin ul li div {
+	float: right;
+}
+
+.catAdmin ul li div img {
+	padding-right: 10px;
+}
+
+.thumbnail {
+	background-color: WHITE;
+	float: left;
+	margin-right: 10px;
+	padding: 6px;
+}
+
+.thumbnail div {
+	padding-top: 15px;
+	text-align: right;
+}
+
+.thumbnail div a {
+	padding-left: 15px;
+}
