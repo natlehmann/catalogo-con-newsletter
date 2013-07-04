@@ -89,7 +89,7 @@ public class CategoryController {
 		}
 		
 		return new ModelAndView("/admin/categoryForm").addAllObjects(
-				result.getModel());
+				result.getModel()).addObject("msgError", "Por favor complete todos los campos.");
 	}
 
 	@RequestMapping(value="/admin/createCategory.html")

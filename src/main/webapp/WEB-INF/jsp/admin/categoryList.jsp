@@ -19,6 +19,16 @@ function abrirPopUpCategoria() {
 	});
 }
 
+function editarCategoria(idCategoria) {
+	var url = $('#context').val() + "admin/categoryFormInit.html";
+	$.post(url, 
+		{ id: idCategoria }
+	).success(function(data) {
+		$('#over').html(data);
+		showLightbox();
+	});
+}
+
 function sendAction(formId, action) {
 	$('#' + formId).attr('action', action);
 	$('#' + formId).submit();
@@ -44,16 +54,12 @@ function sendAction(formId, action) {
 					<li>
 						${category.name} 
 						
-						<c:url value="/admin/categoryFormInit.html" var="editUrl">
-							<c:param name="id" value="${category.id}" />
-						</c:url> 
-						
 						<c:url value="/admin/deleteCategory.html" var="deleteUrl">
 							<c:param name="id" value="${category.id}" />
 						</c:url>
 						
 						<DIV>
-							<a href="${editUrl}">
+							<a onclick="editarCategoria(${category.id})">
 								<img src='<c:url value="/images/adminEditar.png" />' alt="" width="12" height="12" />
 							</a>
 							<a href="${deleteUrl}"
