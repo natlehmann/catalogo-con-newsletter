@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/style.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/miltonian-bitter.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/lightbox.css"/>' />
+	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/administrador.css"/>' />
 	 
 	<script type="text/javascript" src='<c:url value="/js/jquery-1.9.1.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/js/jquery-ui-1.10.1.custom.min.js"/>'></script>
@@ -40,33 +41,34 @@
 			<div id="contenedor">
 				<div class="twitter">
 					<a href="#">
-						<img src='images/twitter.png' width='29' height='28' border='0' />
+						<img src='<c:url value="/images/twitter.png"/>' width='29' height='28' border='0' />
 					</a>
 				</div>
 				<div class="facebook">
 					<a href="#">
-						<img src='images/facebook.png' width='29' height='28' border='0' />
+						<img src='<c:url value="/images/facebook.png"/>' width='29' height='28' border='0' />
 					</a>
 				</div>            
-				<div id="menu">
 				
-					<c:if test="<%= showAdminMenu == null %>">
+				<c:if test="<%= showAdminMenu == null %>">
+					<div id="menu">
+				
 						<div><a href="home.html">HOME</a></div>
 	                   	<div><a href="nosotros.html">NOSOTROS</a></div>
 	                   	<div><a href="productos.html">PRODUCTOS</a> </div>   
 	                   	<div><a href="locales.html">LOCALES</a> </div>
 	                   	<div><a href="contacto.html">CONTACTO</a></div>
 	                   	<div><a href="prensa.html">PRENSA</a></div>   
-	                </c:if>
+	                </div>
+	            </c:if>
 	                
-	                <c:if test="<%= showAdminMenu != null %>">
-						<div><a href="productList.html">Productos</a></div>
-						<div><a href="categoryList.html">Categorias</a></div>
-						<div><a href="newsletterList.html">Newsletters</a></div>
-							<br/>
-						<div><a href='<c:url value="/index.html"/>'>Ir al sitio de Alma de Jazmin</a></div>
-					</c:if>
-				</div>
+	            <c:if test="<%= showAdminMenu != null %>">
+	            	<div id="menuAdmin">
+						<div><a href="productList.html">PRODUCTOS</a></div>
+						<div><a href="categoryList.html">CATEGORIAS</a></div>
+						<div><a href='<c:url value="/index.html"/>'>VER WEBSITE</a></div>
+					</div>
+				</c:if>
 				
 
 	

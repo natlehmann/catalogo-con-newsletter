@@ -10,54 +10,74 @@
 	<jsp:param value="true" name="showAdminMenu"/>
 </jsp:include>
 
+<script type="text/javascript">
+function abrirPopUpCategoria() {
+	var url = $('#context').val() + "admin/categoryFormInit.html";
+	$.post(url, function(data) {
+		$('#over').html(data);
+		showLightbox();
+	});
+}
+
+function sendAction(formId, action) {
+	$('#' + formId).attr('action', action);
+	$('#' + formId).submit();
+}
+</script>
 
 <div class="main-content">
-
-	<div class="actions">
-		<button onclick="window.location='categoryFormInit.html'">
-			<spring:message code="create.new.category" />
-		</button>
+	
+	<div id="submenuAdmin">
+    	<div class="botones">
+			<a onclick="abrirPopUpCategoria()">CREAR</a>
+		</div>
 	</div>
 	
-	<table cellpadding="0" cellspacing="0" border="0">
-					
-		<tr>
-			<th>Nombre</th>
-			<th><br/></th>
-		</tr>
-	
+	<div id="contenidoAdmin">
+		<div class="catAdmin">
+			
+			<h1>CATEGORIAS</h1>
+			<ul>
 
-		<c:forEach items="${categories}" var="category">
-			<tr>
-				<td>
-					${category.name} 
-				</td>
-				<td class="actions">
-					<c:url value="/admin/categoryFormInit.html" var="editUrl">
-						<c:param name="id" value="${category.id}" />
-					</c:url>
-					<div class="left edit">
-						<a href="${editUrl}">
-							<spring:message code="edit" />
-						</a>
-					</div>
+				<c:forEach items="${categories}" var="category">
+				
+					<li>
+						${category.name} 
+						
+						<c:url value="/admin/categoryFormInit.html" var="editUrl">
+							<c:param name="id" value="${category.id}" />
+						</c:url> 
+						
+						<c:url value="/admin/deleteCategory.html" var="deleteUrl">
+							<c:param name="id" value="${category.id}" />
+						</c:url>
+						
+						<DIV>
+							<a href="${editUrl}">
+								<img src='<c:url value="/images/adminEditar.png" />' alt="" width="12" height="12" />
+							</a>
+							<a href="${deleteUrl}"
+								onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.category" />')">
+								<img src='<c:url value="/images/adminCancelar.png" />' alt="" width="12" height="12" />
+							</a>
+						</DIV>
+					</li>
 					
-					<c:url value="/admin/deleteCategory.html" var="deleteUrl">
-						<c:param name="id" value="${category.id}" />
-					</c:url>
-					<div class="delete left">
-						<a href="${deleteUrl}" 
-							onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.category" />')">
-							<spring:message code="delete" />
-						</a>
-					</div>
-				</td>
-			</tr>
-		</c:forEach>
+				</c:forEach>
+			
+			</ul>
 		
-		</table>
+		</div>
+		
+	</div>
+		
 </div>
 
+<input type='hidden' id='context' value='<c:url value="/" />' />
 
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+
+<jsp:include page="/WEB-INF/includes/footer.jsp">
+	<jsp:param value="fondoVarios.jpg" name="backgroundImg" />
+	<jsp:param value="true" name="includeOverBox"/>
+</jsp:include>
 
