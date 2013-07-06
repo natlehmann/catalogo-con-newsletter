@@ -24,7 +24,7 @@ public class CategoryValidator implements Validator {
 
 	public void validate(Object target, Errors errors) {
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "field.required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "fill.in.all.fields");
 		
 		if (!errors.hasFieldErrors("name")) {
 			
@@ -35,7 +35,15 @@ public class CategoryValidator implements Validator {
 					&& (category.getId() == null  // la catgoria es nueva (no la estoy modificando)
 							|| category.getId().intValue() != existent.getId().intValue())) { // la categoria es distinta
 				
-				errors.rejectValue("name", "validation.exists", "already exists.");
+				errors.rejectValue("name", "category.validation.exists", "already exists.");
+			}
+		}
+		
+		if (!errors.hasFieldErrors("name")) {
+			
+			long count = categoryDao.getCategoryCount();
+			if (count >= 14) {
+				errors.rejectValue("name", "category.exceeds.maximum", "too many");
 			}
 		}
 		

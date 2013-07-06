@@ -11,6 +11,12 @@
 </jsp:include>
 
 <script type="text/javascript">
+$(function() {
+	if ( $('#categoryCreateForm .errors').length ) {
+		showLightbox();
+	}
+});
+
 function abrirPopUpCategoria() {
 	var url = $('#context').val() + "admin/categoryFormInit.html";
 	$.post(url, function(data) {
@@ -85,5 +91,6 @@ function sendAction(formId, action) {
 <jsp:include page="/WEB-INF/includes/footer.jsp">
 	<jsp:param value="fondoVarios.jpg" name="backgroundImg" />
 	<jsp:param value="true" name="includeOverBox"/>
+	<jsp:param value="/WEB-INF/jsp/admin/categoryForm.jsp" name="overBoxContent"/>
 </jsp:include>
 

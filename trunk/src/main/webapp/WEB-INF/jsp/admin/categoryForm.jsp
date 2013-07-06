@@ -4,10 +4,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-
+<c:if test="${category != null }">
 <div class="content">	
 	<form:form method="POST" action="" id="categoryCreateForm"
 		modelAttribute="category" commandName="category" cssClass="contacto">
+		
+		<form:errors path="name" cssClass="errors" element="span" />
 		
 		<c:if test="${category.id != null}">
 			<form:hidden path="id"/>
@@ -45,3 +47,4 @@
 
 	
 </div>
+</c:if>

@@ -106,5 +106,18 @@ public class CategoryDaoImpl extends HibernateDaoSupport implements CategoryDao 
 		return result;
 	}
 
+
+
+	@SuppressWarnings("unchecked")
+	public long getCategoryCount() {
+		
+		List<Long> result = getHibernateTemplate().find("select count(c) from Category c");
+		if (result.size() == 1) {
+			return result.get(0);
+		}
+		
+		return 0;
+	}
+
 	
 }

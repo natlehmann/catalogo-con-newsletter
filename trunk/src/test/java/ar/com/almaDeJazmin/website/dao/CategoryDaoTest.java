@@ -75,6 +75,8 @@ public class CategoryDaoTest extends AbstractTest {
 		Assert.assertTrue(categories.contains(categoryWithProducts));
 		Assert.assertTrue(categories.contains(firstCategory));
 		Assert.assertTrue(categories.contains(secondCategory));
+		
+		Assert.assertEquals(4L, categoryDao.getCategoryCount());
 	}
 	
 	@Test
@@ -82,6 +84,7 @@ public class CategoryDaoTest extends AbstractTest {
 		
 		List<Category> categories = categoryDao.getAll(new Locale("en"));
 		Assert.assertEquals(4, categories.size());
+		Assert.assertEquals(4L, categoryDao.getCategoryCount());
 
 	}
 	

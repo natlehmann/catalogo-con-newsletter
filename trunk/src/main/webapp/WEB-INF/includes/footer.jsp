@@ -6,6 +6,7 @@
 	String backgroundImg = request.getParameter("backgroundImg") != null ? request.getParameter("backgroundImg") : "fondoHome.jpg";
 	String logo = request.getParameter("logo") != null ? request.getParameter("logo") : "logo.png";
 	boolean includeOverBox = request.getParameter("includeOverBox") != null;
+	String overBoxContent = request.getParameter("overBoxContent");
 %>
 	
 <c:set var="backgroundImgUrl" value="<%=backgroundImg %>" />
@@ -19,7 +20,11 @@
 				</div> 
 				
 				<c:if test="<%= includeOverBox %>">
-					<div id="over" class="overbox"></div>
+					<div id="over" class="overbox">
+						<c:if test="<%= overBoxContent != null%>">
+							<jsp:include page="<%= overBoxContent %>"/>
+						</c:if>
+					</div>
 					<div id="fade" class="fadebox"></div>
 				</c:if>
 				
