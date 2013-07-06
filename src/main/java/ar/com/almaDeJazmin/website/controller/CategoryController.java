@@ -88,8 +88,8 @@ public class CategoryController {
 			return new ModelAndView("redirect:categoryList.html");
 		}
 		
-		return new ModelAndView("/admin/categoryForm").addAllObjects(
-				result.getModel()).addObject("msgError", "Por favor complete todos los campos.");
+		return new ModelAndView("/admin/categoryList").addAllObjects(
+				result.getModel()).addObject("categories", categoryDao.getAll());
 	}
 
 	@RequestMapping(value="/admin/createCategory.html")
@@ -103,8 +103,8 @@ public class CategoryController {
 			return new ModelAndView("redirect:categoryList.html");
 		}
 		
-		return new ModelAndView("/admin/categoryForm").addAllObjects(
-				result.getModel());
+		return new ModelAndView("/admin/categoryList").addAllObjects(
+				result.getModel()).addObject("categories", categoryDao.getAll());
 	}
 
 

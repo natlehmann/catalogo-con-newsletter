@@ -37,5 +37,7 @@ public interface CategoryDao {
 	 */
 	Category getByName(String categoryName);
 
+	long getCategoryCount();
+
 
 }
