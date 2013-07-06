@@ -7,6 +7,7 @@
 <%
 	String title = request.getParameter("title") != null ? request.getParameter("title") : "Alma de Jazmin";
 	String showAdminMenu = request.getParameter("showAdminMenu");
+	String pageId = request.getParameter("pageId") != null ? request.getParameter("pageId") : "page_id";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -36,7 +37,7 @@
 </head>
 <body id="almaJazmin">
 
-	<div class="container">    
+	<div class="container" id="<%= pageId %>">    
 		<div id="bx-wrapper" class="bx-wrapper">
 			<div id="contenedor">
 				<div class="twitter">

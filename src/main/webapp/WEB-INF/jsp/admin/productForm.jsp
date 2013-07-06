@@ -9,95 +9,7 @@
 <%@page import="ar.com.almaDeJazmin.website.domain.Category"%>
 <%@page import="java.util.Map"%>
 
-<jsp:include page="/WEB-INF/includes/header.jsp">
-	<jsp:param value="Alma de Jazmin" name="title"/>
-	<jsp:param value="true" name="showAdminMenu"/>
-</jsp:include>
 
-
-<div class="main-content">
-
-
-<script type="text/javascript">
-
-	$(function() {
-		setCategoryValues();
-	});
-
-	function show(elemId) {
-		$('#' + elemId).show();
-	}
-
-	function sendImageAction(formId, action, orderNumber) {
-		$('#actionParam').val(action);
-		$('#' + formId).submit();
-	}
-
-	function openNewCategory() {
-		$('#newCategory').dialog({ 
-			title: '<spring:message code="enter.new.category" />',
-			resizable: false,
-			width: 320
-		 });
-	}
-
-	function openSelectCategory() {
-		$('#selectCategory').dialog({ 
-			title: '<spring:message code="category.selection" />',
-			resizable: false,
-			width: 320
-		 });
-	}
-
-	function closeDialog(dialogId) {
-		$('#' + dialogId).dialog("close");
-	}
-
-	function acceptNewCategory() {
-
-		closeDialog('newCategory');
-		setCategoryValues();
-	}
-
-	function setCategoryValues() {
-
-		// take dafault
-		var defaultValue = $('#category_name').val();
-
-		if (defaultValue != '') {
-			$('#new_category_holder').html(defaultValue);
-		}
-		
-	}
-
-	function copyParameters() {
-		$('#param_category_name').val( $('#category_name').val() );
-
-		var selectedCategories = '';
-		$('input:checked').each(function(index) {
-			if (index > 0) {
-				selectedCategories = selectedCategories + ',';
-			}
-			selectedCategories = selectedCategories + $(this).val();
-		  });
-
-		$('#param_categories').val(selectedCategories);
-
-		$('#selectCategory').html('');
-	}
-
-	function toggleInput(elemId) {
-		$('#' + elemId + '_input').show();
-		$('#' + elemId + '_div').hide();
-		$('#' + elemId + '_link').hide();
-		$('#' + elemId + '_delete_link').hide();
-	}
-
-	function closeDialog(dialogName) {
-		$('#' + dialogName).dialog('close');
-	}
-		
-</script>
 
 
 <c:if test="${warning != null}">
@@ -128,8 +40,11 @@
 		</div>
 	</c:if>
 
+
+<c:if test="${product != null }">
+<div class="content">
 	<form:form method="POST" action="productCreate.html" id="productCreateForm"
-		enctype="multipart/form-data" onsubmit="copyParameters()">
+		enctype="multipart/form-data" cssClass="contacto">
 		
 		<c:if test="${product.id != null}">
 			<form:hidden path="id"/>
@@ -139,158 +54,66 @@
 		<input type="hidden" name="param_category_name" value="" id="param_category_name" />
 		<input type="hidden" name="param_categories" value="" id="param_categories" />
 		
+		<form:errors path="thumbnail" cssClass="errors" element="span" />
 		
-		<div id="selectCategory" style="display: none;">
-			<div class="right link-container">
-				<a href="#" onclick="closeDialog('selectCategory')">x</a>
-			</div>
-			<div class="msg">
-				<div class="inner-title">
-					<spring:message code="please.select.the.product.categories" />
-				</div>
-				<form:checkboxes items="${categories}" path="categories" cssClass="categories"
+		<div id="selectCategory">
+			<label>CATEGORIA</label>
+			<form:checkboxes items="${categories}" path="categoryNames" cssClass="categories"
 						delimiter="<br/>"  itemValue="id" itemLabel="name"/>
-			</div>
-				
 		</div>
-		
-		
-		<div id="newCategory" style="display: none;">
-			<div class="right link-container">
-				<a href="#" class="Sector2Link" onclick="closeDialog('newCategory')">x</a>
-			</div>
-			<div class="msg">
-				<div class="inner-title">
-					<spring:message code="please.enter.a.new.category" />
-				</div>
-				<jsp:include page="/WEB-INF/jsp/admin/categoryFormPopUp.jsp"></jsp:include>
-			</div>
-		</div>
-		
-		
-		
-		<table border="0" cellpadding="0" cellspacing="0">
-		
-			<tr class="titleRow">
-				<td colspan="4">
-					<spring:message code="category" />
-				</td>
-			</tr>
-			
-			<tr class="spacer">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr>
-				<td>
-					<spring:message code="new.category" />
-				</td>
-				<td>
-					<div class="input-link" id="new_category_holder" onclick="openNewCategory()">
-						<spring:message code="insert" />
-					</div>
-				</td>
-				
-				<td>
-					<div class="right pad-right">
-						<spring:message code="existent.category" />
-					</div>
-				</td>
-				<td>
-					<div class="input-link" id="existent_category_holder" onclick="openSelectCategory()">
-						<spring:message code="select" />
-					</div>
-				</td>
-			</tr>
-			
-			
-			<tr class="divider">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr class="spacer">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr class="titleRow">
-				<td colspan="4">
-					<spring:message code="product" />
-				</td>
-			</tr>
-			
-			<tr class="spacer">
-				<td colspan="4"><br/></td>
-			</tr>
-			
-			<tr>
-				<td>
-					<spring:message code="product.smallImage" />
-				</td>
-				<td colspan="3">
-					<c:choose>
-						<c:when test="${product.thumbnail == null}">
-							<input type="file" name="smallImageFile" class="left" size="30"/>
-							<form:errors path="thumbnail" cssClass="errors left" element="div" />
-						</c:when>
-						<c:otherwise>
-							<input type="file" name="smallImageFile" class="left" size="30" 
-								id="smallImageFile_input" style="display: none;" />
-								
-							<div id="smallImageFile_div" class="disabled-input">
-								${product.thumbnail.fileName}
-							</div>
-							<form:errors path="thumbnail" cssClass="errors left" element="div" />
-							
-							<a href="#" onclick="toggleInput('smallImageFile')" class="agregarLink edit"
-								id="smallImageFile_link" title='<spring:message code="change" />'>
-							</a>
-							
-							<a href='#' onclick="sendImageAction('productCreateForm', 'deleteSmallImage', '')" 
-								class="agregarLink delete" id="smallImageFile_delete_link"
-								title='<spring:message code="delete" />'>
-							</a>
-								
-						</c:otherwise>
-					</c:choose>
-				</td>
-			</tr>
-			
-			
-			<tr>
-				<td colspan="4">
-					<div class="required left"><br/></div>
-					<spring:message code="required" />
-				</td>
-			</tr>
-	
-		</table>
-				
-		<div class="actions">
+
+		<div>
+			<label>FOTO</label>
 			<c:choose>
-				<c:when test="${product.id == null}">
-					<button type="submit" name="actionBt" value="create" class="create-action">
-						<spring:message code="create" />
-					</button>
+				<c:when test="${product.thumbnail == null}">
+					<input type="file" name="smallImageFile" size="30"/>
 				</c:when>
 				<c:otherwise>
-					<button type="submit" name="actionBt" value="delete" class="delete-action"
-						onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.product" />')">
-						<spring:message code="delete" />
-					</button>
-					<button type="submit" name="actionBt" value="update" class="update-action">
-						<spring:message code="update" />
-					</button>
+					<input type="file" name="smallImageFile" class="left" size="30" 
+						id="smallImageFile_input" style="display: none;" />
+						
+					<div id="smallImageFile_div" class="disabled-input">
+						${product.thumbnail.fileName}
+					</div>
+					
+					<a href="#" onclick="toggleInput('smallImageFile')" class="agregarLink edit"
+						id="smallImageFile_link" title='<spring:message code="change" />'>
+					</a>
+					
+					<a href='#' onclick="sendImageAction('productCreateForm', 'deleteSmallImage')" 
+						class="agregarLink delete" id="smallImageFile_delete_link"
+						title='<spring:message code="delete" />'>
+					</a>
+						
 				</c:otherwise>
 			</c:choose>
-			<button type="submit" name="actionBt" value="back">
-				<spring:message code="cancel" />
-			</button>
-		</div>
-
+		</div> 	
+		
 	</form:form>
-
+		
+		
+	<c:choose>
+		<c:when test="${product.id == null}">
+		
+			<a onclick="sendImageAction('productCreateForm', 'create')" >
+				<img src='<c:url value="/images/adminBotOk.png" />' alt="" width="25" height="21" />
+			</a>
+			
+		</c:when>
+		<c:otherwise>
+		
+			<a onclick="sendImageAction('productCreateForm', 'update')">
+				<img src='<c:url value="/images/adminBotOk.png" />' alt="" width="25" height="21" />
+			</a>
+			
+		</c:otherwise>
+	</c:choose>
+	
+	<a onclick="hideLightbox()" >
+		<img src='<c:url value="/images/adminBotCancel.png" />' alt="" width="25" height="21" />
+	</a>	
+		
 
 </div>
+</c:if>
 
-
-<jsp:include page="/WEB-INF/includes/footer.jsp" />

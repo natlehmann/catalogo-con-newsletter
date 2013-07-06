@@ -12,7 +12,51 @@
 <jsp:include page="/WEB-INF/includes/header.jsp">
 	<jsp:param value="Alma de Jazmin" name="title"/>
 	<jsp:param value="true" name="showAdminMenu"/>
+	<jsp:param value="adminProductList" name="pageId"/>
 </jsp:include>
+
+<script type="text/javascript">
+$(function() {
+	if ( $('#productCreateForm .errors').length ) {
+		showLightbox();
+	}
+});
+
+function abrirPopUpProductos() {
+	var url = $('#context').val() + "admin/productFormInit.html";
+	$.post(url, function(data) {
+		$('#over').html(data);
+		showLightbox();
+	});
+}
+
+function editarProducto(idProducto) {
+	var url = $('#context').val() + "admin/productFormInit.html";
+	$.post(url, 
+		{ id: idProducto }
+	).success(function(data) {
+		$('#over').html(data);
+		showLightbox();
+	});
+}
+
+function toggleInput(elemId) {
+	$('#' + elemId + '_input').show();
+	$('#' + elemId + '_div').hide();
+	$('#' + elemId + '_link').hide();
+	$('#' + elemId + '_delete_link').hide();
+}
+
+function sendImageAction(formId, action) {
+	$('#actionParam').val(action);
+	$('#' + formId).submit();
+}
+
+function closeDialog(dialogId) {
+	$('#' + dialogId).dialog("close");
+}
+</script>
+
 
 
 <div class="main-content">
@@ -23,118 +67,110 @@
 	List<Product> unassigned = (List<Product>)request.getAttribute("unassigned");
 %>
 
-				
-	<div class="actions">
-		<button onclick="window.location='productFormInit.html'">
-			<spring:message code="create.new.product" />
-		</button>
+	<div id="submenuAdmin">
+    	<div class="botones">
+			<a onclick="abrirPopUpProductos()">CREAR</a>
+		</div>
 	</div>
+	
+	<div id="contenidoAdmin">
+		<div class="catAdmin">
 					
 	<%
 		for (Category category : allProductsByCategory.keySet()) {
 	%>
+                                    
 	
-		<div class="category-title">
+		<h1 style="text-transform: uppercase;">
 			<spring:message code="category" /> <%= category.getName() %>
-		</div>
+		</h1>
 	
-		<table cellpadding="0" cellspacing="0" border="0">
 		<%
 			for (Product product : allProductsByCategory.get(category)) {
 		%>
 
-				
-			<tr class="table-cell">
-				<td class="image">
+				<div class='thumbnail'>
 					<c:if test="<%= product.getThumbnail() != null %>">
 						<c:url value="/imageView.html" var="url">
 							<c:param name="id" value="<%= String.valueOf(product.getThumbnail().getId()) %>" />
 						</c:url>
-						<img src="${url}" width="80" height="80" />
+						<img src="${url}" />
 					</c:if>
-				</td>
-						
-				<td class="actions">
-					<c:url value="/admin/productFormInit.html" var="editUrl">
-						<c:param name="id" value="<%= String.valueOf(product.getId()) %>" />
-					</c:url>
-					<div class="left edit">
-						<a href="${editUrl}">
-							<spring:message code="edit" />
-						</a>
-					</div>
 					
-					<c:url value="/admin/deleteProduct.html" var="deleteUrl">
-						<c:param name="id" value="<%= String.valueOf(product.getId()) %>" />
-					</c:url>
-					<div class="delete left">
-						<a href="${deleteUrl}" 
+					<div class="actions">
+						<c:url value="/admin/deleteProduct.html" var="deleteUrl">
+							<c:param name="id" value="<%= String.valueOf(product.getId()) %>" />
+						</c:url>
+					
+						<a onclick="editarProducto(<%= String.valueOf(product.getId()) %>)">
+								<img src='<c:url value="/images/adminEditar.png" />' 
+								alt="editar" width="12" height="12" title="editar" />
+						</a>
+						<a href="${deleteUrl}"
 							onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.product" />')">
-							<spring:message code="delete" />
+							<img src='<c:url value="/images/adminCancelar.png" />' 
+							alt="eliminar" width="12" height="12" title="eliminar" />
 						</a>
 					</div>
-				</td>
-			</tr>
+				</div>
+
 		<%
 			}
-		%>
-		</table>
 		
-		<br/>
-		
-	<%
 		}
 	%>
 	
 	
 	<c:if test="${unassigned != null and not empty unassigned}">
-		<div class="category-title">
+		<h1 style="text-transform: uppercase;">
 			<spring:message code="unassigned.products" /> 
-		</div>
+		</h1>
 	</c:if>
 
-	<table cellpadding="0" cellspacing="0" border="0" class="contenidoTexto">
 	<%
 		for (Product product : unassigned) {
 	%>
-			
-		<tr class="table-cell">
-			<td class="image">
-				<c:if test="<%= product.getThumbnail() != null %>">
-					<c:url value="/imageView.html" var="url">
-						<c:param name="id" value="<%= String.valueOf(product.getThumbnail().getId()) %>" />
-					</c:url>
-					<img src="${url}" width="80" height="80" />
-				</c:if>
-			</td>
-					
-			<td class="actions">
-				<c:url value="/admin/productFormInit.html" var="editUrl">
-					<c:param name="id" value="<%= String.valueOf(product.getId()) %>" />
+	
+		<div class='thumbnail'>
+			<c:if test="<%= product.getThumbnail() != null %>">
+				<c:url value="/imageView.html" var="url">
+					<c:param name="id" value="<%= String.valueOf(product.getThumbnail().getId()) %>" />
 				</c:url>
-				<a href="${editUrl}">
-					<spring:message code="edit" />
-				</a>
-				
+				<img src="${url}" />
+			</c:if>
+			
+			<div class="actions">
 				<c:url value="/admin/deleteProduct.html" var="deleteUrl">
 					<c:param name="id" value="<%= String.valueOf(product.getId()) %>" />
 				</c:url>
-				<a href="${deleteUrl}" 
-					onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.product" />')">
-					<spring:message code="delete" />
+			
+				<a onclick="editarProducto(<%= String.valueOf(product.getId()) %>)">
+						<img src='<c:url value="/images/adminEditar.png" />' 
+						alt="editar" width="12" height="12" title="editar" />
 				</a>
-			</td>
-		</tr>
+				<a href="${deleteUrl}"
+					onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.product" />')">
+					<img src='<c:url value="/images/adminCancelar.png" />' 
+					alt="eliminar" width="12" height="12" title="eliminar" />
+				</a>
+			</div>
+		</div>
 	<%
 		}
 	%>
-	</table>
 
-
+		</div>
+	</div>
 </div>
 
 
-<jsp:include page="/WEB-INF/includes/footer.jsp" />
+<input type='hidden' id='context' value='<c:url value="/" />' />
+
+<jsp:include page="/WEB-INF/includes/footer.jsp">
+	<jsp:param value="fondoVarios.jpg" name="backgroundImg" />
+	<jsp:param value="true" name="includeOverBox"/>
+	<jsp:param value="/WEB-INF/jsp/admin/productForm.jsp" name="overBoxContent"/>
+</jsp:include>
 
 
 

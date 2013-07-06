@@ -66,11 +66,13 @@ function sendAction(formId, action) {
 						
 						<DIV>
 							<a onclick="editarCategoria(${category.id})">
-								<img src='<c:url value="/images/adminEditar.png" />' alt="" width="12" height="12" />
+								<img src='<c:url value="/images/adminEditar.png" />' 
+								alt="editar" width="12" height="12" title="editar" />
 							</a>
 							<a href="${deleteUrl}"
 								onclick="return confirm('<spring:message code="are.you.sure.you.want.to.delete.this.category" />')">
-								<img src='<c:url value="/images/adminCancelar.png" />' alt="" width="12" height="12" />
+								<img src='<c:url value="/images/adminCancelar.png" />' 
+								alt="eliminar" width="12" height="12" title="eliminar" />
 							</a>
 						</DIV>
 					</li>
