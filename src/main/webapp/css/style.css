@@ -198,15 +198,15 @@ body {
 }
 
 /*--------------------------------------menu--------------------------------------*/
-#menu{
-    width: 12%;
+#menu {
     background-color: #3B2113;
-    float:left;
-	z-index:10;
-	height:288px;
-	padding-top:117px;
-	margin-top:295px;
-	min-width: 100px;
+    height: 288px;
+    min-width: 100px;
+    padding-top: 117px;
+    position: fixed;
+    top: 25%;
+    width: 12%;
+    z-index: 10;
 }
 
 #menu div {
@@ -253,14 +253,15 @@ body {
 /*--------------------------------------submenu--------------------------------------*/
 #submenu{
     background-color: #EB008B;
-	z-index:10;
-	float:left;
-	width: 17.9%;
-	height:384px;
-	padding-top:21px;
-	margin-left:2px;
-	margin-top:295px;
-	min-width: 220px;
+    height: 384px;
+    left: 12%;
+    margin-left: 2px;
+    min-width: 220px;
+    padding-top: 21px;
+    position: fixed;
+    top: 25%;
+    width: 17.9%;
+    z-index: 10;
 }
 
 .botones {
@@ -358,16 +359,16 @@ body {
 
 /*--------------------------------------contenido general--------------------------------------*/
 #contenido{
+    filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0,startColorstr='#50FFFFFF', endColorstr='#50FFFFFF');
+    background: none repeat scroll 0 0 rgba(255, 255, 255, 0.5);
+    float: left;
+    height: 405px;
+    left: 30.1%;
+    margin-left: 2px;
+    position: fixed;
+    top: 25%;
     width: 69.8%;
-	background:rgba(255,255,255,0.5);
-	height:405px;
-	filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0,startColorstr='#50FFFFFF', endColorstr='#50FFFFFF');
-    left: 30%;
-    margin-left: 3px;
-    margin-top: 295px;
-    position: absolute;
-    width: 69.8%;
-    z-index: 999;
+    z-index: 10;
 }
 
 .galeria {
@@ -503,12 +504,12 @@ body {
     width: 87.8%;
 	background:rgba(255,255,255,0.5);
 	filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0,startColorstr='#50FFFFFF', endColorstr='#50FFFFFF');
-	float:left;
 	z-index:10;
 	height:405px;
 	margin-left:2px;
-	margin-top:239px;
-	position: relative;
+	position: fixed;
+	top: 25%;
+	left: 12%;
 }
 
 .galeriaPrensa,
@@ -600,31 +601,36 @@ body {
 
 /*--------------------------------------logoAlmaDeJazmin--------------------------------------*/
 #logo {
-	position:relative;
-	float:right;
-	margin-right:50px;
-	margin-top:80px;
+    position: fixed;
+    right: 50px;
+    text-align: right;
+    bottom: 50px;
 }
 
 #logo1 {
-	position:relative;
-	float:right;
-	margin-right:50px;
-	margin-top:790px;
+    position: fixed;
+    right: 50px;
+    text-align: right;
+    bottom: 50px;
 }
 
 #logo1 img{
-	border:none;
-	
+    border:none;
+   
 }
 
-
-
 #logo2 {
-	position:relative;
-	float:right;
-	margin-right:-68px;
-	margin-top:790px;
+    position: fixed;
+    right: 50px;
+    text-align: right;
+    bottom: 50px;
+}
+
+#logo3 {
+    position: fixed;
+    right: 50px;
+    text-align: right;
+    bottom: 120px;
 }
 
  
@@ -655,48 +661,41 @@ body {
 }
 
 /*--------------------------------------formularios--------------------------------------*/
-#contenidoFormulario{
+#contenidoFormulario, 
+#contenidoFormularioContacto {
     width: 20%;
 	background:rgba(255,255,255,0.5);
-	float:left;
 	z-index:10;
     height: 335px;
     margin-left: 2px;
-    margin-top: 295px;
 	padding: 70px 70px 0px;
 	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 	filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0,startColorstr='#50FFFFFF', endColorstr='#50FFFFFF');
+	position: fixed;
+    top: 25%;
 }
 
-#contenidoFormulario a:link {
+#contenidoFormulario {
+    left: 12%;
+}	
+
+#contenidoFormularioContacto {
+	left: 30%;
+}
+
+#contenidoFormulario a,
+#contenidoFormulario a:link,
+#contenidoFormulario a:visited,
+#contenidoFormulario a:active,
+#contenidoFormularioContacto a,
+#contenidoFormularioContacto a:link,
+#contenidoFormularioContacto a:visited,
+#contenidoFormularioContacto a:active {
 	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 	font-weight:bold;
 	color: #3B2113;
-	TEXT-DECORATION: none;
-}
-
-#contenidoFormulario a:visited {
-	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
-	font-size: 11px;
-	font-weight:bold;
-		color: #3B2113;
-	TEXT-DECORATION: none;
-}
-
-#contenidoFormulario a:active {
-	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
-	font-size: 11px;
-	font-weight:bold;
-		color: #3B2113;
-	TEXT-DECORATION: none;
-}
-
-#contenidoFormulario a {
-	font-family: GothamRnd-Bold, helvetica, verdana, arial, sans-serif;
-	font-size: 11px;
-	font-weight:bold;
 	TEXT-DECORATION: none;
 }
 
@@ -707,17 +706,18 @@ body {
 #contenidoFormularioFeedback{
     width: 20%;
 	background:rgba(59,33,19,0.8);
-	float:left;
 	z-index:10;
     height: 205px;
     margin-left: 2px;
-    margin-top: 295px;
 	padding: 200px 70px 0px;
 	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 	color:#FFF;
 	font-weight:bold;
 	filter: progid:DXImageTransform.Microsoft.gradient (GradientType=0,startColorstr='#503B2113', endColorstr='#503B2113');
+	position: fixed;
+	left: 30%;
+	top: 25%;
 }
 
 .contacto{
@@ -741,7 +741,6 @@ body {
 .contacto input[type='file'],
 .contacto textarea{
     padding: 3px;
-    width: 130px;
     resize: none;
 	margin-left: 10px;
 	border: none;
@@ -749,6 +748,7 @@ body {
 	font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
 	font-size: 11px;
 }
+
 .contacto textarea{
 	width: 230px;
 }

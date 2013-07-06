@@ -24,7 +24,7 @@ $(function() {
 
 <c:if test="${successMsg == null}">
 	
-	<div id="contenidoFormulario">
+	<div id="contenidoFormularioContacto">
 		Si estás interesada/o en una franquicia o en comercializar nuestros productos, escribinos. 
 		Te responderemos a la brevedad. Muchas gracias!
 		
@@ -33,7 +33,7 @@ $(function() {
 			
 			<div>
 				<label>Empresa</label>
-				<form:input path="name" maxlength="250" /> 
+				<form:input path="name" maxlength="250" cssStyle="width:60%;" /> 
 			</div>
 			
 			<div>
@@ -43,17 +43,17 @@ $(function() {
 			
 			<div>
 				<label>Mail</label>
-				<form:input path="email" maxlength="100" /> 
+				<form:input path="email" maxlength="100" cssStyle="width:70%;" /> 
 			</div>
 			
 			<div>
 				<label>Tel.</label>
-				<form:input path="phoneNumber" maxlength="20" /> 
+				<form:input path="phoneNumber" maxlength="20" cssStyle="width:70%;" /> 
 			</div>
 			
 			<div>
 				<label>Rubros</label>
-				<form:input path="productCategories" maxlength="250" /> 
+				<form:input path="productCategories" maxlength="250" cssStyle="width:64%;" /> 
 			</div>
 			
 			<div>
@@ -93,6 +93,7 @@ $(function() {
 			<a href="javascript:hideLightbox();" >cerrar</a>
 		</div>
 	</div>
+	<div id="fade" class="fadebox"></div>
 </c:if>
 
 

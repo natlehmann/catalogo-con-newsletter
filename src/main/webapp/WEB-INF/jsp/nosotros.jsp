@@ -34,7 +34,7 @@ function showSpinner() {
 
 <c:choose>
 	<c:when test="${showSuccessMsg}">
-		<div id="contenidoFormularioFeedback">¡MUCHAS GRACIAS!</div>
+		<div id="contenidoFormularioFeedback" style="left:12%;">¡MUCHAS GRACIAS!</div>
 	</c:when>
 	
 	<c:otherwise>
@@ -68,35 +68,35 @@ function showSpinner() {
 						<label>
 							<spring:message code="name.and.lastname" />
 						</label>
-						<form:input path="name" maxlength="255" /> 
+						<form:input path="name" maxlength="255" cssStyle="width:90%;" /> 
 					</div>
 					
 					<div>
 						<label>
 							Raz&oacute;n Social
 						</label>
-						<form:input path="companyName" maxlength="255" /> 
+						<form:input path="companyName" maxlength="255" cssStyle="width:90%;" /> 
 					</div>
 					
 					<div>
 						<label>
 							Mail
 						</label>
-						<form:input path="email" maxlength="100" /> 
+						<form:input path="email" maxlength="100" cssStyle="width:70%;" /> 
 					</div>
 					
 					<div>
 						<label>
 							<spring:message code="phone.number.short" />
 						</label>
-						<form:input path="phoneNumber" maxlength="20" /> 
+						<form:input path="phoneNumber" maxlength="20" cssStyle="width:70%;" /> 
 					</div>
 					
 					<div>
 						<label>
 							<spring:message code="cv" />
 						</label>
-						<input type="file" name="cvFile" size="6" />
+						<input type="file" name="cvFile" size="6" style="width:75%;" />
 					</div>
 		
 					<br/>
@@ -129,6 +129,7 @@ function showSpinner() {
 			<a href="javascript:hideLightbox();" >cerrar</a>
 		</div>
 	</div>
+	<div id="fade" class="fadebox"></div>
 </c:if>
 
 

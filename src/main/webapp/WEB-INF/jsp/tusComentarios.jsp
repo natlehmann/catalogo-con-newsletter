@@ -24,7 +24,7 @@ $(function() {
 	
 <c:if test="${successMsg == null}">
 
-	<div id="contenidoFormulario">
+	<div id="contenidoFormularioContacto">
 	
 		Este espacio es para que vos nos cuentes tu experiencia, ideas, reclamos, etc. 
 		Mandanos tus comentarios.
@@ -35,17 +35,17 @@ $(function() {
 			
 			<div>
 				<label>Nombre y Apellido</label>
-				<form:input path="name" maxlength="250" /> 
+				<form:input path="name" maxlength="250" cssStyle="width:90%;" /> 
 			</div>
 			
 			<div>
 				<label>Mail</label>
-				<form:input path="email" maxlength="100" /> 
+				<form:input path="email" maxlength="100" cssStyle="width:70%;" /> 
 			</div>
 			
 			<div>
 				<label>Tel.</label>
-				<form:input path="phoneNumber" maxlength="20" /> 
+				<form:input path="phoneNumber" maxlength="20" cssStyle="width:70%;" /> 
 			</div>
 			
 			<div>
@@ -80,6 +80,7 @@ $(function() {
 			<a href="javascript:hideLightbox();" >cerrar</a>
 		</div>
 	</div>
+	<div id="fade" class="fadebox"></div>
 </c:if>
 
 
