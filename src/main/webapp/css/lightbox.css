@@ -64,4 +64,21 @@
 	border:#3B2113 1px solid;
 }  
 
+.content a.edit,
+.content a.edit:link,
+.content a.edit:active,
+.content a.edit:visited {
+	background: none;
+	padding: 0px;
+	color: #3B2113;
+	border: 0px;
+	float: right;
+	margin-right: 10px;
+	font-weight: bold;
+	font-family: GothamRnd-Bold,helvetica,verdana,arial,sans-serif;
+}
 
+.content a.edit:hover {
+	color: #EB008B;
+	border: 0px;
+}

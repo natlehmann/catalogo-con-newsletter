@@ -76,6 +76,7 @@ public class ProductFormController extends MultiActionController {
 		
 		if (id != null) {
 			product = productDao.getById(id);
+			product.setCategoryNames();
 		}
 		
 		Map<String, Object> params = getParameterMap(product);
@@ -255,21 +256,26 @@ public class ProductFormController extends MultiActionController {
 				return new ModelAndView("redirect:productList.html");
 				
 				
-			} catch (InvalidImageFileFormatException e) {
-				binder.getBindingResult().rejectValue("smallImage", "invalid.file.format", "invalid file");
-				return new ModelAndView("/admin/productForm").addAllObjects(
-						binder.getBindingResult().getModel()).addObject("categories", getCategoryList())
-						.addObject("product", binder.getBindingResult().getTarget());
-				
 			} catch (ValidationException e) {
-				return new ModelAndView("redirect:productFormInit.html?id=" + product.getId());
-			}
-			
+				
+				binder.getBindingResult().rejectValue("thumbnail", e.getMessage(), 
+						"error al modificar producto");
+				return new ModelAndView("/admin/productList").addAllObjects(
+						binder.getBindingResult().getModel())
+						.addObject("categories", getCategoryList())
+						.addObject("product", binder.getBindingResult().getTarget())
+						.addObject("allProductsByCategory", getAllProductsByCategory())
+						.addObject("unassigned", getUnassignedProducts());
+				
+			} 			
 			
 		} else {
-			return new ModelAndView("/admin/productForm").addAllObjects(
-					binder.getBindingResult().getModel()).addObject("categories", getCategoryList())
-					.addObject("product", binder.getBindingResult().getTarget());
+			return new ModelAndView("/admin/productList").addAllObjects(
+					binder.getBindingResult().getModel())
+					.addObject("categories", getCategoryList())
+					.addObject("product", binder.getBindingResult().getTarget())
+					.addObject("allProductsByCategory", getAllProductsByCategory())
+					.addObject("unassigned", getUnassignedProducts());
 		}
 
 	}
@@ -285,13 +291,12 @@ public class ProductFormController extends MultiActionController {
 	}
 	
 	private void addImages(Product product, HttpServletRequest request) 
-	throws ServletRequestBindingException, IOException, InvalidImageFileFormatException {
+	throws ServletRequestBindingException, IOException, ValidationException {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
 		// we allow only a single image upload, received as "smallImage"
 		// the same image will be saved twice in different sizes if necessary
-		// For the time being, we only save it once as "thumbnail"
 		
 		FullSizeImage newImage = buildImageFile(multipartRequest, "smallImageFile", null);
 		if (newImage != null) {
@@ -304,17 +309,22 @@ public class ProductFormController extends MultiActionController {
 				productDao.deleteAllProductImages(product);
 			}
 			
-//			FullSizeImage fullSizeImage = (FullSizeImage) imageService.resize(
-//					newImage, ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH, 
-//					ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT, false); // TODO: DEFINIR TAMAÑO
-//			fullSizeImage.setOrderNumber(0);
-//			
-//			product.addImage(fullSizeImage);
+			FullSizeImage fullSizeImage = (FullSizeImage) imageService.resize(
+					newImage, ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH, 
+					ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT, false);
+			fullSizeImage.setOrderNumber(0);
+			
+			product.addImage(fullSizeImage);
 			
 			Thumbnail thumbnail = (Thumbnail) imageService.resize(
 					newImage, ConfigConstants.PRODUCT_GALLERY_THUMB_IMG_WIDTH, 
-					ConfigConstants.PRODUCT_GALLERY_THUMB_IMG_HEIGHT, true); // TODO: DEFINIR TAMAÑO
+					ConfigConstants.PRODUCT_GALLERY_THUMB_IMG_HEIGHT, true);
 			product.setThumbnail(thumbnail);
+			
+		} 
+		
+		if (product.getImages() == null || product.getImages().isEmpty()) {
+			throw new ValidationException("must.select.picture");
 		}
 	}
 	
@@ -336,7 +346,7 @@ public class ProductFormController extends MultiActionController {
 		}
 		
 		if (product.getCategories() == null || product.getCategories().isEmpty()) {
-			throw new ValidationException();
+			throw new ValidationException("must.select.category");
 		}
 	}
 
@@ -395,17 +405,17 @@ public class ProductFormController extends MultiActionController {
 				addCategories(product, request);
 				productDao.update(product);
 				
-			} catch (InvalidImageFileFormatException e) {
-				binder.getBindingResult().rejectValue("thumbnail", "invalid.file.format", "invalid file");
+			} catch (ValidationException e) {
+				
+				binder.getBindingResult().rejectValue("thumbnail", e.getMessage(), 
+						"error al crear producto");
 				return new ModelAndView("/admin/productList").addAllObjects(
 						binder.getBindingResult().getModel())
 						.addObject("categories", getCategoryList())
+						.addObject("product", binder.getBindingResult().getTarget())
 						.addObject("allProductsByCategory", getAllProductsByCategory())
 						.addObject("unassigned", getUnassignedProducts());
-				
-			} catch (ValidationException e) {
-				return new ModelAndView("redirect:productFormInit.html?id=" + product.getId());
-			}
+			} 
 			
 			return new ModelAndView("redirect:productList.html");
 			
@@ -414,6 +424,7 @@ public class ProductFormController extends MultiActionController {
 			return new ModelAndView("/admin/productList").addAllObjects(
 					binder.getBindingResult().getModel())
 					.addObject("categories", getCategoryList())
+					.addObject("product", binder.getBindingResult().getTarget())
 					.addObject("allProductsByCategory", getAllProductsByCategory())
 					.addObject("unassigned", getUnassignedProducts());
 		}

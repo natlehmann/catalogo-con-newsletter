@@ -12,7 +12,7 @@
 			<div class="${status.count eq 1 ? 'img01' : (status.count eq 2 ? 'img02' : '') }">
 				
 				<c:url value="imageView.html" var="url_big">
-					<c:param name="id" value="${product.thumbnail.id}" />
+					<c:param name="id" value="${product.firstBigImage.id}" />
 				</c:url>
 				<img src="${url_big}" />
 			</div>
@@ -25,7 +25,7 @@
 	<c:forEach var="product" items="${products}" varStatus="status">
 	
 		<c:url value="imageView.html" var="url_big">
-			<c:param name="id" value="${product.thumbnail.id}" />
+			<c:param name="id" value="${product.firstBigImage.id}" />
 		</c:url>
 		<img src="${url_big}" ${status.count eq 1 ? "showing='true'" : "" } />
 		
