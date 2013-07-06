@@ -47,6 +47,9 @@ public class Product implements Serializable {
 	@Transient
 	private Map<Integer, FullSizeImage> imagesByOrderNumber;
 	
+	@Transient
+	private String[] categoryNames;
+	
 	
 	public Product() {}
 	
@@ -206,6 +209,14 @@ public class Product implements Serializable {
 		}
 		
 		return this.imagesByOrderNumber;
+	}
+	
+	public String[] getCategoryNames() {
+		return categoryNames;
+	}
+	
+	public void setCategoryNames(String[] categoryNames) {
+		this.categoryNames = categoryNames;
 	}
 
 }

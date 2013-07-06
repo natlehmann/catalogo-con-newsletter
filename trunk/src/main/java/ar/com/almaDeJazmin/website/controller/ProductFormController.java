@@ -321,45 +321,18 @@ public class ProductFormController extends MultiActionController {
 	private void addCategories(Product product, ServletRequest request) 
 	throws ServletRequestBindingException, ValidationException {
 		
-		// first we process the selection of categories
-		
-		String categoryIdsStr = ServletRequestUtils.getStringParameter(request, "param_categories");
-		
+		String[] categoryNames = product.getCategoryNames();
 		
 		if (product.getCategories() != null) {
 			product.getCategories().clear();
 		}
 		
-		if (categoryIdsStr != null) {
-			for (String categoryIdStr : categoryIdsStr.split(",")) {
+		if (categoryNames != null) {
+			for (String categoryId : categoryNames) {
 				
-				if (categoryIdStr != null && !categoryIdStr.trim().equals("")) {
-					Category category = categoryDao.getById(Integer.parseInt(categoryIdStr));
-					product.addCategory(category);
-				}
+				Category category = categoryDao.getById(Integer.parseInt(categoryId));
+				product.addCategory(category);
 			}
-		}
-		
-		// now we process any new categories
-		
-		String categoryName = ServletRequestUtils.getStringParameter(request, "param_category_name");
-		
-		if (categoryName != null && !categoryName.trim().equals("")) {
-			
-			Category newCategory = null;
-			Category existentCategory = categoryDao.getByName(categoryName);
-			
-			if (existentCategory != null) {
-				newCategory = existentCategory;
-				
-			} else {
-				newCategory = new Category();
-				newCategory.setName(categoryName);
-				
-				newCategory = categoryDao.create(newCategory);
-			}
-			
-			product.addCategory(newCategory);
 		}
 		
 		if (product.getCategories() == null || product.getCategories().isEmpty()) {
@@ -424,8 +397,11 @@ public class ProductFormController extends MultiActionController {
 				
 			} catch (InvalidImageFileFormatException e) {
 				binder.getBindingResult().rejectValue("thumbnail", "invalid.file.format", "invalid file");
-				return new ModelAndView("/admin/productForm").addAllObjects(
-						binder.getBindingResult().getModel()).addObject("categories", getCategoryList());
+				return new ModelAndView("/admin/productList").addAllObjects(
+						binder.getBindingResult().getModel())
+						.addObject("categories", getCategoryList())
+						.addObject("allProductsByCategory", getAllProductsByCategory())
+						.addObject("unassigned", getUnassignedProducts());
 				
 			} catch (ValidationException e) {
 				return new ModelAndView("redirect:productFormInit.html?id=" + product.getId());
@@ -435,12 +411,34 @@ public class ProductFormController extends MultiActionController {
 			
 		} else {
 			
-			return new ModelAndView("/admin/productForm").addAllObjects(
-					binder.getBindingResult().getModel()).addObject("categories", getCategoryList());
+			return new ModelAndView("/admin/productList").addAllObjects(
+					binder.getBindingResult().getModel())
+					.addObject("categories", getCategoryList())
+					.addObject("allProductsByCategory", getAllProductsByCategory())
+					.addObject("unassigned", getUnassignedProducts());
 		}
 		
 	}
-
+	
+	
+	private Map<Category, List<Product>> getAllProductsByCategory() {
+		Map<Category, List<Product>> allProductsByCategory = new HashMap<Category, List<Product>>();
+		
+		List<Category> categories = categoryDao.getAll();
+		for (Category category : categories) {
+			
+			allProductsByCategory.put(category, productDao.getByCategoryId(category.getId()));
+		}
+		
+		return allProductsByCategory;
+	}
+	
+	private List<Product> getUnassignedProducts() {
+	
+		List<Product> unassigned = productDao.getUnassignedProducts();
+		return unassigned;
+	}
+	
 
 	@RequestMapping("/imageView.html")
 	public ModelAndView imageView(HttpServletRequest request,
