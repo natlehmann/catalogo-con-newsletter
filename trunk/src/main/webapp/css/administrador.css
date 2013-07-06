@@ -168,3 +168,21 @@
     width: 40%;
 }
 
+#selectCategory label {
+	border: 0px;
+}
+
+#selectCategory label.mainlabel {
+	border-right: 1px solid #3B2113;
+	clear: both;
+	float:none;
+}
+
+div.spacer {
+	border:0px;
+	height:3px;
+	line-height:3px;
+	padding:0px;
+	margin:0px;
+	width: 100%;
+}

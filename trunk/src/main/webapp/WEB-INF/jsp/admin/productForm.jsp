@@ -51,18 +51,19 @@
 		</c:if>
 	
 		<input type="hidden" name="action" value="" id="actionParam" />
-		<input type="hidden" name="param_category_name" value="" id="param_category_name" />
-		<input type="hidden" name="param_categories" value="" id="param_categories" />
 		
 		<form:errors path="thumbnail" cssClass="errors" element="span" />
 		
 		<div id="selectCategory">
-			<label>CATEGORIA</label>
+			<div class="spacer"></div>
+			<label class="mainlabel">CATEGORIA</label>
+			<div class="spacer"></div>
 			<form:checkboxes items="${categories}" path="categoryNames" cssClass="categories"
 						delimiter="<br/>"  itemValue="id" itemLabel="name"/>
+			<div class="spacer"></div>
 		</div>
 
-		<div>
+		<div style="min-height:20px;padding-top:5px;">
 			<label>FOTO</label>
 			<c:choose>
 				<c:when test="${product.thumbnail == null}">
@@ -72,17 +73,13 @@
 					<input type="file" name="smallImageFile" class="left" size="30" 
 						id="smallImageFile_input" style="display: none;" />
 						
-					<div id="smallImageFile_div" class="disabled-input">
+					<span id="smallImageFile_div" class="disabled-input">
 						${product.thumbnail.fileName}
-					</div>
+					</span>
 					
-					<a href="#" onclick="toggleInput('smallImageFile')" class="agregarLink edit"
+					<a onclick="toggleInput('smallImageFile')" class="edit"
 						id="smallImageFile_link" title='<spring:message code="change" />'>
-					</a>
-					
-					<a href='#' onclick="sendImageAction('productCreateForm', 'deleteSmallImage')" 
-						class="agregarLink delete" id="smallImageFile_delete_link"
-						title='<spring:message code="delete" />'>
+							<spring:message code="change" />
 					</a>
 						
 				</c:otherwise>

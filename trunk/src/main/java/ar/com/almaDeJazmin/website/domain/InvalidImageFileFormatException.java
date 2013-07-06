@@ -19,4 +19,8 @@ public class InvalidImageFileFormatException extends ValidationException {
 		super(message, cause);
 	}
 
+	@Override
+	public String getMessage() {
+		return "invalid.file.format";
+	}
 }

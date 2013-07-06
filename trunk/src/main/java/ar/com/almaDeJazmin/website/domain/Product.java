@@ -219,4 +219,18 @@ public class Product implements Serializable {
 		this.categoryNames = categoryNames;
 	}
 
+
+	public void setCategoryNames() {
+		if (this.categories != null) {
+			this.categoryNames = new String[this.categories.size()];
+			
+			for (int i = 0; i < this.categories.size(); i++) {
+				this.categoryNames[i] = String.valueOf(this.categories.get(i).getId());
+			}
+		
+		} else {
+			this.categoryNames = new String[0];
+		}
+	}
+
 }
