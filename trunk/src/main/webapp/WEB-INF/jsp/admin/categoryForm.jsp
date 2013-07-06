@@ -18,7 +18,7 @@
 		
 		<div>
 			<label>CATEGORIA</label>
-			<form:input path="name" maxlength="250" /> 
+			<form:input path="name" maxlength="250" cssStyle="width:90%;" /> 
 		</div>
 	
 	</form:form>

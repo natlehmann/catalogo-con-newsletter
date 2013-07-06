@@ -61,8 +61,8 @@
 	}
 	//--------------------------------------------------
 	function iniEvents(queAceleracion) {
-		clip1.useHandCursor = false;
-		clip2.useHandCursor = false;
+		clip1.useHandCursor = true;
+		clip2.useHandCursor = true;
 		aceleracion = clip1.ac = clip2.ac = queAceleracion;
 		//-----
 		clip1.onPress = clip2.onPress = function () {

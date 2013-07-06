@@ -16,7 +16,8 @@
 
 	<div class="galeria360">
 		<div>
-              <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="1200" height="405" id="FlashID" title="360">
+              <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="1200" height="405" id="FlashID" 
+              	title="arrastra el mouse para ver en 360">
                 <param name="movie" value="images/alma.swf" />
                 <param name="quality" value="high" />
                 <param name="wmode" value="opaque" />
