@@ -1,3 +1,4 @@
+<%@page import="ar.com.almaDeJazmin.website.domain.ConfigConstants"%>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %> 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -9,13 +10,30 @@
 	<c:forEach var="product" items="${products}" varStatus="status">
 	
 		<c:if test="${status.count <= 2}">
+		
 			<div class="${status.count eq 1 ? 'img01' : (status.count eq 2 ? 'img02' : '') }">
 				
 				<c:url value="imageView.html" var="url_big">
 					<c:param name="id" value="${product.firstBigImage.id}" />
 				</c:url>
-				<img src="${url_big}" />
+				
+				<c:if test="${status.count eq 1}">
+					<div class="zoom" id="zoomImg">
+						<div class="small">
+				</c:if>
+				
+				<img src="${url_big}" style="width:<%=ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH %>px;height: <%=ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT %>px;" />
+				
+				<c:if test="${status.count eq 1}">
+						</div>
+						<div class="large">
+							<img alt="" src="${url_big}" style="width:<%=ConfigConstants.PRODUCT_GALLERY_ZOOM_SIZE_IMG_WIDTH %>px; height:<%=ConfigConstants.PRODUCT_GALLERY_ZOOM_SIZE_IMG_HEIGHT %>px;" >
+						</div>
+					</div>
+				</c:if>
+				
 			</div>
+		
 		</c:if>
 		
 	</c:forEach>

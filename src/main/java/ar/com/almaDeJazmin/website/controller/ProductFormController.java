@@ -296,7 +296,9 @@ public class ProductFormController extends MultiActionController {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		
 		// we allow only a single image upload, received as "smallImage"
-		// the same image will be saved twice in different sizes if necessary
+		// the same image will be saved twice in different sizes:
+		// 1- As thumbnail
+		// 2- As the original image in bigger size for zooming --> images[0]
 		
 		FullSizeImage newImage = buildImageFile(multipartRequest, "smallImageFile", null);
 		if (newImage != null) {
@@ -310,8 +312,8 @@ public class ProductFormController extends MultiActionController {
 			}
 			
 			FullSizeImage fullSizeImage = (FullSizeImage) imageService.resize(
-					newImage, ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH, 
-					ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT, false);
+					newImage, ConfigConstants.PRODUCT_GALLERY_ZOOM_SIZE_IMG_WIDTH, 
+					ConfigConstants.PRODUCT_GALLERY_ZOOM_SIZE_IMG_HEIGHT, false);
 			fullSizeImage.setOrderNumber(0);
 			
 			product.addImage(fullSizeImage);
