@@ -10,6 +10,18 @@
 </jsp:include>
 
 <script type="text/javascript">
+function inicializarZoom() {
+	//$('#zoomImg').jqZoomIt();
+	//$('#zoomImg').zoomy({border:'6px solid #fff'});
+	$("#zoomImg").anythingZoomer({
+		overlay : true,
+		edit: true,
+		// If you need to make the left top corner be at exactly 0,0, adjust the offset values below
+		offsetX : 0,
+		offsetY : 0
+	});
+}
+
 function showProducts(categoryId, elem) {
 	$.post("showProductsByCategory.html", { 'categoryId': categoryId }, displayProducts, 'html' );
 	cleanSelectedCategory();
@@ -33,6 +45,8 @@ function displayProducts(data) {
 	} else {
 		$('.bx-container img').attr('src', 'images/fondoProductos.jpg' );
 	}
+
+	inicializarZoom();
 }
 
 function cleanSelectedCategory() {
@@ -49,6 +63,8 @@ function avanzarGaleriaImagenes() {
 
 		newImg.attr('showing', 'true');
 		img.removeAttr("showing");
+
+		inicializarZoom();
 
 		var secondImg = newImg.next('img');
 

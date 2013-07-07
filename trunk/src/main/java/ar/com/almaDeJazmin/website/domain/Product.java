@@ -161,7 +161,19 @@ public class Product implements Serializable {
 	 */
 	public ImageFile getFirstBigImage() {
 		if (this.images != null && !this.images.isEmpty()) {
-			return this.images.get(0);
+			return this.getImagesByOrderNumber().get(0);
+		}
+		
+		return null;
+	}
+	
+	/**
+	 * Returns the image stored for zooming over first big image
+	 * @return
+	 */
+	public ImageFile getZoomImage() {
+		if (this.images != null && this.images.size() == 2) {
+			return this.getImagesByOrderNumber().get(1);
 		}
 		
 		return null;

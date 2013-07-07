@@ -417,8 +417,9 @@ body {
 	margin-left:15px;
 }  
 
+#zoom,
 .img01 {
-	height: 390px;
+	height: 370px;
     overflow: hidden;
     position: relative;
     width: 70%;
@@ -458,7 +459,7 @@ body {
 }
 
 .img02 {
-	height: 390px;
+	height: 370px;
     overflow: hidden;
     position: relative;
     width: 29%;
@@ -789,7 +790,9 @@ body {
 	text-align: right;
 }
 
-
+#almaJazmin .az-coords {
+	display: none;
+}
 
 
 

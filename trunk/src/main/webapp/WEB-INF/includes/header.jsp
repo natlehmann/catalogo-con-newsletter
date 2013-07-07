@@ -19,7 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
 	<link rel="shortcut icon" href='<c:url value="/favicon.ico"/>' />
-	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/jquery-ui-1.10.1.custom.min.css"/>' /> 
+	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/jquery-ui-1.10.1.custom.min.css"/>' />
+	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/anythingzoomer.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/master.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/style.css"/>' />
 	<link rel="stylesheet" type="text/css" media="all" href='<c:url value="/css/miltonian-bitter.css"/>' />
@@ -30,6 +31,7 @@
 	<script type="text/javascript" src='<c:url value="/js/jquery-ui-1.10.1.custom.min.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/js/modernizr.custom.21750.js"/>'></script>
 	<script type="text/javascript" src='<c:url value="/js/StackBlur.js"/>'></script>
+	<script type="text/javascript" src='<c:url value="/js/jquery.anythingzoomer.min.js"/>'></script>
 	
 	<script type="text/javascript" src='<c:url value="/js/master.js"/>'></script>
 	
