@@ -64,8 +64,6 @@ function avanzarGaleriaImagenes() {
 		newImg.attr('showing', 'true');
 		img.removeAttr("showing");
 
-		//inicializarZoom();
-
 		var secondImg = newImg.next('img');
 
 		if (secondImg.length) {	
@@ -76,10 +74,12 @@ function avanzarGaleriaImagenes() {
 			$('.galeriaProductos .img02 img').attr('src', '');
 			
 			$('#avanzar').hide();
+			$('#avanzar-deshabilitado').show();
 		}
 	}
 
 	$('#retroceder').show();
+	$('#retroceder-deshabilitado').hide();
 }
 
 function retrocederGaleriaImagenes() {
@@ -97,9 +97,11 @@ function retrocederGaleriaImagenes() {
 
 	if ( !prevImg.prev('img').length ) {
 		$('#retroceder').hide();
+		$('#retroceder-deshabilitado').show();
 	}
 	
 	$('#avanzar').show();
+	$('#avanzar-deshabilitado').hide();
 }
 </script>                                     
                                            

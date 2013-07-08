@@ -56,12 +56,14 @@ function avanzarGaleriaPrensa() {
 					$('.galeriaPrensa .img04 a img').attr('src', '');
 					
 					$('#avanzar').hide();
+					$('#avanzar-deshabilitado').show();
 				}
 			}
 		}
 	}
 
 	$('#retroceder').show();
+	$('#retroceder-deshabilitado').hide();
 }
 
 function retrocederGaleriaPrensa() {
@@ -93,9 +95,11 @@ function retrocederGaleriaPrensa() {
 
 	if ( !prevImg.prev('div').length ) {
 		$('#retroceder').hide();
+		$('#retroceder-deshabilitado').show();
 	}
 	
 	$('#avanzar').show();
+	$('#avanzar-deshabilitado').hide();
 }
 </script>  
 
@@ -146,6 +150,8 @@ function retrocederGaleriaPrensa() {
 				<img src="images/retrocesoOff.png" width="14" height="11" border="0" id="retroceder" 
 					style="display:none;"/>
 			</a>
+			<img src="images/deshabilitadoRetrocederOn.png" width="14" height="11" border="0" 
+				id="retroceder-deshabilitado"/>
 		</div>
 		
 	    <div>
@@ -158,6 +164,8 @@ function retrocederGaleriaPrensa() {
 		    	onclick="avanzarGaleriaPrensa()">
 		    	<img src="images/avanzarOff.png" width="14" height="11" border="0" id="avanzar" />
 		    </a>
+		    <img src="images/deshabilitadoAvanzarOn.png" width="14" height="11" border="0" 
+				id="avanzar-deshabilitado" style="display: none;"/>
 		</div>
 	</div>
 </div>

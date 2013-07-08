@@ -58,19 +58,24 @@
 			<img src="images/retrocesoOff.png" width="14" height="11" border="0" id="retroceder" 
 				style="display:none;"/>
 		</a>
+		<img src="images/deshabilitadoRetrocederOn.png" width="14" height="11" border="0" 
+			id="retroceder-deshabilitado"/>
 	</div>
 	
-	<c:if test="${products.size() > 1 }">
-	    <div>
-	    	<img src="images/separacionFlechas.png" alt="" width="1" height="11" id="separacionFlechas"/>
-	    </div>
-	    <div>
+    <div>
+    	<img src="images/separacionFlechas.png" alt="" width="1" height="11" id="separacionFlechas"/>
+    </div>
+    <div>
+		<c:if test="${products.size() > 1 }">
 	    	<a 	onmouseout="MM_swapImgRestore()" 
 		    	onmouseover="MM_swapImage('avanzar','','images/avanzarOn.png',1)"
 		    	onclick="avanzarGaleriaImagenes()">
 		    	<img src="images/avanzarOff.png" width="14" height="11" border="0" id="avanzar" />
 		    </a>
-		</div>
-	</c:if>
+		</c:if>
+		
+		<img src="images/deshabilitadoAvanzarOn.png" width="14" height="11" border="0" 
+			id="avanzar-deshabilitado" style="display: none;"/>
+	</div>
 </div>
 
