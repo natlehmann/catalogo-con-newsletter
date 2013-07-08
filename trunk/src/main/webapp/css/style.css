@@ -794,6 +794,19 @@ body {
 	display: none;
 }
 
+#almaJazmin .az-zoom {
+	width: 180px;
+	height: 180px;
+	border: 2px solid #fff;
+	border-radius: 90px;
+	box-shadow: 5px 5px 5px #444;
+}
 
+#almaJazmin .az-overlay { 
+    background-color: #fff;
+    opacity: 0.1; 
+}
 
-
+#almaJazmin .az-overly {
+    width: 700px;
+}	
