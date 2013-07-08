@@ -22,7 +22,7 @@
 						<div class="small">
 				</c:if>
 				
-				<img src="${url_big}" style="width:<%=ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH %>px;height: <%=ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT %>px;" />
+				<img src="${url_big}" style="width:<%=ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_WIDTH + 10 %>px;height: <%=ConfigConstants.PRODUCT_GALLERY_FULL_SIZE_IMG_HEIGHT %>px;" />
 				
 				<c:if test="${status.count eq 1}">
 						</div>

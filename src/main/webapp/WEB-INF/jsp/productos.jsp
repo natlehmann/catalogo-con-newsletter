@@ -15,7 +15,7 @@ function inicializarZoom() {
 	//$('#zoomImg').zoomy({border:'6px solid #fff'});
 	$("#zoomImg").anythingZoomer({
 		overlay : true,
-		edit: true,
+		edit: false,
 		// If you need to make the left top corner be at exactly 0,0, adjust the offset values below
 		offsetX : 0,
 		offsetY : 0
@@ -64,7 +64,7 @@ function avanzarGaleriaImagenes() {
 		newImg.attr('showing', 'true');
 		img.removeAttr("showing");
 
-		inicializarZoom();
+		//inicializarZoom();
 
 		var secondImg = newImg.next('img');
 
