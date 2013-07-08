@@ -9,3 +9,7 @@ java -cp server/lib/catalina.jar:server/lib/catalina-ant-jmx.jar:/home/natalia/.
 Luego insertar la password generada en la tabla User.
 
 
+Plugins para zoom: http://softstribe.com/top-lists/top-10-outstanding-image-zooming-jquery-scripts
+Plugins galerias imagenes: http://www.webdesignerdepot.com/2011/08/25-jquery-image-galleries-and-slideshow-plugins/
+
+
