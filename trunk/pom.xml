@@ -292,17 +292,17 @@
   			<jdbc.password></jdbc.password>
   			<tomcat.home></tomcat.home>
   			<tomcat.logs.home>.</tomcat.logs.home>
-  			<smtp.hostname></smtp.hostname>
+  			<smtp.hostname>mail.almadejazmin.com.ar</smtp.hostname>
   			<smtp.socket.factory></smtp.socket.factory>
   			<smtp.port>25</smtp.port>
   			<smtp.username></smtp.username>
   			<smtp.password></smtp.password>
   			<mail.debug>false</mail.debug>
-  			<mail.from>noreply@CAMBIARESTO.com</mail.from>
-  			<job.candidate.mail.to>noreply@CAMBIARESTO.com</job.candidate.mail.to>
-  			<final.customer.mail.to>noreply@CAMBIARESTO.com</final.customer.mail.to>
-  			<retailer.mail.to>noreply@CAMBIARESTO.com</retailer.mail.to>
-  			<corporate.sales.mail.to>noreply@CAMBIARESTO.com</corporate.sales.mail.to>
+  			<mail.from>noreply@almadejazmin.com.ar</mail.from>
+  			<job.candidate.mail.to>cv@almadejazmin.com.ar</job.candidate.mail.to>
+  			<final.customer.mail.to>consultas@almadejazmin.com.ar</final.customer.mail.to>
+  			<retailer.mail.to>franquicias@almadejazmin.com.ar</retailer.mail.to>
+  			<corporate.sales.mail.to>corporativas@almadejazmin.com.ar</corporate.sales.mail.to>
   		</properties>
   	</profile>
   	
