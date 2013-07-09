@@ -282,7 +282,7 @@
   			<smtp.username></smtp.username>
   			<smtp.password></smtp.password>
   			<mail.debug>false</mail.debug>
-  			<mail.from>noreply@almadejazmin.com.ar</mail.from>
+  			<mail.from>sistemas@almadejazmin.com.ar</mail.from>
   			<job.candidate.mail.to>cv@almadejazmin.com.ar</job.candidate.mail.to>
   			<final.customer.mail.to>consultas@almadejazmin.com.ar</final.customer.mail.to>
   			<retailer.mail.to>franquicias@almadejazmin.com.ar</retailer.mail.to>
