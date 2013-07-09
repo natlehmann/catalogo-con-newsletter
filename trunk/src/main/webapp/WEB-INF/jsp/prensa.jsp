@@ -51,13 +51,18 @@ function avanzarGaleriaPrensa() {
 					
 					$('.galeriaPrensa .img04 a img').attr('src', $('img', fourthImg).attr('src') )
 						.effect( "slide", {direction: 'right'}, "medium" );
-				
-				} else {
-					$('.galeriaPrensa .img04 a img').attr('src', '');
+					$('.galeriaPrensa a.link04').text( $('label', fourthImg).text() );
+
 					
-					$('#avanzar').hide();
-					$('#avanzar-deshabilitado').show();
-				}
+					var fifthImg = fourthImg.next('div');
+
+					if (!fifthImg.length) {
+						$('#avanzar').hide();
+						$('#avanzar-deshabilitado').show();
+					}
+				
+				} 
+					
 			}
 		}
 	}
@@ -88,6 +93,7 @@ function retrocederGaleriaPrensa() {
 
 	$('.galeriaPrensa .img04 a img').attr('src', $('img', fourthImg).attr('src') )
 		.effect( "slide", {direction: 'left'}, "medium" );
+	$('.galeriaPrensa a.link04').text( $('label', fourthImg).text() );
 
 
 	prevImg.attr('showing', 'true');
@@ -132,6 +138,7 @@ function retrocederGaleriaPrensa() {
 				<img src="images/prensa04.jpg" />
 			</a>
 		</div>
+		<a class="link04" href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a>
 	</div>
 	
 	<div id="allPrensa" style="display:none;">
@@ -140,6 +147,8 @@ function retrocederGaleriaPrensa() {
 		<div><img src="images/prensa03.jpg" ><label>Revista Elle / Enero 2013</label></div>
 		<div><img src="images/prensa04.jpg" ><label>Revista Elle / Enero 2013</label></div>
 		<div><img src="images/prensa01.jpg" ><label>Revista Ohlalá / Noviembre 2012</label></div>
+		<div><img src="images/prensa02.jpg" ><label>Revista Para Ti / Diciembre 2012</label></div>
+		<div><img src="images/prensa03.jpg" ><label>Revista Elle / Enero 2013</label></div>
 	</div>
 	
 	<div class="flechas">

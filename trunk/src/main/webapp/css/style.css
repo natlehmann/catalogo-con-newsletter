@@ -428,19 +428,21 @@ body {
 
 .galeriaPrensa .img01,
 .galeriaPrensa .img02,
-.galeriaPrensa .img03 {
+.galeriaPrensa .img03,
+.galeriaPrensa .img04 {
 	/*
 	width: 29%;
 	height: 370px;
 	*/
-	width: 19%;
 	height: 340px;
-	overflow: hidden;
+    overflow: hidden;
+    width: 270px;
 }
 
 .galeriaPrensa .link01,
 .galeriaPrensa .link02,
-.galeriaPrensa .link03 {
+.galeriaPrensa .link03,
+.galeriaPrensa .link04 {
 	position: absolute;
 	top: 340px;
 	width: 18%;
@@ -451,11 +453,17 @@ body {
 }
 
 .galeriaPrensa .link02 {
-	left: 21%;
+	/*left: 21%;*/
+	left: 285px;
 }
 
 .galeriaPrensa .link03 {
-	left: 40%;
+	/*left: 40%;*/
+	left: 556px;
+}
+
+.galeriaPrensa .link04 {
+	left: 830px;
 }
 
 .img02 {
@@ -464,21 +472,6 @@ body {
     position: relative;
     width: 29%;
     z-index: 10;
-}
-
-.galeriaPrensa .img04 {
-	/*
-	width: 12%;
-	height: 370px;
-	*/
-	width: 19%;
-	height: 340px;
-	overflow: hidden;
-}
-
-.galeriaPrensa .img04 img {
-	height: 340px;
-	width: auto;
 }
 
 .flechas {
