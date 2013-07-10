@@ -66,5 +66,14 @@
 	    </property>
 	    <property name="daemon" value="true"/>
 	</bean>
+	
+	<bean class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+		<property name="cacheMappings">
+	        <props>
+	            <!-- cache for one month -->
+	            <prop key="/images/**">2592000</prop>
+	        </props>
+	    </property>
+	</bean>
 
 </beans>
