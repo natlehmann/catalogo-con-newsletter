@@ -35,7 +35,7 @@ $(function() {
 			
 			<div>
 				<label>Nombre y Apellido</label>
-				<form:input path="name" maxlength="250" cssStyle="width:90%;" /> 
+				<form:input path="name" maxlength="250" cssStyle="width:35%;" /> 
 			</div>
 			
 			<div>
