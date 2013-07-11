@@ -68,14 +68,14 @@ function showSpinner() {
 						<label>
 							<spring:message code="name.and.lastname" />
 						</label>
-						<form:input path="name" maxlength="255" cssStyle="width:90%;" /> 
+						<form:input path="name" maxlength="255" cssStyle="width:35%;" /> 
 					</div>
 					
 					<div>
 						<label>
 							Raz&oacute;n Social
 						</label>
-						<form:input path="companyName" maxlength="255" cssStyle="width:90%;" /> 
+						<form:input path="companyName" maxlength="255" cssStyle="width:49%;" /> 
 					</div>
 					
 					<div>
