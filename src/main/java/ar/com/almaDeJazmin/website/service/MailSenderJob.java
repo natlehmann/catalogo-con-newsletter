@@ -92,12 +92,8 @@ public class MailSenderJob extends TimerTask {
 		for (Contact contact : contacts) {
 			
 			buffer.append(dateFormat.format(contact.getContactDate()));
-			buffer.append(": ");
-			buffer.append(contact.getName());
-			buffer.append(" (");
-			buffer.append(contact.getEmail());
-			buffer.append(")\n");
-			buffer.append(contact.getComment());
+			buffer.append(":\n");
+			buffer.append(contact.getMailInfo());
 			buffer.append("\n\n");
 		}
 		return buffer;

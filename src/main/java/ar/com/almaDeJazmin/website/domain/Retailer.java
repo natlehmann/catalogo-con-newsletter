@@ -41,4 +41,26 @@ public class Retailer extends Contact {
 	public void setProductAmount(Integer productAmount) {
 		this.productAmount = productAmount;
 	}
+	
+	@Override
+	public String getMailInfo() {
+		
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("Nombre: ");
+		buffer.append(this.getName());
+		buffer.append("\nRazón Social: ");
+		buffer.append(this.getCompanyName());
+		buffer.append("\nMail: ");
+		buffer.append(this.getEmail());
+		buffer.append("\nTeléfono: ");
+		buffer.append(this.getPhoneNumber());
+		buffer.append("\nRubros: ");
+		buffer.append(this.getProductCategories());
+		buffer.append("\nCantidad de productos: ");
+		buffer.append(this.getProductAmount());
+		buffer.append("\nComentario: ");
+		buffer.append(this.getComment());
+		
+		return buffer.toString();
+	}
 }
