@@ -156,7 +156,6 @@
   		<groupId>log4j</groupId>
   		<artifactId>log4j</artifactId>
   		<version>1.2.14</version>
-  		<scope>provided</scope>
   	</dependency>
   	<dependency>
   		<groupId>org.springframework</groupId>
@@ -244,7 +243,7 @@
   			<jdbc.url>jdbc:mysql://localhost:3306/almajazmin</jdbc.url>
   			<jdbc.username>almajazmindb</jdbc.username>
   			<jdbc.password></jdbc.password>
-  			<tomcat.home>/usr/local/tomcat</tomcat.home>
+  			<tomcat.home>/usr/local/tomcat7</tomcat.home>
   			<tomcat.logs.home>${tomcat.home}/logs</tomcat.logs.home>
   			<smtp.hostname>smtp.gmail.com</smtp.hostname>
   			<smtp.socket.factory>javax.net.ssl.SSLSocketFactory</smtp.socket.factory>
@@ -274,8 +273,8 @@
 <!--  			<jdbc.url>jdbc:mysql://200.58.99.67:2082/x051vm14_almajazmin</jdbc.url>-->
   			<jdbc.username>x051vm14</jdbc.username>
   			<jdbc.password></jdbc.password>
-  			<tomcat.home></tomcat.home>
-  			<tomcat.logs.home>.</tomcat.logs.home>
+  			<tomcat.home>/usr/local/apache-tomcat-7.0.40</tomcat.home>
+  			<tomcat.logs.home>${tomcat.home}/logs</tomcat.logs.home>
   			<smtp.hostname>mail.almadejazmin.com.ar</smtp.hostname>
   			<smtp.socket.factory></smtp.socket.factory>
   			<smtp.port>25</smtp.port>
