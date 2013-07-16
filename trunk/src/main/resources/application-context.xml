@@ -34,7 +34,14 @@
 		        hibernate.c3p0.minPoolSize=5
 				hibernate.c3p0.maxPoolSize=20
    				hibernate.c3p0.timeout=600
-				hibernate.c3p0.max_statement=50
+				hibernate.c3p0.maxStatements=50
+				hibernate.c3p0.preferredTestQuery=SELECT 1
+				hibernate.c3p0.idleConnectionTestPeriod=10
+				hibernate.c3p0.initialPoolSize=10
+				hibernate.c3p0.acquireRetryAttempts=5
+				hibernate.c3p0.acquireRetryDelay=200
+				hibernate.c3p0.maxIdleTime=30
+				hibernate.c3p0.testConnectionOnCheckout=true
 			</value>
 		</property>
 	</bean>
