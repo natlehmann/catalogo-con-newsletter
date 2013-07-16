@@ -164,9 +164,9 @@ body {
     font-family: GothamRnd-Medium, helvetica, verdana, arial, sans-serif;
 	font-size: 13px;
 	letter-spacing: 1px;
-	overflow-x:hidden;
-	overflow-y:hidden;
+	overflow:hidden;
 	-webkit-overflow-scrolling: touch;
+	color: #3B2011;
 }
 
 .textoResaltado {
@@ -792,6 +792,8 @@ body {
 	height: 180px;
 	border: 2px solid #fff;
 	border-radius: 90px;
+	-webkit-border-radius: 90px;
+	-moz-border-radius: 90px;
 	box-shadow: 5px 5px 5px #444;
 }
 
@@ -802,4 +804,8 @@ body {
 
 #almaJazmin .az-overly {
     width: 700px;
-}	
+}
+
+#nosotros-texto a:hover {
+	cursor: pointer;
+}
