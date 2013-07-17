@@ -37,23 +37,25 @@
 	
 	<title><%= title %></title>
 </head>
-<body id="almaJazmin">
+<body id="almaJazmin" class='<%= showAdminMenu != null ? "admin" : "" %>'>
 
 	<div class="container" id="<%= pageId %>">    
 		<div id="bx-wrapper" class="bx-wrapper">
 			<div id="contenedor">
-				<div class="twitter">
-					<a href="#">
-						<img src='<c:url value="/images/twitter.png"/>' width='29' height='28' border='0' />
-					</a>
-				</div>
-				<div class="facebook">
-					<a href="#">
-						<img src='<c:url value="/images/facebook.png"/>' width='29' height='28' border='0' />
-					</a>
-				</div>            
-				
+			
 				<c:if test="<%= showAdminMenu == null %>">
+				
+					<div class="twitter">
+						<a href="#">
+							<img src='<c:url value="/images/twitter.png"/>' width='29' height='28' border='0' />
+						</a>
+					</div>
+					<div class="facebook">
+						<a href="#">
+							<img src='<c:url value="/images/facebook.png"/>' width='29' height='28' border='0' />
+						</a>
+					</div>            
+				
 					<div id="menu">
 				
 						<div><a href="home.html">HOME</a></div>
