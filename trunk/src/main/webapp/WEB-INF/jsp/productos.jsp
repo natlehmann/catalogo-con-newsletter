@@ -107,13 +107,15 @@ function retrocederGaleriaImagenes() {
                                            
                                            
 <div id="submenu">
-	<c:forEach var="category" items="${categories}" varStatus="status">
-		<div class="${status.count eq categories.size() ? 'botonesultimo' : 'botones' }">
-			<a href="#" onclick="showProducts(${category.id}, this)">
-				${category.name}
-			</a>
-		</div>
-	</c:forEach>
+	<div class="botones-submenu">
+		<c:forEach var="category" items="${categories}" varStatus="status">
+			<div class="${status.count eq categories.size() ? 'botonesultimo' : 'botones' }">
+				<a href="#" onclick="showProducts(${category.id}, this)">
+					${category.name}
+				</a>
+			</div>
+		</c:forEach>
+	</div>
 </div>
 
 <div id="contenido" style="display:none;"></div>
