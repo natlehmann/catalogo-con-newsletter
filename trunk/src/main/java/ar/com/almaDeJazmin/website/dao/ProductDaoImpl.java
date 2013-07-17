@@ -84,7 +84,7 @@ public class ProductDaoImpl extends HibernateDaoSupport implements ProductDao {
 		
 		List<Product> products = getHibernateTemplate().findByNamedParam(
 				"Select distinct(p) from Product p left join fetch p.thumbnail left join fetch p.images, " +
-				"IN(p.categories) c where c.id = :categoryId", 
+				"IN(p.categories) c where c.id = :categoryId order by p.id desc", 
 				"categoryId", categoryId);
 		
 		return products;
