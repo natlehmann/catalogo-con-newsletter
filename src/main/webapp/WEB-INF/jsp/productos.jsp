@@ -36,6 +36,7 @@ function displayProducts(data) {
 	nombreCategoria = nombreCategoria.replace(/ /g, '-');
 	nombreCategoria = nombreCategoria.replace(/ñ/g, 'n');
 	nombreCategoria = nombreCategoria.replace(',', '');
+	nombreCategoria = nombreCategoria.toLowerCase();
 
 	nombreCategoria = 'fondo-' + nombreCategoria;
 
