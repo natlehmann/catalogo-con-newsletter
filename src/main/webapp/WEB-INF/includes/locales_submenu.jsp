@@ -9,6 +9,8 @@
 %>
 
 <div id="submenu">
+<div class="botones-submenu">
+
 	<div class="botones">
 		
 		<c:choose>
@@ -55,4 +57,5 @@
 		</a>
 	</div>
 
+</div>
 </div>

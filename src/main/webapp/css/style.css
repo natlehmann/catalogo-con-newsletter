@@ -253,15 +253,21 @@ body {
 /*--------------------------------------submenu--------------------------------------*/
 #submenu{
     background-color: #EB008B;
-    height: 384px;
+    height: 405px;
     left: 12%;
     margin-left: 2px;
     min-width: 220px;
-    padding-top: 21px;
     position: fixed;
     top: 25%;
     width: 17.9%;
     z-index: 10;
+    vertical-align: middle;
+    display: table;
+}
+
+.botones-submenu {
+	display: table-cell;
+	vertical-align:middle;
 }
 
 .botones {
