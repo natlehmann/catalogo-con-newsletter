@@ -22,7 +22,7 @@ public class RedirectController {
 	
 	@RequestMapping("/index.html")
 	public ModelAndView index() {
-		return new ModelAndView("/home");
+		return new ModelAndView("/index");
 	}
 	
 	@RequestMapping("/home.html")
