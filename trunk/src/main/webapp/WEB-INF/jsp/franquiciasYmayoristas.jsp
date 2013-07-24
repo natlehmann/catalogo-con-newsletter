@@ -7,6 +7,7 @@
 
 <jsp:include page="/WEB-INF/includes/header.jsp">
 	<jsp:param value="Alma de Jazmin" name="title"/>
+    <jsp:param value="formularioFranquicias" name="pageId"/>
 </jsp:include>
 
 <jsp:include page="/WEB-INF/includes/contacto_submenu.jsp">
