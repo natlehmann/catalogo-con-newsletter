@@ -114,6 +114,7 @@ height: 100%;
 }
 
 
-#formularioFranquicias {
-
+#formularioFranquicias #contenidoFormularioContacto {
+    padding-bottom: 20px;
+    padding-top: 50px;
 }

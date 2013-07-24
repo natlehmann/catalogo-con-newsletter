@@ -5,11 +5,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
-<jsp:include page="/WEB-INF/includes/header.jsp">
+<jsp:include page="/WEB-INF/includes/head.jsp">
 	<jsp:param value="Alma de Jazmin" name="title"/>
 </jsp:include>
 
 
-<jsp:include page="/WEB-INF/includes/footer.jsp">
-	<jsp:param value="fondoHome.jpg" name="backgroundImg"/>
+	<div id="logo1">
+		<a href='<c:url value="/home.html"/>'>
+			<img src='<c:url value="/images/logo.png"/>' alt="logo" width="235" height="79"/>
+		</a>
+	</div> 
+
+
+<jsp:include page="/WEB-INF/includes/common_footer.jsp">
+	<jsp:param value="fondoPortada.jpg" name="backgroundImg"/>
 </jsp:include>

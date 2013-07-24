@@ -9,8 +9,6 @@
 	String overBoxContent = request.getParameter("overBoxContent");
 %>
 	
-<c:set var="backgroundImgUrl" value="<%=backgroundImg %>" />
-<c:url value="/images/${backgroundImgUrl}" var="urlImg" />
 
 <c:set var="logoImgUrl" value="<%= logo %>" />
 <c:url value="/images/${logoImgUrl}" var="urlLogo" />
@@ -28,28 +26,7 @@
 					<div id="fade" class="fadebox"></div>
 				</c:if>
 				
-			</div>  
-			
-            <div class="bx-container">
-                <img src="${urlImg}" alt="image01" title="fondo"/>
-            </div>
 
-		</div>
-	
-	</div>
-	
-	
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-42534211-1', 'almadejazmin.com.ar');
-  ga('send', 'pageview');
-
-</script>
-
-		
-	</body>
-</html>
+<jsp:include page="/WEB-INF/includes/common_footer.jsp">
+	<jsp:param value="<%= backgroundImg %>" name="backgroundImg"/>
+</jsp:include>
