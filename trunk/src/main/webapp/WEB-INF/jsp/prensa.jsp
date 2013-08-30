@@ -29,7 +29,9 @@ function avanzarGaleriaPrensa() {
 					.effect( "slide", {direction: 'right'}, "medium" );
 		
 				$('.galeriaPrensa a.link01').text( $('label', newImg).text() );
-		
+				$('.galeriaPrensa a.link01').attr('href', $('span.pdf', newImg).text() );
+				$('.galeriaPrensa .img01 a').attr('href', $('span.pdf', newImg).text() );
+	
 				newImg.attr('showing', 'true');
 				img.removeAttr("showing");
 
@@ -37,10 +39,14 @@ function avanzarGaleriaPrensa() {
 				$('.galeriaPrensa .img02 a img').attr('src', $('img', secondImg).attr('src') )
 					.effect( "slide", {direction: 'right'}, "medium" );	
 				$('.galeriaPrensa a.link02').text( $('label', secondImg).text() );
+				$('.galeriaPrensa a.link02').attr('href', $('span.pdf', secondImg).text() );
+				$('.galeriaPrensa .img02 a').attr('href', $('span.pdf', secondImg).text() );
 
 				$('.galeriaPrensa .img03 a img').attr('src', $('img', thirdImg).attr('src') )
 					.effect( "slide", {direction: 'right'}, "medium" );	
 				$('.galeriaPrensa a.link03').text( $('label', thirdImg).text() );
+				$('.galeriaPrensa a.link03').attr('href', $('span.pdf', thirdImg).text() );
+				$('.galeriaPrensa .img03 a').attr('href', $('span.pdf', thirdImg).text() );
 
 
 		
@@ -52,6 +58,8 @@ function avanzarGaleriaPrensa() {
 					$('.galeriaPrensa .img04 a img').attr('src', $('img', fourthImg).attr('src') )
 						.effect( "slide", {direction: 'right'}, "medium" );
 					$('.galeriaPrensa a.link04').text( $('label', fourthImg).text() );
+					$('.galeriaPrensa a.link04').attr('href', $('span.pdf', fourthImg).text() );
+					$('.galeriaPrensa .img04 a').attr('href', $('span.pdf', fourthImg).text() );
 
 					
 					var fifthImg = fourthImg.next('div');
@@ -82,18 +90,26 @@ function retrocederGaleriaPrensa() {
 	$('.galeriaPrensa .img01 a img').attr('src', $('img', prevImg).attr('src') )
 		.effect( "slide", {direction: 'left'}, "medium" );
 	$('.galeriaPrensa a.link01').text( $('label', prevImg).text() );
+	$('.galeriaPrensa a.link01').attr('href', $('span.pdf', prevImg).text() );
+	$('.galeriaPrensa .img01 a').attr('href', $('span.pdf', prevImg).text() );
 
 	$('.galeriaPrensa .img02 a img').attr('src', $('img', secondImg).attr('src') )
 		.effect( "slide", {direction: 'left'}, "medium" );
 	$('.galeriaPrensa a.link02').text( $('label', secondImg).text() );
+	$('.galeriaPrensa a.link02').attr('href', $('span.pdf', secondImg).text() );
+	$('.galeriaPrensa .img02 a').attr('href', $('span.pdf', secondImg).text() );
 
 	$('.galeriaPrensa .img03 a img').attr('src', $('img', thirdImg).attr('src') )
 		.effect( "slide", {direction: 'left'}, "medium" );
 	$('.galeriaPrensa a.link03').text( $('label', thirdImg).text() );
+	$('.galeriaPrensa a.link03').attr('href', $('span.pdf', thirdImg).text() );
+	$('.galeriaPrensa .img03 a').attr('href', $('span.pdf', thirdImg).text() );
 
 	$('.galeriaPrensa .img04 a img').attr('src', $('img', fourthImg).attr('src') )
 		.effect( "slide", {direction: 'left'}, "medium" );
 	$('.galeriaPrensa a.link04').text( $('label', fourthImg).text() );
+	$('.galeriaPrensa a.link04').attr('href', $('span.pdf', fourthImg).text() );
+	$('.galeriaPrensa .img04 a').attr('href', $('span.pdf', fourthImg).text() );
 
 
 	prevImg.attr('showing', 'true');
@@ -114,41 +130,130 @@ function retrocederGaleriaPrensa() {
 
 	<div class="galeriaPrensa">
 		<div class="img01">
-			<a href="prensa/prensa.pdf" target="_blank">
-				<img src="images/prensa01.jpg" ></a>
+			<a href="prensa/prensaAgoParatiDeco.pdf" target="_blank">
+				<img src="images/prensaAgoParatiDeco.jpg" ></a>
 		</div>
-		<a class="link01" href="prensa/prensa.pdf" target="_blank">Revista Ohlalá / Noviembre 2012</a>
+		<a class="link01" href="prensa/prensaAgoParatiDeco.pdf" target="_blank">Revista Parati Deco / Agosto 2013</a>
 		
 		<div class="img02">
-			<a href="prensa/prensa.pdf" target="_blank">
-				<img src="images/prensa02.jpg" />
+			<a href="prensa/prensaAgoGente.pdf" target="_blank">
+				<img src="images/prensaAgoGente.jpg" />
 			</a>
 		</div>
-		<a class="link02" href="prensa/prensa.pdf" target="_blank">Revista Para Ti / Diciembre 2012</a>
+		<a class="link02" href="prensa/prensaAgoGente.pdf" target="_blank">Revista Gente / Agosto 2013</a>
 		
 		<div class="img03">
-			<a href="prensa/prensa.pdf" target="_blank">
-				<img src="images/prensa03.jpg" />
+			<a href="prensa/prensaJulEntrecasa.pdf" target="_blank">
+				<img src="images/prensaJulEntrecasa.jpg" />
 			</a>
 		</div>
-		<a class="link03" href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a>
+		<a class="link03" href="prensa/prensaJulEntrecasa.pdf" target="_blank">Revista Entrecasa / Julio 2013</a>
 		
 		<div class="img04">
-			<a href="prensa/prensa.pdf" target="_blank">
-				<img src="images/prensa04.jpg" />
+			<a href="prensa/prensaJulCaras.pdf" target="_blank">
+				<img src="images/prensaJulCaras.jpg" />
 			</a>
 		</div>
-		<a class="link04" href="prensa/prensa.pdf" target="_blank">Revista Elle / Enero 2013</a>
+		<a class="link04" href="prensa/prensaJulCaras.pdf" target="_blank">Revista Caras / Julio 2013</a>
 	</div>
 	
 	<div id="allPrensa" style="display:none;">
-		<div showing="true"><img src="images/prensa01.jpg" ><label>Revista Ohlalá / Noviembre 2012</label></div>
-		<div><img src="images/prensa02.jpg" ><label>Revista Para Ti / Diciembre 2012</label></div>
-		<div><img src="images/prensa03.jpg" ><label>Revista Elle / Enero 2013</label></div>
-		<div><img src="images/prensa04.jpg" ><label>Revista Elle / Enero 2013</label></div>
-		<div><img src="images/prensa01.jpg" ><label>Revista Ohlalá / Noviembre 2012</label></div>
-		<div><img src="images/prensa02.jpg" ><label>Revista Para Ti / Diciembre 2012</label></div>
-		<div><img src="images/prensa03.jpg" ><label>Revista Elle / Enero 2013</label></div>
+		<div showing="true"><img src="images/prensaAgoParatiDeco.jpg" >
+			<label>Revista Parati Deco / Agosto 2013</label>
+			<span class="pdf">prensa/prensaAgoParatiDeco.pdf</span>
+		</div>
+		<div><img src="images/prensaAgoGente.jpg" >
+			<label>Revista Gente / Agosto 2013</label>
+			<span class="pdf">prensa/prensaAgoGente.pdf</span>
+		</div>
+        <div><img src="images/prensaJulEntrecasa.jpg" >
+        	<label>Revista Entrecasa / Julio 2013</label>
+        	<span class="pdf">prensa/prensaJulEntrecasa.pdf</span>
+        </div>
+		<div><img src="images/prensaJulCaras.jpg" >
+			<label>Revista Caras / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulCaras.pdf</span>
+		</div>
+		<div><img src="images/prensaJulCaras3.jpg" >
+			<label>Revista Caras / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulCaras3.pdf</span>
+		</div>
+		<div><img src="images/prensaJulCaras2.jpg" >
+			<label>Revista Caras / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulCaras2.pdf</span>
+		</div>
+		<div><img src="images/prensaJulCaras1.jpg" >
+			<label>Revista Caras / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulCaras1.pdf</span>
+		</div>
+		<div><img src="images/prensaJulMia.jpg" >
+			<label>Revista Mia / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulMia.pdf</span>
+		</div>
+        <div><img src="images/prensaJulParateens.jpg" >
+        	<label>Revista Para Teens / Julio 2013</label>
+        	<span class="pdf">prensa/prensaJulParateens.pdf</span>
+        </div>
+		<div><img src="images/prensaJulParati1.jpg" >
+			<label>Revista Parati / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulParati1.pdf</span>
+		</div>
+		<div><img src="images/prensaJulParati2.jpg" >
+			<label>Revista Parati / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulParati2.pdf</span>
+		</div>
+		<div><img src="images/prensaJulParati3.jpg" >
+			<label>Revista Parati / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulParati3.pdf</span>
+		</div>
+        <div><img src="images/prensaJulParati.jpg" >
+        	<label>Revista Parati / Julio 2013</label>
+        	<span class="pdf">prensa/prensaJulParati.pdf</span>
+        </div>
+		<div><img src="images/prensaJulViva.jpg" >
+			<label>Revista Viva / Julio 2013</label>
+			<span class="pdf">prensa/prensaJulViva.pdf</span>
+		</div>
+		<div><img src="images/prensaJunParaTi.jpg" >
+			<label>Revista Parati / Junio 2013</label>
+			<span class="pdf">prensa/prensaJunParaTi.pdf</span>
+		</div>
+		<div><img src="images/prensaMayGente.jpg" >
+			<label>Revista Gente / Mayo 2013</label>
+			<span class="pdf">prensa/prensaMayGente.pdf</span>
+		</div>
+		<div><img src="images/prensaMayMia.jpg" >
+			<label>Revista Mia / Mayo 2013</label>
+			<span class="pdf">prensa/prensaJulMia.pdf</span> <!-- xxxxxxxxxxx ESTE PDF NO ESTA -->
+		</div>
+		<div><img src="images/prensaMayParaTeens1.jpg" >
+			<label>Revista Para Teens / Mayo 2013</label>
+			<span class="pdf">prensa/prensaMayParaTeens1.pdf</span>
+		</div>
+		<div><img src="images/prensaMayParateens.jpg" >
+			<label>Revista Para Teens / Mayo 2013</label>
+			<span class="pdf">prensa/prensaMayParateens.pdf</span>
+		</div>
+        <div><img src="images/prensaAbrCaras.jpg" >
+        	<label>Revista Caras / Abril 2013</label>
+        	<span class="pdf">prensa/prensaAbrCaras.pdf</span>
+        </div>
+		<div><img src="images/prensaAbrCosmopolitan.jpg" >
+			<label>Revista Cosmopolitan / Abril 2013</label>
+			<span class="pdf">prensa/prensaAbrCosmopolitan.pdf</span>
+		</div>
+		<div><img src="images/prensaAbrGente.jpg" >
+			<label>Revista Gente / Abril 2013</label>
+			<span class="pdf">prensa/prensaAbrGente.pdf</span>
+		</div>
+		<div><img src="images/prensaAbrParateens.jpg" >
+			<label>Revista Para Teens / Abril 2013</label>
+			<span class="pdf">prensa/prensaAbrParateens.pdf</span>
+		</div>
+        <div><img src="images/prensaAbrParati.jpg" >
+        	<label>Revista Parati / Abril 2013</label>
+        	<span class="pdf">prensa/prensaAbrParati.pdf</span>
+        </div>
 	</div>
 	
 	<div class="flechas">
