@@ -118,3 +118,8 @@ height: 100%;
     padding-bottom: 20px;
     padding-top: 50px;
 }
+
+.textoResaltadoFuscia {
+ 	font-weight:bold;
+	color: #EB008B;
+}
