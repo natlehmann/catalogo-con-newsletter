@@ -42,12 +42,14 @@ function showSpinner() {
 		<div id="contenidoFormulario">
 		
 			<div id="nosotros-texto" style='${openForm ? "display:none" : ""}'>
-				<span class="textoResaltado">
-				Alma de Jazmín</span> es una nueva propuesta. Creada para mujeres que buscan accesorios, 
+				<span class="textoResaltadoFuscia">
+				Alma de Jazmin </span>nace el 17 de julio del 2011.<br />
+				Es una nueva propuesta. Creada para mujeres que buscan accesorios, 
 				indumentaria, aromas y objetos deco con estilo propio.<br />
 				Es un espacio femenino, romántico y fresco.<br />
 				Inspirado en el ALMA de las mujeres modernas, alegres y sin edad.<br />
-				El espíritu de Alma de Jazmín se basa en las experiencias de viajes y momentos 
+				El espíritu de <span class="textoResaltadoFuscia">
+				Alma de Jazmin </span> se basa en las experiencias de viajes y momentos 
 				que impulsaron la creación de la marca. A través de texturas, colores y esencias, 
 				logramos dejar una huella en cada mujer que trasciende la moda y llega al alma.<br /><br />
 

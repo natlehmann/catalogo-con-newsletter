@@ -26,10 +26,10 @@ $(function() {
 <c:if test="${successMsg == null}">
 	
 	<div id="contenidoFormularioContacto">
-		Si estás interesada/o en una franquicia o en comercializar nuestros productos, escribinos. 
+		Si estás interesada/o en una venta corporativa de nuestros productos, escribinos. 
 		Te responderemos a la brevedad. Muchas gracias!
 		
-		<form:form method="POST" action="enviarVentasCorporativas.html" id="commentsForm"
+		  <form:form method="POST" action="enviarVentasCorporativas.html" id="commentsForm"
 			modelAttribute="corporateSalesContact" commandName="corporateSalesContact" cssClass="contacto">
 			
 			<div>
