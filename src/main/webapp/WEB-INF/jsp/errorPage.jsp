@@ -15,15 +15,16 @@
 %>
 
 
-
-<c:choose>
-	<c:when test="<%= errorMsgCode != null %>">
-		<spring:message code="<%= errorMsgCode %>" />
-	</c:when>
-	<c:otherwise>
-		<spring:message code="this.site.is.temporarily.unavailable"/>
-	</c:otherwise>
-</c:choose>
+<div id="contenidoFormulario" class="msgError">
+	<c:choose>
+		<c:when test="<%= errorMsgCode != null %>">
+			<spring:message code="<%= errorMsgCode %>" />
+		</c:when>
+		<c:otherwise>
+			<spring:message code="this.site.is.temporarily.unavailable"/>
+		</c:otherwise>
+	</c:choose>
+</div>
 
 
 <jsp:include page="/WEB-INF/includes/footer.jsp" />
