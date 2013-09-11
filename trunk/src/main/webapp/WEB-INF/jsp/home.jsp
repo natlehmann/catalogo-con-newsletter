@@ -50,6 +50,17 @@ $(document).ready(function() {
 
 <input type="hidden" name="contextoImagenes" value='<c:url value="/images"/>' id="contextoImagenes" />
 
+<div id="contenidoHome">
+
+	<div class="galeriaHomeNovedades">
+		<div class="img01">
+				<img src="images/spring.jpg" >
+		</div>
+	</div>
+</div>
+
+
+
 <jsp:include page="/WEB-INF/includes/footer.jsp">
-	<jsp:param value="fondoHome.jpg" name="backgroundImg"/>
+	<jsp:param value="fondoHomeSpring.jpg" name="backgroundImg"/>
 </jsp:include>

@@ -224,7 +224,7 @@ function retrocederGaleriaPrensa() {
 		</div>
 		<div><img src="images/prensaMayMia.jpg" >
 			<label>Revista Mia / Mayo 2013</label>
-			<span class="pdf">prensa/prensaJulMia.pdf</span> <!-- xxxxxxxxxxx ESTE PDF NO ESTA -->
+			<span class="pdf">prensa/prensaMayMia.pdf</span>
 		</div>
 		<div><img src="images/prensaMayParaTeens1.jpg" >
 			<label>Revista Para Teens / Mayo 2013</label>
