@@ -815,3 +815,8 @@ body {
 #nosotros-texto a:hover {
 	cursor: pointer;
 }
+
+#almaJazmin .msgError,
+#almaJazmin .msgError a {
+	font-size:20px;
+}
