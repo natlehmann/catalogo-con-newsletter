@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.com.almaDeJazmin.website.dao.CategoryDao;
@@ -47,11 +48,6 @@ public class RedirectController {
 		return new ModelAndView("/productos", "categories", categories);
 	}
 	
-	@RequestMapping("/locales.html")
-	public ModelAndView locales() {
-		return new ModelAndView("/locales");
-	}
-	
 	@RequestMapping("/contacto.html")
 	public ModelAndView contacto() {
 		return new ModelAndView("/contacto");
@@ -62,34 +58,14 @@ public class RedirectController {
 		return new ModelAndView("/prensa");
 	}
 	
-	@RequestMapping("/locales_cabildo.html")
-	public ModelAndView localesCabildo() {
-		return new ModelAndView("/localesCabildo");
-	}
-	
-	@RequestMapping("/locales_santaFe.html")
-	public ModelAndView localesSantaFe() {
-		return new ModelAndView("/localesSantaFe");
-	}
-	
-	@RequestMapping("/locales_rivadavia.html")
-	public ModelAndView localesRivadavia() {
-		return new ModelAndView("/localesRivadavia");
-	}
-	
-	@RequestMapping("/locales_cabildo1.html")
-	public ModelAndView localesCabildo1() {
-		return new ModelAndView("/localesCabildo1");
-	}
-	
-	@RequestMapping("/locales_florida.html")
-	public ModelAndView localesFlorida() {
-		return new ModelAndView("/localesFlorida");
-	}
-	
-	@RequestMapping("/locales_caballito.html")
-	public ModelAndView localesCaballito() {
-		return new ModelAndView("/localesCaballito");
+	@RequestMapping("/locales.html")
+	public ModelAndView localesCabildo(@RequestParam(value="n", required=false)String nombre) {
+		
+		if (nombre != null) {
+			return new ModelAndView("/locales" + nombre);
+		}
+		
+		return new ModelAndView("/locales");
 	}
 	
 	@RequestMapping(value="/errors/404.html")
